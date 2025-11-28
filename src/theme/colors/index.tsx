@@ -1,4 +1,4 @@
-import { Colors } from '../../theme/types.ts';
+import { Colors } from '../types.ts';
 
 enum COLOR_SCHEME {
   LIGHT = 'light',

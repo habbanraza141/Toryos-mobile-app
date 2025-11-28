@@ -17,7 +17,6 @@ import {
   NavigatorScreenParams,
   useNavigation,
 } from '@react-navigation/native';
-import { useDispatch, useSelector } from 'react-redux';
 
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
@@ -84,7 +83,7 @@ const TabRoutes = () => {
   const theme = useTheme();
   const colors = getColors(theme);
   const styles = createStyleSheet(colors);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const handleModalHide = useCallback(() => {
     if (pendingNavigation) {

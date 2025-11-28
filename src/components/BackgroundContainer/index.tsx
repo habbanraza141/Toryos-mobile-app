@@ -1,8 +1,8 @@
-import React, {ReactNode} from 'react';
-import {StyleSheet, ViewStyle, StyleProp} from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
-import {ColorPalette, getColors} from '../../theme/colors';
-import {useTheme} from '../../hooks/useTheme';
+import React, { ReactNode } from 'react';
+import { StyleSheet, ViewStyle, StyleProp } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { ColorPalette, colors, getColors } from '../../theme/colors';
+import { useTheme } from '../../hooks/useTheme';
 
 interface BackgroundContainerProps {
   children: ReactNode;
@@ -17,14 +17,11 @@ const BackgroundContainer = ({
   topInsetOnly = false,
   light = false,
 }: BackgroundContainerProps) => {
-  const theme = light ? 'light' : useTheme();
-  const colors = getColors(theme);
-  const styles = createStyleSheet(colors);
 
   return (
     <SafeAreaView
       edges={topInsetOnly ? ['top'] : undefined}
-      style={[styles.safeAreaContainer, containerStyle]}>
+      style={styles.safeAreaContainer}>
       {children}
     </SafeAreaView>
   );
@@ -32,11 +29,11 @@ const BackgroundContainer = ({
 
 export default BackgroundContainer;
 
-const createStyleSheet = (colors: ColorPalette) =>
+const styles =
   StyleSheet.create({
     safeAreaContainer: {
       flex: 1,
-      paddingBottom: 0,
+      padding: 20,
       backgroundColor: colors.background,
     },
   });

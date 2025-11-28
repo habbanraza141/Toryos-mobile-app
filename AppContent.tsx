@@ -7,7 +7,6 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 
 export type RootStackParamList = {
-    reset(arg0: { index: number; routes: { name: string; }[]; }): unknown;
     Auth: undefined;
     Main: undefined;
 };
@@ -19,11 +18,8 @@ export default function AppContent() {
 
     return (
         <>
-            {/* <StatusBar /> */}
             <NavigationContainer >
-                <RootStack.Navigator>
-
-                    {/* <RootStack.Screen name="Main" component={MainStack} /> */}
+                <RootStack.Navigator screenOptions={{ headerShown: false }}>
                     <RootStack.Screen name="Auth" component={AuthStack} />
                 </RootStack.Navigator>
             </NavigationContainer>
