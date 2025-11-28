@@ -51,7 +51,7 @@ const TextAreaComp = ({
         />
       </View>
       {error && (
-        <TextComp bold fontSize={12} style={{ marginTop: 8 }}>
+        <TextComp bold fontSize={12} color="danger" style={{ marginTop: 8 }}>
           {error}
         </TextComp>
       )}

@@ -13,11 +13,14 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import { ColorPalette, getColors } from '../../theme/colors';
+import FONTS from '../../theme/fonts';
 import { shadows } from '../../theme/shadows';
 import { useTheme } from './../../hooks/useTheme';
+import { ButtonVariant } from '../../types/generalInterface';
 
 interface ButtonProps {
   title: string;
+  variant?: ButtonVariant;
   leftImage?: ImageSourcePropType;
   rightImage?: ImageSourcePropType;
   onPress?: () => void;
@@ -36,6 +39,7 @@ interface ButtonProps {
 const Button = ({
   title,
   isCapital,
+  variant = 'primary',
   onPress,
   btnStyle,
   btnTextStyle,
@@ -55,7 +59,28 @@ const Button = ({
   let backgroundColor = colors.primary;
   let color = colors.white;
 
-
+  switch (variant) {
+    case 'danger':
+      btnVariant = 'danger';
+      backgroundColor = colors.danger;
+      break;
+    case 'warning':
+      btnVariant = 'warning';
+      backgroundColor = colors.warning;
+      break;
+    case 'success':
+      btnVariant = 'success';
+      backgroundColor = colors.success;
+      break;
+    case 'link':
+      btnVariant = 'link';
+      backgroundColor = 'transparent';
+      break;
+    default:
+      btnVariant = 'primary';
+      backgroundColor = colors.primary;
+      break;
+  }
 
   let textColor = color;
 
@@ -64,6 +89,10 @@ const Button = ({
     backgroundColor = colors.white;
   }
 
+  if (variant === 'link') {
+    backgroundColor = 'transparent';
+    textColor = colors.primary;
+  }
 
   if (isDisabled) {
     textColor = "#5f5f5f";
@@ -85,6 +114,7 @@ const Button = ({
       style={[
         { ...styles.button, backgroundColor, ...linkStyle },
         btnStyle,
+        (isDisabled && variant != 'link') && styles.disabledBackground,
       ]}
       onPress={onPress}>
 
@@ -154,6 +184,7 @@ const createStyleSheet = (colors: ColorPalette) => {
       fontSize: 16,
       fontWeight: '700',
       textAlign: 'center',
+      fontFamily: FONTS.primaryRegular,
       textTransform: 'capitalize',
     },
     imageStyle: {

@@ -1,7 +1,9 @@
 import React from 'react';
 import { Text, StyleSheet, StyleProp, TextStyle } from 'react-native';
 import { getColors } from '../../theme/colors';
+import FONTS from '../../theme/fonts';
 import { useTheme } from './../../hooks/useTheme';
+import { ColorVariant } from '../../types/generalInterface';
 
 type FontSize = number;
 type LineHeight = 16.8 | 19.2 | 21.6 | number;
@@ -13,6 +15,7 @@ interface TextCompProps {
   italic?: boolean;
   underline?: boolean;
   style?: StyleProp<TextStyle>;
+  color?: ColorVariant;
   light?: boolean;
   zero?: boolean;
   capitalize?: boolean;
@@ -30,6 +33,7 @@ const TextComp: React.FC<TextCompProps> = ({
   underline = false,
   capitalize = false,
   style,
+  color = 'default',
   light = false,
   onPress,
   ...props
@@ -43,7 +47,17 @@ const TextComp: React.FC<TextCompProps> = ({
   const colors = getColors(theme);
   const styles = createStyleSheet();
 
-
+  const colorMap: Record<ColorVariant, string> = {
+    muted: colors.muted,
+    warning: colors.warning,
+    text: colors.secondaryText,
+    muted35: colors.muted35,
+    danger: colors.danger,
+    primary: colors.primary,
+    default: colors.default,
+    warningLight: colors.warningLight,
+    success: colors.success,
+  };
 
   return (
     <Text
@@ -58,7 +72,8 @@ const TextComp: React.FC<TextCompProps> = ({
           fontStyle,
           textTransform,
           textDecorationLine,
-
+          color: colorMap[color],
+          fontFamily: bold ? FONTS.primaryItalic : FONTS.primaryRegular,
           paddingBottom,
         },
         style,
