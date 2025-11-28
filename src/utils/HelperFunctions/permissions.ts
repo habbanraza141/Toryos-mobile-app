@@ -1,6 +1,5 @@
 import { PermissionsAndroid as AndroidPermissions, Platform } from 'react-native';
 import { CameraRoll } from '@react-native-camera-roll/camera-roll';
-import * as Sentry from '@sentry/react-native';
 
 
 export async function requestStoragePermission() {
@@ -25,8 +24,6 @@ export async function requestStoragePermission() {
     );
     return granted === AndroidPermissions.RESULTS.GRANTED;
   } catch (err) {
-Sentry.captureException(err) 
-
     console.warn('Permission request error:', err);
     return false;
   }
@@ -42,7 +39,6 @@ export async function checkPhotoLibraryPermission() {
     });
     return true;
   } catch (error) {
-Sentry.captureException(error) 
     console.warn('Photo library permission check failed:', error);
     return false;
   }

@@ -6,7 +6,6 @@ import {
 import RNFS from 'react-native-fs';
 import { requestStoragePermission } from './permissions';
 import CameraRoll from '@react-native-camera-roll/camera-roll';
-import * as Sentry from '@sentry/react-native';
 
 
 export async function downloadFile(file: any) {
@@ -225,7 +224,6 @@ export async function downloadFile(file: any) {
               album: 'EHSApp',
             });
           } catch (firstError: any) {
-              Sentry.captureException(firstError) 
             console.log('First iOS save attempt failed:', firstError.message);
 
             try {
@@ -233,8 +231,6 @@ export async function downloadFile(file: any) {
                 type: mediaType?.startsWith('video/') ? 'video' : 'photo',
               });
             } catch (secondError: any) {
-              Sentry.captureException(secondError) 
-
               console.log(
                 'Second iOS save attempt failed:',
                 secondError.message,
@@ -246,7 +242,6 @@ export async function downloadFile(file: any) {
                     type: 'video',
                   });
                 } catch (thirdError: any) {
-                                Sentry.captureException(thirdError) 
                   console.log(
                     'Third iOS save attempt failed:',
                     thirdError.message,
@@ -268,8 +263,6 @@ export async function downloadFile(file: any) {
           savedToGallery: true,
         };
       } catch (saveError: any) {
-                                Sentry.captureException(saveError) 
-        
         console.error('Save to gallery error:', saveError);
         console.error('Error details:', {
           platform: Platform.OS,
@@ -298,7 +291,6 @@ export async function downloadFile(file: any) {
       };
     }
   } catch (error: any) {
-                                Sentry.captureException(error) 
     console.error('Download error:', error);
     return {
       success: false,

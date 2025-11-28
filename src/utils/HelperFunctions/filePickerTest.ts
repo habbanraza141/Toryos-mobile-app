@@ -1,6 +1,5 @@
 import { Platform } from "react-native";
 import { openFiles } from "./filePickerHelper";
-import * as Sentry from '@sentry/react-native';
 
 export const testFilePicker = async () => {
     console.log('🧪 Starting file picker test...');
@@ -12,7 +11,6 @@ export const testFilePicker = async () => {
         console.log('🧪 Test result:', result);
         return result;
     } catch (error) {
-Sentry.captureException(error) 
         console.error('🧪 Test error:', error);
         return {
             success: false,

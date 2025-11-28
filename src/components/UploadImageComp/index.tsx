@@ -21,7 +21,6 @@ import CustomAlert from '../CustomAlert';
 import { openFiles } from '../../utils/HelperFunctions/filePickerHelper.ts';
 import { SelectedFileView } from './SelectedFileView.tsx';
 import { request, PERMISSIONS, RESULTS, check } from 'react-native-permissions';
-import * as Sentry from '@sentry/react-native';
 
 interface TextInputCompProps {
   textInputStyle?: StyleProp<ViewStyle>;
@@ -75,7 +74,6 @@ const UploadImageComp = ({
         console.log(`📱 iOS Camera status: ${cameraStatus}`);
         return cameraStatus;
       } catch (error) {
-        Sentry.captureException(error);
         console.log('🔐 Error requesting iOS permissions:', error);
         return false;
       }
@@ -108,7 +106,6 @@ const UploadImageComp = ({
         console.log('📷 iOS mic permission check:', micStatus);
         return cameraStatus && micStatus;
       } catch (error) {
-        Sentry.captureException(error);
         console.log('🔐 Error requesting iOS permissions:', error);
         return false;
       }
@@ -406,7 +403,6 @@ const UploadImageComp = ({
         }
       }
     } catch (error) {
-      Sentry.captureException(error);
       console.log('📱 Error in filesFromStorage:', error);
       setAlertError('Failed to open file picker. Please try again.');
       setShowAlert(true);

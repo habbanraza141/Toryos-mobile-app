@@ -1,5 +1,4 @@
 import { Platform } from "react-native";
-import * as Sentry from '@sentry/react-native';
 
 export interface FileObject {
     uri: string;
@@ -39,7 +38,6 @@ export const validateFileObject = (file: any): FileObject | null => {
 
         return validatedFile;
     } catch (error) {
-Sentry.captureException(error) 
         console.error('📁 Error validating file object:', error, file);
         return null;
     }
@@ -65,8 +63,6 @@ export const validateFileArray = (files: any[]): FileObject[] => {
 
         return validatedFiles;
     } catch (error) {
-Sentry.captureException(error) 
-
         console.error('📁 Error validating file array:', error);
         return [];
     }
@@ -80,8 +76,6 @@ export const createFormDataFile = (file: FileObject, index: number) => {
             name: file.name || `file-${index}`,
         };
     } catch (error) {
-Sentry.captureException(error) 
-
         console.error('📁 Error creating FormData file:', error, file);
         return null;
     }

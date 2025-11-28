@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { StyleSheet, ViewStyle, StyleProp } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { ColorPalette, colors, getColors } from '../../theme/colors';
+import { ColorPalette, getColors } from '../../theme/colors';
 import { useTheme } from '../../hooks/useTheme';
 
 interface BackgroundContainerProps {
@@ -17,11 +17,14 @@ const BackgroundContainer = ({
   topInsetOnly = false,
   light = false,
 }: BackgroundContainerProps) => {
+  const theme = light ? 'light' : useTheme();
+  const colors = getColors(theme);
+  const styles = createStyleSheet(colors);
 
   return (
     <SafeAreaView
       edges={topInsetOnly ? ['top'] : undefined}
-      style={styles.safeAreaContainer}>
+      style={[styles.safeAreaContainer, containerStyle]}>
       {children}
     </SafeAreaView>
   );
@@ -29,7 +32,7 @@ const BackgroundContainer = ({
 
 export default BackgroundContainer;
 
-const styles =
+const createStyleSheet = (colors: ColorPalette) =>
   StyleSheet.create({
     safeAreaContainer: {
       flex: 1,

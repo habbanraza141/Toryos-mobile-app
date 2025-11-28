@@ -1,6 +1,5 @@
 import { AxiosError } from 'axios';
 import axiosInstance, { basePath } from '../axiosInstance.ts';
-import * as Sentry from '@sentry/react-native';
 
 type FetchOptions = {
     params?: Record<string, any>;
@@ -49,8 +48,6 @@ export const apiDelete = async (endpoint: string, options?: FetchOptions) => {
 };
 
 export const extractAxiosErrorMessage = (err: unknown): string => {
-
     const error = err as AxiosError<{ message?: string }>;
-    Sentry.captureException(error);
     return error.response?.data?.message || error.message || 'Unexpected error';
 };

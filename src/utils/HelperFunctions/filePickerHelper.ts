@@ -2,7 +2,6 @@ import { pick } from '@react-native-documents/picker';
 import { Platform } from 'react-native';
 import { launchImageLibrary } from 'react-native-image-picker';
 import { allowedExtensions } from '../Constants';
-import * as Sentry from '@sentry/react-native';
 
 
 const fallbackFilePicker = async (maxCount: number = 3) => {
@@ -57,8 +56,6 @@ const fallbackFilePicker = async (maxCount: number = 3) => {
     return result;
   } catch (error) {
     console.error('📁 Fallback picker error:', error);
-    Sentry.captureException(error)
-
     return {
       success: false,
       files: [],
@@ -165,8 +162,6 @@ export const openFiles = async (
 
     return result;
   } catch (error) {
-    Sentry.captureException(error)
-
     if (Platform.OS === 'ios') {
       const fallbackResult = await fallbackFilePicker(maxCount);
 

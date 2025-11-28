@@ -9,7 +9,6 @@ import Share from 'react-native-share';
 import { useNavigation, CommonActions } from '@react-navigation/native';
 import { RootStackParamList } from '../../../AppContent';
 import { StackNavigationProp } from '@react-navigation/stack';
-import * as Sentry from '@sentry/react-native';
 import { navigationRef } from '../../navigation/NavigationRef/index.tsx';
 
 type Navigation = StackNavigationProp<RootStackParamList>;
@@ -29,8 +28,6 @@ export const storeData = async (
 
     await AsyncStorage.setItem(key, jsonValue);
   } catch (e) {
-    Sentry.captureException(e);
-
     return e as Error;
   }
 };
@@ -55,8 +52,6 @@ export const getData = async <T = unknown,>(
 
     return null;
   } catch (e) {
-    Sentry.captureException(e);
-
     return e as Error;
   }
 };
@@ -360,8 +355,6 @@ export async function downloadFile(file: any) {
               album: 'EHSApp',
             });
           } catch (firstError: any) {
-            Sentry.captureException(firstError);
-
             console.log('First iOS save attempt failed:', firstError.message);
 
             try {
@@ -369,8 +362,6 @@ export async function downloadFile(file: any) {
                 type: mediaType?.startsWith('video/') ? 'video' : 'photo',
               });
             } catch (secondError: any) {
-              Sentry.captureException(secondError);
-
               console.log(
                 'Second iOS save attempt failed:',
                 secondError.message,
@@ -382,8 +373,6 @@ export async function downloadFile(file: any) {
                     type: 'video',
                   });
                 } catch (thirdError: any) {
-                  Sentry.captureException(thirdError);
-
                   console.log(
                     'Third iOS save attempt failed:',
                     thirdError.message,
@@ -405,8 +394,6 @@ export async function downloadFile(file: any) {
           savedToGallery: true,
         };
       } catch (saveError: any) {
-        Sentry.captureException(saveError);
-
         console.error('Save to gallery error:', saveError);
         console.error('Error details:', {
           platform: Platform.OS,
@@ -451,8 +438,6 @@ export async function downloadFile(file: any) {
       };
     }
   } catch (error: any) {
-    Sentry.captureException(error);
-
     console.error('Download error:', error);
     return {
       success: false,
@@ -479,7 +464,6 @@ export const clearAppStorage = async () => {
     await AsyncStorage.clear();
     console.log('AsyncStorage cleared');
   } catch (error) {
-    Sentry.captureException(error);
     console.log('Failed to clear AsyncStorage:', error);
     throw error;
   }
@@ -533,7 +517,6 @@ export const forceLogout = async (dispatchCallback?: () => void) => {
       dispatchCallback();
     }
   } catch (err) {
-    Sentry.captureException(err);
     console.log('Force logout error:', err);
   }
 };
