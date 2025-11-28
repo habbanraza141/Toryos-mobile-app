@@ -39,7 +39,7 @@ const NoDataExist: React.FC<Props> = ({ icon, heading, detail, handleClick, btnT
       )}
 
       {detail && (
-        <TextComp style={{ textAlign: 'center' }} color="muted">
+        <TextComp style={{ textAlign: 'center' }} >
           {detail}
         </TextComp>
       )}

@@ -8,9 +8,9 @@ import {
   TextInput,
   TextInputProps,
 } from 'react-native';
-import {shadows} from '../../theme/shadows';
-import {useTheme} from '../../hooks/useTheme';
-import {ColorPalette, getColors} from '../../theme/colors';
+import { shadows } from '../../theme/shadows';
+import { useTheme } from '../../hooks/useTheme';
+import { ColorPalette, getColors } from '../../theme/colors';
 import TextComp from '../TextComp';
 
 interface TextAreaCompProps extends Omit<TextInputProps, 'style'> {
@@ -51,7 +51,7 @@ const TextAreaComp = ({
         />
       </View>
       {error && (
-        <TextComp bold fontSize={12} color="danger" style={{marginTop: 8}}>
+        <TextComp bold fontSize={12} style={{ marginTop: 8 }}>
           {error}
         </TextComp>
       )}

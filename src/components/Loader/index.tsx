@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, ActivityIndicator, StyleSheet, Image } from 'react-native';
 import TextComp from '../TextComp';
-import { ColorVariant } from '../../types/generalInterface';
 import BackgroundContainer from '../BackgroundContainer';
 import { colors } from '../../theme/colors';
 import HeaderComp from '../HeaderComp';

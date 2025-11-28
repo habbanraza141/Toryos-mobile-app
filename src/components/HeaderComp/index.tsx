@@ -1,6 +1,5 @@
 import { StyleProp, StyleSheet, Text, TextStyle } from 'react-native';
 import React from 'react';
-import FONTS from '../../theme/fonts';
 import { useTheme } from '../../hooks/useTheme';
 import { ColorPalette, getColors } from '../../theme/colors';
 
@@ -32,7 +31,6 @@ const createStyles = (colors: ColorPalette, colorVariant: ColorVariant) =>
     textStyle: {
       fontSize: 30,
       fontWeight: '700' as TextStyle['fontWeight'],
-      fontFamily: FONTS.headingSemibold,
       letterSpacing: -1.5,
       lineHeight: 36,
       textTransform: 'capitalize',

@@ -1,6 +1,5 @@
 import { StyleSheet, TouchableOpacity, View, Image } from 'react-native';
 import React from 'react';
-import FONTS from '../../theme/fonts';
 import { ColorPalette, getColors } from '../../theme/colors';
 import TextComp from '../TextComp';
 import { useTheme } from '../../hooks/useTheme';
@@ -32,8 +31,8 @@ const RadioGroup = ({ text, value, options, onChange, align = 'left', error,
         {
           text &&
 
-          <TextComp bold color="primary">
-            {text}<TextComp color="danger">*</TextComp>
+          <TextComp bold >
+            {text}<TextComp >*</TextComp>
           </TextComp>
         }
 
@@ -56,7 +55,7 @@ const RadioGroup = ({ text, value, options, onChange, align = 'left', error,
           ))}
         </View>
         {error && (
-          <TextComp bold fontSize={12} color="danger" style={{ marginTop: 8 }}>
+          <TextComp bold fontSize={12} style={{ marginTop: 8 }}>
             {error}
           </TextComp>
         )}
