@@ -135,10 +135,10 @@ export const COLORS_DARK = {
   bottomTabsIcon: 'rgb(174, 174, 174)',
 
   secondaryText: '#bfbfbf',
-  background: '#0C162B',
+  background: '#11142B',
   orange: '#FF9559',
-  secondaryBackground: '#202342',
-  secondaryBackgroundWithoutOpacity: '#202342',
+  secondaryBackground: '#121630',
+  secondaryBackgroundWithoutOpacity: '#121630',
   bottomTabsBack: '#0C162B',
   bottomTabsBorder: 'rgba(238, 238, 238, 0.15)',
 

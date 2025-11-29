@@ -33,61 +33,7 @@ const CustomTabBar: React.FC<CustomTabBarProps> = ({
   const styles = React.useMemo(() => createstylesheet(colors), [colors]);
 
   // Check if current route is FAQs screen or SubmitInjuryScreen
-  const shouldHideTabBar = React.useMemo(() => {
-    const currentRoute = state.routes[state.index];
 
-    // Check for FAQs screen
-    if (currentRoute?.name === 'More') {
-      const moreState = currentRoute.state;
-      if (moreState?.routes) {
-        const moreRoute = moreState.routes[moreState.index];
-        if (moreRoute?.name === 'HelpSupportStack') {
-          const helpSupportState = moreRoute.state;
-          if (helpSupportState?.routes) {
-            const helpSupportRoute =
-              helpSupportState.routes[helpSupportState.index];
-            if (
-              ['FAQs', 'UserGuide', 'ContactSupport'].includes(
-                helpSupportRoute?.name,
-              )
-            ) {
-              return true;
-            }
-          }
-        }
-        if (moreRoute?.name === 'AccountStack') {
-          const accountState = moreRoute.state;
-          if (accountState?.routes) {
-            const accountRoute =
-              accountState.routes[accountState.index];
-            if (
-              ['RemoveCardScreen',].includes(
-                accountRoute?.name,
-              )
-            ) {
-              return true;
-            }
-          }
-        }
-      }
-    }
-
-    // Check for SubmitInjuryScreen
-    if (currentRoute?.name === 'Injuries') {
-      const injuriesState = currentRoute.state;
-      if (injuriesState?.routes) {
-        const injuriesRoute = injuriesState.routes[injuriesState.index];
-        if (
-          injuriesRoute?.name === 'SubmitInjuryScreen' ||
-          injuriesRoute?.name === 'InvestigationReport'
-        ) {
-          return true;
-        }
-      }
-    }
-
-    return false;
-  }, [state]);
 
   const handleTabPress = useCallback(
     (route: any, isFocused: boolean) => {
@@ -109,10 +55,6 @@ const CustomTabBar: React.FC<CustomTabBarProps> = ({
     [navigation],
   );
 
-  // Don't render tab bar if it should be hidden
-  if (shouldHideTabBar) {
-    return null;
-  }
 
   return (
     <View style={[styles.container]}>
@@ -127,26 +69,13 @@ const CustomTabBar: React.FC<CustomTabBarProps> = ({
           const label = options.tabBarLabel ?? options.title ?? route.name;
 
           const iconMap = {
-            Home: require('../../assets/icons/homeIcon.png'),
-            Incidents: require('../../assets/icons/incidentsIcon.png'),
-            Manager: require('../../assets/icons/managerIcon.png'),
-            Statistics: require('../../assets/icons/statisticsIcon.png'),
-            More: require('../../assets/icons/moreIcon.png'),
-            Action: require('../../assets/icons/actionUnfill.png'),
-            Account: require('../../assets/icons/accountUnfill.png'),
-            Injuries: require('../../assets/icons/injuryUnselected.png'),
+            Home: require('../../assets/icons/home.png'),
+            Event: require('../../assets/icons/event.png'),
+            Schedule: require('../../assets/icons/clock.png'),
+            More: require('../../assets/icons/more.png'),
+
           };
 
-          const iconMapSelected = {
-            Home: require('../../assets/icons/homeSelected.png'),
-            Incidents: require('../../assets/icons/incidentSelected.png'),
-            Manager: require('../../assets/icons/managerSelected.png'),
-            Statistics: require('../../assets/icons/statisticsSelected.png'),
-            More: require('../../assets/icons/moreSelected.png'),
-            Action: require('../../assets/icons/actionFill.png'),
-            Account: require('../../assets/icons/accountFilled.png'),
-            Injuries: require('../../assets/icons/injurySelected.png'),
-          };
 
           return (
             <TouchableOpacity
@@ -157,11 +86,7 @@ const CustomTabBar: React.FC<CustomTabBarProps> = ({
               disabled={isDisabled}>
               <Image
                 source={
-                  isFocused
-                    ? iconMapSelected[
-                    route.name as keyof typeof iconMapSelected
-                    ]
-                    : iconMap[route.name as keyof typeof iconMap]
+                  iconMap[route.name as keyof typeof iconMap]
                 }
                 style={[
                   styles.icon,

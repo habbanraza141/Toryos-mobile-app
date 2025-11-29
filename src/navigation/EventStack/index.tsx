@@ -2,13 +2,13 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from '../../screens/HomeScreen';
 
-export type HomeStackParamList = {
+export type EventStackParamList = {
   HomeScreen: undefined;
 };
 
-const Stack = createNativeStackNavigator<HomeStackParamList>();
+const Stack = createNativeStackNavigator<EventStackParamList>();
 
-export default function HomeStack() {
+export default function EventStack() {
   return (
     <Stack.Navigator
       screenOptions={{
