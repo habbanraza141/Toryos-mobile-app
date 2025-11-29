@@ -1,18 +1,23 @@
-import React from 'react';
-import { StyleSheet } from 'react-native';
+import React, { useCallback, useMemo, useState } from 'react';
+import { Platform, StyleSheet, View } from 'react-native';
+import Modal from 'react-native-modal';
 import { BottomTabNavigationProp, createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeStack from '../../navigation/HomeStack';
 import CustomTabBar from '../../components/CustomTabBar';
 import { useTheme } from '../../hooks/useTheme';
 import { ColorPalette, getColors } from '../../theme/colors';
-import { CompositeNavigationProp, useNavigation } from '@react-navigation/native';
+import { CommonActions, CompositeNavigationProp, useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import EventStack from '../EventStack';
 import ScheduledStack from '../ScheduledStack';
 import MoreStack from '../MoreStack';
+import TabModalContent from '../../components/TabModalContent';
+import Button from '../../components/Button';
 
 export type TabNavigationParamList = {
   HomeStack: undefined;
+  RoomStack: undefined;
+  CourseStack: undefined;
 };
 export type TabNavProp = CompositeNavigationProp<BottomTabNavigationProp<TabNavigationParamList, 'HomeStack'>,
   NativeStackNavigationProp<any>>;
@@ -20,32 +25,159 @@ export type TabNavProp = CompositeNavigationProp<BottomTabNavigationProp<TabNavi
 const Tab = createBottomTabNavigator();
 
 const TabRoutes = () => {
+  const [isModalVisible, setModalVisible] = useState<boolean>(false);
+  const [pendingNavigation, setPendingNavigation] = useState<
+    (() => void) | null
+  >(null);
   const navigation = useNavigation<TabNavProp>();
   const theme = useTheme();
   const colors = getColors(theme);
   const styles = createStyleSheet(colors);
 
+  const handleModalHide = useCallback(() => {
+    if (pendingNavigation) {
+      pendingNavigation();
+      setPendingNavigation(null);
+    }
+  }, [pendingNavigation]);
+
+
+  const ITEMS = [
+    {
+      id: '1',
+      label: 'Tools',
+      icon: require('../../assets/icons/tool.png'),
+    },
+    {
+      id: '2',
+      label: 'Rooms',
+      icon: require('../../assets/icons/room.png'),
+    },
+    {
+      id: '3',
+      label: 'Courses',
+      icon: require('../../assets/icons/topi.png'),
+    },
+  ];
+
+  const items = useMemo(() => {
+    const baseItems = ITEMS
+
+    return baseItems.map(item => ({
+      ...item,
+      onPress: () => {
+        setModalVisible(false);
+
+        if (item.label === 'Tools') {
+          setPendingNavigation(() => () => {
+            navigation.navigate('BottomTab', {
+              screen: 'More',
+              params: {
+                screen: 'ToolStack',
+              },
+            });
+          });
+        } else if (item.label === 'Rooms') {
+          setPendingNavigation(() => () => {
+            navigation.navigate('BottomTab', {
+              screen: 'More',
+              params: {
+                screen: 'RoomStack',
+              },
+            });
+          });
+        } else if (item.label === 'Courses') {
+          setPendingNavigation(() => () => {
+            navigation.dispatch(
+              CommonActions.reset({
+                index: 0,
+                routes: [
+                  {
+                    name: 'BottomTab',
+                    state: {
+                      routes: [
+                        {
+                          name: 'More',
+                          state: {
+                            routes: [
+                              {
+                                name: 'CourseStack',
+                              },
+                            ],
+                          },
+                        },
+                      ],
+                    },
+                  },
+                ],
+              }),
+            );
+          });
+        }
+      },
+    }));
+  }, [navigation]);
+
+  const handleModalClose = useCallback(() => {
+    setModalVisible(false);
+  }, []);
+
+
   return (
-    <Tab.Navigator
-      screenOptions={{ headerShown: false }}
-      tabBar={(props: any) => <CustomTabBar {...props} />}>
-      <Tab.Screen
-        name="Home"
-        component={HomeStack}
-      />
-      <Tab.Screen
-        name="Event"
-        component={EventStack}
-      />
-      <Tab.Screen
-        name="Schedule"
-        component={ScheduledStack}
-      />
-      <Tab.Screen
-        name="More"
-        component={MoreStack}
-      />
-    </Tab.Navigator>
+    <>
+      <Tab.Navigator
+        screenOptions={{ headerShown: false }}
+        tabBar={(props: any) => <CustomTabBar {...props} />}>
+        <Tab.Screen
+          name="Home"
+          component={HomeStack}
+        />
+        <Tab.Screen
+          name="Event"
+          component={EventStack}
+        />
+        <Tab.Screen
+          name="Schedule"
+          component={ScheduledStack}
+        />
+        <Tab.Screen
+          name="More"
+          component={MoreStack}
+        />
+      </Tab.Navigator>
+
+      <Modal
+        isVisible={isModalVisible}
+        onBackdropPress={handleModalClose}
+        swipeDirection="down"
+        onSwipeComplete={handleModalClose}
+        onModalHide={handleModalHide}
+        animationIn="slideInUp"
+        animationOut="slideOutDown"
+        backdropTransitionOutTiming={0}
+        backdropColor="black"
+        backdropOpacity={0.5}
+        style={styles.drawerModal}
+        hideModalContentWhileAnimating={true}>
+        <View
+          style={[
+            styles.modalContent,
+            Platform.OS === 'ios' && { paddingBottom: 50 },
+          ]}>
+          <View style={styles.dragIndicator} />
+          <View>
+            <TabModalContent items={items} />
+            <Button
+              title="Logout"
+              leftImage={require('../../assets/icons/logout.png')}
+              isleftImage={true}
+              btnStyle={{ backgroundColor: colors.danger }}
+              btnTextStyle={{ fontSize: 18 }}
+            />
+          </View>
+        </View>
+      </Modal>
+    </>
 
   );
 };
