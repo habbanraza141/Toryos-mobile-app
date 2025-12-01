@@ -6,11 +6,11 @@ import HomeStack from '../../navigation/HomeStack';
 import CustomTabBar from '../../components/CustomTabBar';
 import { useTheme } from '../../hooks/useTheme';
 import { ColorPalette, getColors } from '../../theme/colors';
-import { CommonActions, CompositeNavigationProp, useNavigation } from '@react-navigation/native';
+import { CommonActions, CompositeNavigationProp, NavigatorScreenParams, useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import EventStack from '../EventStack';
 import ScheduledStack from '../ScheduledStack';
-import MoreStack from '../MoreStack';
+import MoreStack, { MoreStackParamList } from '../MoreStack';
 import TabModalContent from '../../components/TabModalContent';
 import Button from '../../components/Button';
 
@@ -18,11 +18,31 @@ export type TabNavigationParamList = {
   HomeStack: undefined;
   RoomStack: undefined;
   CourseStack: undefined;
+  More: NavigatorScreenParams<MoreStackParamList>;
+
 };
-export type TabNavProp = CompositeNavigationProp<BottomTabNavigationProp<TabNavigationParamList, 'HomeStack'>,
+export type TabNavProp = CompositeNavigationProp<BottomTabNavigationProp<TabNavigationParamList, 'More'>,
   NativeStackNavigationProp<any>>;
 
 const Tab = createBottomTabNavigator();
+
+const ITEMS = [
+  {
+    id: '1',
+    label: 'Tools',
+    icon: require('../../assets/icons/tool.png'),
+  },
+  {
+    id: '2',
+    label: 'Rooms',
+    icon: require('../../assets/icons/room.png'),
+  },
+  {
+    id: '3',
+    label: 'Courses',
+    icon: require('../../assets/icons/topi.png'),
+  },
+];
 
 const TabRoutes = () => {
   const [isModalVisible, setModalVisible] = useState<boolean>(false);
@@ -42,28 +62,8 @@ const TabRoutes = () => {
   }, [pendingNavigation]);
 
 
-  const ITEMS = [
-    {
-      id: '1',
-      label: 'Tools',
-      icon: require('../../assets/icons/tool.png'),
-    },
-    {
-      id: '2',
-      label: 'Rooms',
-      icon: require('../../assets/icons/room.png'),
-    },
-    {
-      id: '3',
-      label: 'Courses',
-      icon: require('../../assets/icons/topi.png'),
-    },
-  ];
-
   const items = useMemo(() => {
-    const baseItems = ITEMS
-
-    return baseItems.map(item => ({
+    return ITEMS.map(item => ({
       ...item,
       onPress: () => {
         setModalVisible(false);
@@ -118,6 +118,12 @@ const TabRoutes = () => {
     }));
   }, [navigation]);
 
+  const handleTabPress = useCallback((e: any) => {
+    e.preventDefault();
+    setModalVisible(true);
+  }, []);
+
+
   const handleModalClose = useCallback(() => {
     setModalVisible(false);
   }, []);
@@ -143,6 +149,9 @@ const TabRoutes = () => {
         <Tab.Screen
           name="More"
           component={MoreStack}
+          listeners={{
+            tabPress: handleTabPress,
+          }}
         />
       </Tab.Navigator>
 

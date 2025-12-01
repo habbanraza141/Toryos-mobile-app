@@ -5,6 +5,7 @@ import { ColorPalette, getColors } from '../../theme/colors';
 import { useTheme } from '../../hooks/useTheme';
 import SpaceComponent from '../SpaceComponent';
 import TextComp from '../TextComp';
+import ToggleSwitch from '../ToggleSwitch';
 
 type TabItem = {
   id: string;
@@ -54,7 +55,7 @@ const TabModalContent: React.FC<TabModalContentProps> = ({ items }) => {
         <TextComp lineHeight={19.2} fontSize={16}>
           Light/Dark Mode
         </TextComp>
-        {/* <ToggleSwitch size="sm" /> */}
+        <ToggleSwitch size="sm" />
       </View>
     </View>
   );

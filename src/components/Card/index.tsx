@@ -63,10 +63,9 @@ const createStyleSheet = (colors: ColorPalette, isDark: boolean) =>
       borderRadius: 12,
       padding: 15,
       backgroundColor: colors.secondaryBackground,
-      borderColor: colors.muted15,
+      borderColor: colors.bottomTabsBorder,
       borderWidth: 1,
       gap: 15,
-      ...(isDark ? {} : shadows.button),
     },
     cardContent: {
       gap: 15,

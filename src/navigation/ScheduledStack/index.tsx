@@ -1,9 +1,9 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import HomeScreen from '../../screens/HomeScreen';
+import ScheduleScreen from '../../screens/ScheduleScreen';
 
 export type ScheduledStackParamList = {
-  HomeScreen: undefined;
+  ScheduleScreen: undefined;
 };
 
 const Stack = createNativeStackNavigator<ScheduledStackParamList>();
@@ -14,10 +14,10 @@ export default function ScheduledStack() {
       screenOptions={{
         headerShown: false,
       }}
-      initialRouteName="HomeScreen">
+      initialRouteName="ScheduleScreen">
       <Stack.Screen
-        name="HomeScreen"
-        component={HomeScreen}
+        name="ScheduleScreen"
+        component={ScheduleScreen}
         options={{
           headerShown: false,
           contentStyle: { width: '100%' },

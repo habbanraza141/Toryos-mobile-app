@@ -67,9 +67,8 @@ const createStyleSheet = (colors: ColorPalette, isDark: boolean) => {
       borderRadius: 10,
       paddingHorizontal: 16,
       borderWidth: 1,
-      borderColor: colors.muted15,
+      borderColor: colors.bottomTabsBorder,
       backgroundColor: colors.secondaryBackground,
-      ...(isDark ? {} : shadows.textInput),
     },
     input: {
       color: colors.default,

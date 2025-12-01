@@ -1,9 +1,9 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import HomeScreen from '../../screens/HomeScreen';
+import EventScreen from '../../screens/EventScreen';
 
 export type EventStackParamList = {
-  HomeScreen: undefined;
+  EventScreen: undefined;
 };
 
 const Stack = createNativeStackNavigator<EventStackParamList>();
@@ -14,10 +14,10 @@ export default function EventStack() {
       screenOptions={{
         headerShown: false,
       }}
-      initialRouteName="HomeScreen">
+      initialRouteName="EventScreen">
       <Stack.Screen
-        name="HomeScreen"
-        component={HomeScreen}
+        name="EventScreen"
+        component={EventScreen}
         options={{
           headerShown: false,
           contentStyle: { width: '100%' },

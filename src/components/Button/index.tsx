@@ -56,7 +56,7 @@ const Button = ({
   const styles = createStyleSheet(colors);
 
   let btnVariant = 'primary';
-  let backgroundColor = colors.primary;
+  let backgroundColor = colors.btnPrimary;
   let color = colors.white;
 
   switch (variant) {
@@ -78,7 +78,7 @@ const Button = ({
       break;
     default:
       btnVariant = 'primary';
-      backgroundColor = colors.primary;
+      backgroundColor = colors.btnPrimary;
       break;
   }
 
@@ -100,7 +100,7 @@ const Button = ({
 
   const linkStyle = btnVariant === 'link'
     ? {}
-    : { ...shadows.button, paddingVertical: 12 };
+    : { paddingVertical: 12 };
 
   const linkTextStyle = btnVariant === 'link'
     ? { color: colors.primary }

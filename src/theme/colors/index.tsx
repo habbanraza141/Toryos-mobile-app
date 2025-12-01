@@ -1,85 +1,12 @@
-import { Colors } from '../types.ts';
-
-enum COLOR_SCHEME {
-  LIGHT = 'light',
-  DARK = 'dark',
-}
-
-export const colors = {
-  primary: '#3857df',
-  secondary: '#FFC107',
-  btnPrimary: '#3857df',
-  btnTextPrimary: '#3857df',
-  btnLight: '#f8f8ff',
-  background: '#F9F9F9',
-  disabledBack: '#bfbfbf',
-  bottomTabsBack: '#f8f8ff',
-  modalBack: 'rgba(255, 255, 255, 0.50)',
-  text: '#121212',
-  textPrimary: '#3857df',
-  textGray: '#121212',
-  textOrange: '#ED7A3A',
-  spaceLine: '#d9d9df',
-  danger: '#B6244F',
-  white: '#FFFFFF',
-  blue: '#3857df',
-  green: '#168553',
-  yellow: '#ffc107',
-  darkRed: '#B6244F',
-  red: '#B6244F',
-  black: '#000000',
-  blackOpacity30: 'rgba(0,0,0,0.3)',
-  muted: 'rgba(248, 248, 255)', // , 0.50
-
-};
-
-export const COLORS_DEFAULT = {
-  default: '#000',
-  primary: '#3957DF',
-  danger: '#B6244F',
-  pink: '#F2DDE3',
-  success: '#168553',
-  warning: '#ED7A3A',
-  warningLight: '#FFC107',
-  secondaryText: '#121212',
-  muted: 'rgba(248, 248, 255)', // , 0.50
-  muted50: 'rgba(18, 18, 18, 0.50)',
-  muted35: 'rgba(18, 18, 18, 0.15)',
-  muted15: 'rgba(238, 238, 238, 0.15)',
-
-  background: '#F9F9F9',
-  orange: '#ED7A3A',
-  secondaryBackground: '#fff',
-  bottomTabsBack: '#f8f8ff',
-  bottomTabsBorder: '#FFFFFF',
-  bottomTabsIcon: '#9c9ca0',
-
-  secondary: '#FFC107',
-  btnPrimary: '#3857df',
-  btnTextPrimary: '#3857df',
-  btnLight: '#f8f8ff',
-  disabledBack: '#bfbfbf',
-  modalBack: 'rgba(255, 255, 255, 0.50)',
-  text: '#121212',
-  textPrimary: '#3857df',
-  textGray: '#121212',
-  textOrange: '#ED7A3A',
-  spaceLine: '#d9d9df',
-  white: '#FFFFFF',
-  blue: '#3857df',
-  green: '#168553',
-  yellow: '#ffc107',
-  black: '#000000',
-  tabText: '',
-  priority: '#B6244F',
-};
-
 export const COLORS_LIGHT = {
+  primary: '#D8E7FE',
+  btnPrimary: '#4285F4',
+  btnTextPrimary: '#3B84F6',
+  textPrimary: '#3B84F6',
   text: '#121212',
   default: '#000',
   negativeDefault: '#fff',
-  primary: '#3957DF',
-  danger: '#B6244F',
+  danger: '#fab9b9',
   success: '#168553',
   pink: '#F2DDE3',
 
@@ -94,24 +21,21 @@ export const COLORS_LIGHT = {
   secondaryBackgroundWithoutOpacity: '#fff',
   bottomTabsIcon: 'rgb(77, 77, 78)',
 
-  background: '#F9F9F9',
+  background: '#fbfbfc',
   orange: '#ED7A3A',
   secondaryBackground: '#fff',
-  bottomTabsBack: '#f8f8ff',
-  bottomTabsBorder: '#FFFFFF',
+  bottomTabsBack: '#ffffff',
+  bottomTabsBorder: '#e0e5ea',
+  blue: "#3857df",
 
   secondary: '#FFC107',
-  btnPrimary: '#3857df',
-  btnTextPrimary: '#3857df',
   btnLight: '#f8f8ff',
   disabledBack: '#bfbfbf',
   modalBack: 'rgba(255, 255, 255, 0.50)',
-  textPrimary: '#3857df',
   textGray: '#121212',
   textOrange: '#ED7A3A',
   spaceLine: '#d9d9df',
   white: '#FFFFFF',
-  blue: '#3857df',
   green: '#168553',
   yellow: '#ffc107',
   black: '#000000',
@@ -119,10 +43,13 @@ export const COLORS_LIGHT = {
 };
 
 export const COLORS_DARK = {
+  primary: '#1B2B57',
+  btnPrimary: '#3B84F6',
+  btnTextPrimary: '#3B84F6',
+  textPrimary: '#3B84F6',
   text: '#d9d9d9',
   default: '#FFFFFF',
   negativeDefault: '#000',
-  primary: '#4261F0',
   danger: '#DD3A45',
   success: '#168553',
   warning: '#FF9559',
@@ -139,21 +66,18 @@ export const COLORS_DARK = {
   orange: '#FF9559',
   secondaryBackground: '#121630',
   secondaryBackgroundWithoutOpacity: '#121630',
-  bottomTabsBack: '#0C162B',
-  bottomTabsBorder: 'rgba(238, 238, 238, 0.15)',
+  bottomTabsBack: '#121630',
+  bottomTabsBorder: '#272b49',
 
   secondary: '#FFC107',
-  btnPrimary: '#3857df',
-  btnTextPrimary: '#3857df',
   btnLight: '#f8f8ff',
   disabledBack: '#bfbfbf',
   modalBack: 'rgba(255, 255, 255, 0.50)',
-  textPrimary: '#3857df',
   textGray: '#121212',
   textOrange: '#ED7A3A',
   spaceLine: '#d9d9df',
+  blue: "#3857df",
   white: '#FFFFFF',
-  blue: '#3857df',
   green: '#168553',
   yellow: '#ffc107',
   black: '#000000',
@@ -190,7 +114,6 @@ export interface ColorPalette {
   textOrange: string;
   spaceLine: string;
   white: string;
-  blue: string;
   green: string;
   yellow: string;
   black: string;
