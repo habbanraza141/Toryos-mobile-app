@@ -17,7 +17,7 @@ export const COLORS_LIGHT = {
   muted35: 'rgba(18, 18, 18, 0.15)',
   muted15: 'rgba(238, 238, 238, 0.15)',
   muted65: 'rgba(248, 248, 255, 0.65)',
-
+  reaction: '#25D9D8',
   secondaryBackgroundWithoutOpacity: '#fff',
   bottomTabsIcon: 'rgb(77, 77, 78)',
 
@@ -55,7 +55,7 @@ export const COLORS_DARK = {
   warning: '#FF9559',
   warningLight: '#FFC107',
   muted: 'rgba(248, 248, 255, 0.50)',
-
+  reaction: '#25D9D8',
   muted15: 'rgba(238, 238, 238, 0.15)',
   muted35: 'rgba(248, 248, 255, 0.35)',
   muted65: 'rgba(248, 248, 255, 0.65)',
@@ -114,6 +114,8 @@ export interface ColorPalette {
   textOrange: string;
   spaceLine: string;
   white: string;
+  blue: string;
+  reaction: string;
   green: string;
   yellow: string;
   black: string;

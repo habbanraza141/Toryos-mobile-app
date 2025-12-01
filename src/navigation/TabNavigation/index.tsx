@@ -178,10 +178,8 @@ const TabRoutes = () => {
             <TabModalContent items={items} />
             <Button
               title="Logout"
-              leftImage={require('../../assets/icons/logout.png')}
-              isleftImage={true}
               btnStyle={{ backgroundColor: colors.danger }}
-              btnTextStyle={{ fontSize: 18 }}
+              btnTextStyle={{ fontSize: 18, color: colors.red }}
             />
           </View>
         </View>
