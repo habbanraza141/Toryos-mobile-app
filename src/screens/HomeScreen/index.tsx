@@ -72,8 +72,8 @@ const HomeScreen = () => {
 
                                 </View>
                                 <View style={{ justifyContent: 'space-between' }}>
-                                    <TextComp bold >Qitmeer Raza</TextComp>
-                                    <TextComp fontSize={12} >Company / Social</TextComp>
+                                    <TextComp bold >Tyler Morton</TextComp>
+                                    <TextComp fontSize={12} >Company / Announcements</TextComp>
                                     <TextComp fontSize={12} >4 days ago</TextComp>
                                 </View>
                             </View>
