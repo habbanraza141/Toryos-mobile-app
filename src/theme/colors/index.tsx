@@ -6,7 +6,7 @@ export const COLORS_LIGHT = {
   text: '#121212',
   default: '#000',
   negativeDefault: '#fff',
-  danger: '#fab9b9',
+  danger: '#cd3966ff',
   success: '#168553',
   pink: '#F2DDE3',
 

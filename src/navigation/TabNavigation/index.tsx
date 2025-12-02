@@ -13,6 +13,9 @@ import ScheduledStack from '../ScheduledStack';
 import MoreStack, { MoreStackParamList } from '../MoreStack';
 import TabModalContent from '../../components/TabModalContent';
 import Button from '../../components/Button';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../../store/store';
+import { clearCurrentUser } from '../../store/slices/userSlice';
 
 export type TabNavigationParamList = {
   HomeStack: undefined;
@@ -53,6 +56,7 @@ const TabRoutes = () => {
   const theme = useTheme();
   const colors = getColors(theme);
   const styles = createStyleSheet(colors);
+  const dispatch = useDispatch<AppDispatch>();
 
   const handleModalHide = useCallback(() => {
     if (pendingNavigation) {
@@ -128,6 +132,11 @@ const TabRoutes = () => {
     setModalVisible(false);
   }, []);
 
+  const handleLogout = useCallback(() => {
+    dispatch(clearCurrentUser());
+    setModalVisible(false);
+  }, [dispatch]);
+
 
   return (
     <>
@@ -179,7 +188,8 @@ const TabRoutes = () => {
             <Button
               title="Logout"
               btnStyle={{ backgroundColor: colors.danger }}
-              btnTextStyle={{ fontSize: 18, color: colors.red }}
+              btnTextStyle={{ fontSize: 18 }}
+              onPress={handleLogout}
             />
           </View>
         </View>
