@@ -36,7 +36,8 @@ const createStyleSheet = (colors: ColorPalette) =>
   StyleSheet.create({
     safeAreaContainer: {
       flex: 1,
-      padding: 20,
+      paddingTop: 20,
+      paddingHorizontal: 20,
       backgroundColor: colors.background,
     },
   });
