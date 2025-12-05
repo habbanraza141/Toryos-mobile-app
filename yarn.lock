@@ -1783,10 +1783,29 @@
     use-latest-callback "^0.2.4"
     use-sync-external-store "^1.5.0"
 
+"@react-navigation/drawer@^7.7.8":
+  version "7.7.8"
+  resolved "https://registry.yarnpkg.com/@react-navigation/drawer/-/drawer-7.7.8.tgz#2e680d7a5fb0e287572d6cc97cd8a228a3760dad"
+  integrity sha512-GL9pT2hB8im6tMQjzf82NkCZAYeHzZC8goxDOze4Z2LICWndfgaQKnp2MOVXGNuMcS0K92dwyBYO+HaGVn3PsA==
+  dependencies:
+    "@react-navigation/elements" "^2.9.1"
+    color "^4.2.3"
+    react-native-drawer-layout "^4.2.0"
+    use-latest-callback "^0.2.4"
+
 "@react-navigation/elements@^2.8.4":
   version "2.8.4"
   resolved "https://registry.yarnpkg.com/@react-navigation/elements/-/elements-2.8.4.tgz#2b0c7396adece25038bd2243c73bd61e8d48a9f7"
   integrity sha512-AKqJ4kjDLlWBuF2kPFalw1bcQglPqmhFMQnwuPpaD23M5dDbW620JBv89qsSNM3LRIERjvuluv1yguqBmBdTBA==
+  dependencies:
+    color "^4.2.3"
+    use-latest-callback "^0.2.4"
+    use-sync-external-store "^1.5.0"
+
+"@react-navigation/elements@^2.9.1":
+  version "2.9.1"
+  resolved "https://registry.yarnpkg.com/@react-navigation/elements/-/elements-2.9.1.tgz#4cd2d24b719668d2a2c94153e08a672f706f3ab9"
+  integrity sha512-Jn2F+tXiQOY8L5mLMety6tfQUwBA8daz3whQmI8utvFvtSdfutOqH9P5ZC/QjlZEY5zcA4ZeuDzM0LKkrtFgqw==
   dependencies:
     color "^4.2.3"
     use-latest-callback "^0.2.4"
@@ -5570,6 +5589,14 @@ react-native-animatable@1.4.0:
   integrity sha512-DZwaDVWm2NBvBxf7I0wXKXLKb/TxDnkV53sWhCvei1pRyTX3MVFpkvdYBknNBqPrxYuAIlPxEp7gJOidIauUkw==
   dependencies:
     prop-types "^15.8.1"
+
+react-native-drawer-layout@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/react-native-drawer-layout/-/react-native-drawer-layout-4.2.0.tgz#8b178c883aa6496b8259b2b7e72e296308dcf975"
+  integrity sha512-XFGK5RMcVhEqr2F4iH/cTXrcTm1uK3gIBNFPqHNO7rCXuXZTPBbQYA5yc9/Lqgw2KNQ3sAeHKvW6/WoTURo/eA==
+  dependencies:
+    color "^4.2.3"
+    use-latest-callback "^0.2.4"
 
 react-native-flash-message@^0.4.2:
   version "0.4.2"
