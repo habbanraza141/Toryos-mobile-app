@@ -8,7 +8,7 @@ import TextComp from '../TextComp';
 //     label: string
 // }
 
-const DrawerComponent = (props: any, navigation: any) => {
+const DrawerComponent = (navigation: any) => {
 
 
     return (
@@ -34,11 +34,37 @@ const DrawerComponent = (props: any, navigation: any) => {
             </View>
             <View style={{ height: 0.5, backgroundColor: '#9A9A9A', marginBottom: 15 }}></View>
 
-            {/* <DrawerItem
-                label={label}
+            <DrawerItem
+                label="Home"
                 labelStyle={styles.labelStyle}
-                onPress={onPress}
-            /> */}
+                onPress={() => navigation.navigate('TabRoutes', {
+                    screen: 'Home',
+                    params: { screen: 'Bookmark' }
+                })}
+            />
+            <DrawerItem
+                label="Event"
+                labelStyle={styles.labelStyle}
+                onPress={() => navigation.navigate('TabRoutes', {
+                    screen: 'Event',
+                    params: { screen: 'EventScreen' }
+                })}
+            />
+            <DrawerItem
+                label="Schedule"
+                labelStyle={styles.labelStyle}
+                onPress={() => navigation.navigate('TabRoutes', {
+                    screen: 'Schedule',
+                    params: { screen: 'ScheduleScreen' }
+                })}
+            />
+            <DrawerItem
+                label="MoreStack"
+                labelStyle={styles.labelStyle}
+                onPress={() => navigation.navigate('TabRoutes', {
+                    screen: 'MoreStack',
+                    params: { screen: 'SearchScreen' }
+                })} />
 
         </DrawerContentScrollView>
     );

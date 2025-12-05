@@ -14,6 +14,8 @@ import PostOptionsModal from "../../components/PostOptionsModal";
 import ModalComp from "../../components/ModalComp";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
+import { useNavigation } from "@react-navigation/native";
+import { DrawerActions } from "@react-navigation/native";
 
 interface Post {
     id: string;
@@ -69,6 +71,7 @@ const HomeScreen = () => {
     const colors = getColors(theme);
     const styles = createStyleSheet(colors);
     const currentUser = useSelector((state: RootState) => state.user.currentUser);
+    const navigation = useNavigation();
 
     // Static posts with timestamps (for alpha version)
     const fourDaysAgo = new Date();
@@ -224,6 +227,11 @@ const HomeScreen = () => {
         <BackgroundContainer>
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.container}>
+                    <TouchableOpacity
+                        onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
+                        style={{ margin: 5 }}>
+                        <Image source={require('../../assets/icons/menu.png')} style={{ width: 40, height: 40 }} />
+                    </TouchableOpacity>
                     <View style={styles.topContainer}>
                         <HeaderComp title="All Posts" />
                         <TextComp>Posts from all your groups and spaces</TextComp>
