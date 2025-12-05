@@ -6,7 +6,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import MainStack from './src/navigation/MainStack/index.tsx';
 import { useSelector } from 'react-redux';
 import { RootState } from './src/store/store';
-import DrawerStack from './src/navigation/DrawerStack/index.tsx';
+// import DrawerStack from './src/navigation/DrawerStack/index.tsx';
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 
@@ -25,7 +25,7 @@ export default function AppContent() {
       <NavigationContainer>
         <RootStack.Navigator screenOptions={{ headerShown: false }}>
           {isAuthenticated ? (
-            <RootStack.Screen name="Main" component={DrawerStack} />
+            <RootStack.Screen name="Main" component={MainStack} />
           ) : (
             <RootStack.Screen name="Auth" component={AuthStack} />
           )}

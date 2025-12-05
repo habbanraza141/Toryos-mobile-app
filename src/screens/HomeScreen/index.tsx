@@ -227,11 +227,11 @@ const HomeScreen = () => {
         <BackgroundContainer>
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.container}>
-                    <TouchableOpacity
+                    {/* <TouchableOpacity
                         onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
                         style={{ margin: 5 }}>
                         <Image source={require('../../assets/icons/menu.png')} style={{ width: 40, height: 40 }} />
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
                     <View style={styles.topContainer}>
                         <HeaderComp title="All Posts" />
                         <TextComp>Posts from all your groups and spaces</TextComp>
