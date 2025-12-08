@@ -87,6 +87,7 @@ function createStyleSheet(colors: ColorPalette) {
       width: 24,
       height: 24,
       resizeMode: 'contain',
+      tintColor: colors.iconBackground
     },
     rightIcon: {
       width: 24,

@@ -14,21 +14,21 @@ const EventScreen = () => {
     const colors = getColors(theme);
     const styles = createStyleSheet(colors);
     const [viewMode, setViewMode] = useState<'list' | 'calendar'>('list');
-    
+
     // Calendar state
     const [currentDate, setCurrentDate] = useState(new Date(2025, 11, 8)); // December 2025
     const [selectedDate, setSelectedDate] = useState(new Date(2025, 11, 8)); // December 8, 2025
-    
+
     // Dates with events (highlighted dates)
     const eventDates = [4, 19, 24, 25];
-    
+
     const monthNames = [
         'January', 'February', 'March', 'April', 'May', 'June',
         'July', 'August', 'September', 'October', 'November', 'December'
     ];
-    
+
     const dayNames = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
-    
+
     const getDaysInMonth = (date: Date) => {
         const year = date.getFullYear();
         const month = date.getMonth();
@@ -36,9 +36,9 @@ const EventScreen = () => {
         const lastDay = new Date(year, month + 1, 0);
         const daysInMonth = lastDay.getDate();
         const startingDayOfWeek = firstDay.getDay();
-        
+
         const days = [];
-        
+
         // Previous month's trailing days
         const prevMonth = new Date(year, month, 0);
         const prevMonthDays = prevMonth.getDate();
@@ -49,7 +49,7 @@ const EventScreen = () => {
                 isToday: false,
             });
         }
-        
+
         // Current month's days
         for (let i = 1; i <= daysInMonth; i++) {
             days.push({
@@ -58,7 +58,7 @@ const EventScreen = () => {
                 isToday: false,
             });
         }
-        
+
         // Next month's leading days
         const remainingDays = 42 - days.length; // 6 rows * 7 days
         for (let i = 1; i <= remainingDays; i++) {
@@ -68,10 +68,10 @@ const EventScreen = () => {
                 isToday: false,
             });
         }
-        
+
         return days;
     };
-    
+
     const navigateMonth = (direction: 'prev' | 'next') => {
         const newDate = new Date(currentDate);
         if (direction === 'prev') {
@@ -81,14 +81,14 @@ const EventScreen = () => {
         }
         setCurrentDate(newDate);
     };
-    
+
     const handleDateSelect = (day: number, isCurrentMonth: boolean) => {
         if (isCurrentMonth) {
             const newDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
             setSelectedDate(newDate);
         }
     };
-    
+
     const renderCalendarView = () => {
         const days = getDaysInMonth(currentDate);
         const monthName = monthNames[currentDate.getMonth()];
@@ -97,7 +97,7 @@ const EventScreen = () => {
         const selectedMonth = selectedDate.getMonth();
         const selectedYear = selectedDate.getFullYear();
         const isSelectedMonth = selectedMonth === currentDate.getMonth() && selectedYear === currentDate.getFullYear();
-        
+
         return (
             <>
                 {/* Event Calendar Card */}
@@ -109,9 +109,9 @@ const EventScreen = () => {
                     <TextComp fontSize={12} style={styles.calendarInstruction}>
                         Dates with events are highlighted. Click any date to see events below.
                     </TextComp>
-                    
+
                     <SpaceComponent />
-                    
+
                     {/* Month Navigation */}
                     <View style={styles.monthNavigation}>
                         <TouchableOpacity onPress={() => navigateMonth('prev')}>
@@ -124,9 +124,9 @@ const EventScreen = () => {
                             <TextComp style={styles.navArrow}>→</TextComp>
                         </TouchableOpacity>
                     </View>
-                    
+
                     <SpaceComponent />
-                    
+
                     {/* Days of Week Header */}
                     <View style={styles.daysOfWeek}>
                         {dayNames.map((day, index) => (
@@ -137,13 +137,13 @@ const EventScreen = () => {
                             </View>
                         ))}
                     </View>
-                    
+
                     {/* Calendar Grid */}
                     <View style={styles.calendarGrid}>
                         {days.map((dayObj, index) => {
                             const isEventDate = eventDates.includes(dayObj.date) && dayObj.isCurrentMonth;
                             const isSelected = isSelectedMonth && dayObj.isCurrentMonth && dayObj.date === selectedDay;
-                            
+
                             return (
                                 <TouchableOpacity
                                     key={index}
@@ -169,18 +169,18 @@ const EventScreen = () => {
                         })}
                     </View>
                 </Card>
-                
+
                 {/* Selected Date Events Card */}
                 <Card otherStyle={styles.eventsCard}>
                     <View style={styles.eventsCardHeader}>
                         <View style={styles.eventsCardHeaderLeft}>
                             <TextComp style={styles.calendarIcon}>📅</TextComp>
                             <TextComp bold style={styles.selectedDateTitle}>
-                                {selectedDate.toLocaleDateString('en-US', { 
-                                    weekday: 'long', 
-                                    year: 'numeric', 
-                                    month: 'long', 
-                                    day: 'numeric' 
+                                {selectedDate.toLocaleDateString('en-US', {
+                                    weekday: 'long',
+                                    year: 'numeric',
+                                    month: 'long',
+                                    day: 'numeric'
                                 })}
                             </TextComp>
                         </View>
@@ -190,9 +190,9 @@ const EventScreen = () => {
                             </TextComp>
                         </View>
                     </View>
-                    
+
                     <SpaceComponent />
-                    
+
                     {/* Empty State */}
                     <View style={styles.emptyState}>
                         <TextComp style={styles.emptyStateIcon}>📅</TextComp>
@@ -207,7 +207,7 @@ const EventScreen = () => {
             </>
         );
     };
-    
+
     const renderListView = () => {
         return (
             <>
@@ -233,7 +233,7 @@ const EventScreen = () => {
                         <TouchableOpacity>
                             <Image
                                 source={require('../../assets/icons/threedots.png')}
-                                style={{ tintColor: colors.white, width: 20, height: 20 }}
+                                style={{ tintColor: colors.iconBackground, width: 20, height: 20 }}
                             />
                         </TouchableOpacity>
                     </View>

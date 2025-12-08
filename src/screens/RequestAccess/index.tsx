@@ -28,7 +28,7 @@ const RequestAccess = () => {
     const [brokerageName, setBrokerageName] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
     const [aboutBrokerage, setAboutBrokerage] = useState('');
-    
+
     const [fullNameError, setFullNameError] = useState('');
     const [emailError, setEmailError] = useState('');
     const [brokerageNameError, setBrokerageNameError] = useState('');
@@ -84,117 +84,105 @@ const RequestAccess = () => {
                 <View style={styles.container}>
                     {/* Logo */}
                     <View style={styles.logoContainer}>
-                        <Image 
-                            source={require('../../assets/images/logo.png')} 
-                            resizeMode="contain" 
+                        <Image
+                            source={require('../../assets/images/logo.png')}
+                            resizeMode="contain"
                             style={styles.logo}
                         />
                     </View>
 
-                    {/* Header */}
-                    <View style={styles.header}>
-                        <BackButton />
-                        <HeaderComp title="Request Access to toryOS" style={styles.title} />
-                    </View>
 
-                    <TextComp style={styles.subtitle}>
-                        Join forward-thinking brokerages transforming real estate with AI
-                    </TextComp>
 
-                    <SpaceComponent />
-
-                    {/* Form Card */}
-                    <Card otherStyle={styles.formCard}>
-                        <TextComp bold style={styles.formTitle}>
-                            Tell Us About Your Brokerage
-                        </TextComp>
-                        <TextComp style={styles.formDescription}>
-                            We'll schedule a demo to show you how toryOS can help your team.
-                        </TextComp>
-
-                        <SpaceComponent />
-
-                        <View style={styles.formSection}>
-                            <View style={styles.inputContainer}>
-                                <TextComp style={styles.label}>
-                                    Full Name <TextComp style={styles.required}>*</TextComp>
-                                </TextComp>
-                                <TextInputComp
-                                    placeholderText="John Smith"
-                                    value={fullName}
-                                    onChangeText={setFullName}
-                                    showToggleImage={false}
-                                    error={fullNameError}
-                                />
-                            </View>
-
-                            <View style={styles.inputContainer}>
-                                <TextComp style={styles.label}>
-                                    Email <TextComp style={styles.required}>*</TextComp>
-                                </TextComp>
-                                <TextInputComp
-                                    placeholderText="john@yourbrokerage.com"
-                                    value={email}
-                                    onChangeText={setEmail}
-                                    showToggleImage={false}
-                                    keyboardType="email-address"
-                                    autoCapitalize="none"
-                                    error={emailError}
-                                />
-                            </View>
-
-                            <View style={styles.inputContainer}>
-                                <TextComp style={styles.label}>
-                                    Brokerage Name <TextComp style={styles.required}>*</TextComp>
-                                </TextComp>
-                                <TextInputComp
-                                    placeholderText="Your Brokerage LLC"
-                                    value={brokerageName}
-                                    onChangeText={setBrokerageName}
-                                    showToggleImage={false}
-                                    error={brokerageNameError}
-                                />
-                            </View>
-
-                            <View style={styles.inputContainer}>
-                                <TextComp style={styles.label}>Phone Number</TextComp>
-                                <TextInputComp
-                                    placeholderText="(555) 123-4567"
-                                    value={phoneNumber}
-                                    onChangeText={setPhoneNumber}
-                                    showToggleImage={false}
-                                    keyboardType="phone-pad"
-                                />
-                            </View>
-
-                            <View style={styles.inputContainer}>
-                                <TextComp style={styles.label}>Tell Us About Your Brokerage</TextComp>
-                                <TextAreaComp
-                                    placeholder="Number of agents, current challenges, what you're looking for..."
-                                    value={aboutBrokerage}
-                                    onChangeText={setAboutBrokerage}
-                                    inputStyle={styles.textArea}
-                                />
-                            </View>
-
-                            <Button
-                                title="Request Demo"
-                                onPress={handleRequestDemo}
-                                loading={loading}
-                                btnStyle={styles.submitButton}
-                            />
-
-                            <TextComp style={styles.infoText}>
-                                We typically respond within 24 hours.
+                    <View style={styles.formSection}>
+                        <View style={styles.inputContainer}>
+                            <TextComp bold style={styles.formTitle}>
+                                Tell Us About Your Brokerage
                             </TextComp>
+                            <TextComp style={styles.formDescription}>
+                                We'll schedule a demo to show you how toryOS can help your team.
+                            </TextComp>
+
+                            <SpaceComponent />
                         </View>
-                    </Card>
+                        <View style={styles.inputContainer}>
+                            <TextComp style={styles.label}>
+                                Full Name <TextComp style={styles.required}>*</TextComp>
+                            </TextComp>
+                            <TextInputComp
+                                placeholderText="John Smith"
+                                value={fullName}
+                                onChangeText={setFullName}
+                                showToggleImage={false}
+                                error={fullNameError}
+                            />
+                        </View>
+
+                        <View style={styles.inputContainer}>
+                            <TextComp style={styles.label}>
+                                Email <TextComp style={styles.required}>*</TextComp>
+                            </TextComp>
+                            <TextInputComp
+                                placeholderText="john@yourbrokerage.com"
+                                value={email}
+                                onChangeText={setEmail}
+                                showToggleImage={false}
+                                keyboardType="email-address"
+                                autoCapitalize="none"
+                                error={emailError}
+                            />
+                        </View>
+
+                        <View style={styles.inputContainer}>
+                            <TextComp style={styles.label}>
+                                Brokerage Name <TextComp style={styles.required}>*</TextComp>
+                            </TextComp>
+                            <TextInputComp
+                                placeholderText="Your Brokerage LLC"
+                                value={brokerageName}
+                                onChangeText={setBrokerageName}
+                                showToggleImage={false}
+                                error={brokerageNameError}
+                            />
+                        </View>
+
+                        <View style={styles.inputContainer}>
+                            <TextComp style={styles.label}>Phone Number</TextComp>
+                            <TextInputComp
+                                placeholderText="(555) 123-4567"
+                                value={phoneNumber}
+                                onChangeText={setPhoneNumber}
+                                showToggleImage={false}
+                                keyboardType="phone-pad"
+                            />
+                        </View>
+
+                        <View style={styles.inputContainer}>
+                            <TextComp style={styles.label}>Tell Us About Your Brokerage</TextComp>
+                            <TextAreaComp
+                                placeholder="Number of agents, current challenges, what you're looking for..."
+                                value={aboutBrokerage}
+                                onChangeText={setAboutBrokerage}
+                                inputStyle={styles.textArea}
+                            />
+                        </View>
+
+                        <Button
+                            title="Request Demo"
+                            onPress={handleRequestDemo}
+                            loading={loading}
+                            btnStyle={styles.submitButton}
+                        />
+
+                        <TextComp style={styles.infoText}>
+                            We typically respond within 24 hours.
+                        </TextComp>
+                    </View>
 
                     {/* Footer */}
                     <View style={styles.footer}>
                         <TextComp style={styles.footerText}>
                             Already have an account?{' '}
-                            <TextComp 
+                            <TextComp
                                 style={styles.footerLink}
                                 onPress={() => navigation.navigate('SignIn')}
                             >
@@ -222,7 +210,6 @@ const createStyleSheet = (colors: ColorPalette) => {
         },
         logoContainer: {
             alignItems: 'center',
-            marginTop: 20,
         },
         logo: {
             width: 200,

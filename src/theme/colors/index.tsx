@@ -22,6 +22,8 @@ export const COLORS_LIGHT = {
   bottomTabsIcon: 'rgb(77, 77, 78)',
 
   background: '#fbfbfc',
+  iconBackground: '#0C162B',
+
   orange: '#ED7A3A',
   secondaryBackground: '#fff',
   bottomTabsBack: '#ffffff',
@@ -59,7 +61,7 @@ export const COLORS_DARK = {
   muted15: 'rgba(238, 238, 238, 0.15)',
   muted35: 'rgba(248, 248, 255, 0.35)',
   muted65: 'rgba(248, 248, 255, 0.65)',
-  bottomTabsIcon: 'rgb(174, 174, 174)',
+  bottomTabsIcon: 'rgba(211, 209, 209, 1)',
 
   secondaryText: '#bfbfbf',
   background: '#11142B',
@@ -68,6 +70,7 @@ export const COLORS_DARK = {
   secondaryBackgroundWithoutOpacity: '#121630',
   bottomTabsBack: '#121630',
   bottomTabsBorder: '#272b49',
+  iconBackground: '#F9F9F9',
 
   secondary: '#FFC107',
   btnLight: '#f8f8ff',
@@ -78,7 +81,7 @@ export const COLORS_DARK = {
   spaceLine: '#d9d9df',
   blue: "#3857df",
   white: '#FFFFFF',
-  green: '#168553',
+  green: '#139f44ff',
   yellow: '#ffc107',
   black: '#000000',
 };

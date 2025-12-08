@@ -17,6 +17,16 @@ import { RootState } from "../../store/store";
 import { useNavigation } from "@react-navigation/native";
 import { DrawerActions } from "@react-navigation/native";
 
+interface Comment {
+    id: string;
+    author: string;
+    authorInitials: string;
+    authorImage?: any;
+    content: string;
+    createdAt: Date;
+    reactions: number;
+}
+
 interface Post {
     id: string;
     author: string;
@@ -28,7 +38,7 @@ interface Post {
     content: string;
     link?: string;
     reactions: number;
-    comments: number;
+    comments: Comment[];
     reactionEmoji?: string;
 }
 
@@ -87,7 +97,7 @@ const HomeScreen = () => {
             createdAt: fourDaysAgo,
             content: 'test',
             reactions: 1,
-            comments: 2,
+            comments: [],
             reactionEmoji: '🥹'
         },
         {
@@ -100,7 +110,7 @@ const HomeScreen = () => {
             content: 'COE Final Deadline, 2025 Leadership Academy, RAGC Events, Professional Development, Advocacy News, Upcoming Events and more',
             link: 'https://qc5mddq5.r.us-east-1.awstrack.me/L0/https:%2F%2Fportal.cincyrealtoralliance.com%2Fcourses-and-events%3Fevent_id=3ac96ec0-6bce-11f0-bf07-b7fd97ccfbfe/1/01000199e7551d6c-911afcdc-647b-49f6-a5f9-0647e397dc6c-000000/4JZKXAfnQzYUBgZlk6Fzg-l9CwU=448',
             reactions: 0,
-            comments: 2,
+            comments: [],
             reactionEmoji: '👍🏻',
             authorInitials: ""
         }
@@ -111,6 +121,9 @@ const HomeScreen = () => {
     const [selectedPostId, setSelectedPostId] = useState<string | null>(null);
     const [editModalVisible, setEditModalVisible] = useState(false);
     const [editPostText, setEditPostText] = useState('');
+    const [reactedPosts, setReactedPosts] = useState<Set<string>>(new Set());
+    const [expandedCommentPostId, setExpandedCommentPostId] = useState<string | null>(null);
+    const [commentTexts, setCommentTexts] = useState<Record<string, string>>({});
 
     const handlePublish = () => {
         if (newPostText.trim() && currentUser) {
@@ -124,7 +137,7 @@ const HomeScreen = () => {
                 createdAt: now,
                 content: newPostText.trim(),
                 reactions: 0,
-                comments: 0
+                comments: []
             };
             setPosts([newPost, ...posts]);
             setNewPostText('');
@@ -167,6 +180,106 @@ const HomeScreen = () => {
     const handleBookmark = () => {
         console.log('Bookmark post:', selectedPostId);
     };
+
+    const handleReaction = (postId: string) => {
+        const isReacted = reactedPosts.has(postId);
+        
+        setPosts(posts.map(post => {
+            if (post.id === postId) {
+                if (isReacted) {
+                    // Remove reaction
+                    const newReactions = Math.max(0, post.reactions - 1);
+                    return {
+                        ...post,
+                        reactions: newReactions,
+                        reactionEmoji: newReactions === 0 ? undefined : '👍',
+                    };
+                } else {
+                    // Add reaction
+                    return {
+                        ...post,
+                        reactions: post.reactions + 1,
+                        reactionEmoji: '👍',
+                    };
+                }
+            }
+            return post;
+        }));
+
+        // Update reacted posts set
+        const newReactedPosts = new Set(reactedPosts);
+        if (isReacted) {
+            newReactedPosts.delete(postId);
+        } else {
+            newReactedPosts.add(postId);
+        }
+        setReactedPosts(newReactedPosts);
+    };
+
+    const handleToggleComment = (postId: string) => {
+        if (expandedCommentPostId === postId) {
+            setExpandedCommentPostId(null);
+        } else {
+            setExpandedCommentPostId(postId);
+        }
+    };
+
+    const handlePostComment = (postId: string) => {
+        const commentText = commentTexts[postId] || '';
+        if (commentText.trim() && currentUser) {
+            const newComment: Comment = {
+                id: Date.now().toString(),
+                author: currentUser.name,
+                authorInitials: currentUser.initials,
+                content: commentText,
+                createdAt: new Date(),
+                reactions: 0,
+            };
+            setPosts(posts.map(post => {
+                if (post.id === postId) {
+                    const comments = Array.isArray(post.comments) ? post.comments : [];
+                    return {
+                        ...post,
+                        comments: [...comments, newComment],
+                    };
+                }
+                return post;
+            }));
+            setCommentTexts({ ...commentTexts, [postId]: '' });
+            setExpandedCommentPostId(null);
+        }
+    };
+
+    const handleCommentReaction = (postId: string, commentId: string) => {
+        setPosts(posts.map(post => {
+            if (post.id === postId) {
+                const comments = Array.isArray(post.comments) ? post.comments : [];
+                return {
+                    ...post,
+                    comments: comments.map(comment => 
+                        comment.id === commentId
+                            ? { ...comment, reactions: comment.reactions + 1 }
+                            : comment
+                    ),
+                };
+            }
+            return post;
+        }));
+    };
+
+    const handleDeleteComment = (postId: string, commentId: string) => {
+        setPosts(posts.map(post => {
+            if (post.id === postId) {
+                const comments = Array.isArray(post.comments) ? post.comments : [];
+                return {
+                    ...post,
+                    comments: comments.filter(comment => comment.id !== commentId),
+                };
+            }
+            return post;
+        }));
+    };
+
     const renderPost = (post: Post) => (
         <Card key={post.id}>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
@@ -195,7 +308,7 @@ const HomeScreen = () => {
                 <TouchableOpacity onPress={() => handleOpenOptions(post.id)}>
                     <Image
                         source={require('../../assets/icons/threedots.png')}
-                        style={{ tintColor: colors.white }}
+                        style={{ tintColor: colors.iconBackground }}
                     />
                 </TouchableOpacity>
             </View>
@@ -207,18 +320,97 @@ const HomeScreen = () => {
             )}
             <SpaceComponent />
             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                <View style={[post.reactions > 0 && { padding: 10, backgroundColor: colors.reaction, borderRadius: 20 }, !post.reactions && { padding: 10 }]}>
+                <TouchableOpacity
+                    onPress={() => handleReaction(post.id)}
+                    style={[post.reactions > 0 && { padding: 10, backgroundColor: colors.reaction, borderRadius: 20 }, !post.reactions && { padding: 10 }]}
+                >
                     <TextComp>
-                        {post.reactionEmoji || '👍🏻'}  {post.reactions > 0 ? `${post.reactions} reaction${post.reactions > 1 ? 's' : ''}` : 'React'}
+                        {post.reactionEmoji || '👍'}  {post.reactions > 0 ? `${post.reactions} reaction${post.reactions > 1 ? 's' : ''}` : 'React'}
                     </TextComp>
-                </View>
-                <View style={{ padding: 10 }}>
-                    <TextComp>💬  {post.comments} comment{post.comments !== 1 ? 's' : ''}</TextComp>
-                </View>
+                </TouchableOpacity>
+                <TouchableOpacity 
+                    style={{ padding: 10 }}
+                    onPress={() => handleToggleComment(post.id)}
+                >
+                    <TextComp>💬  {Array.isArray(post.comments) && post.comments.length > 0 ? `${post.comments.length} comment${post.comments.length !== 1 ? 's' : ''}` : 'Add Comment'}</TextComp>
+                </TouchableOpacity>
                 <View style={{ padding: 10 }}>
                     <TextComp>➢  Share</TextComp>
                 </View>
             </View>
+
+            {/* Comments Display */}
+            {post.comments.length > 0 && (
+                <View style={styles.commentsContainer}>
+                    {post.comments.map((comment) => (
+                        <View key={comment.id} style={styles.commentCard}>
+                            <View style={styles.commentHeader}>
+                                <View style={styles.commentAuthorInfo}>
+                                    {comment.authorImage ? (
+                                        <Image
+                                            source={comment.authorImage}
+                                            style={styles.commentAuthorImage}
+                                        />
+                                    ) : (
+                                        <View style={[styles.commentAuthorInitials, { backgroundColor: colors.iconBackground }]}>
+                                            <TextComp fontSize={12} bold>
+                                                {comment.authorInitials}
+                                            </TextComp>
+                                        </View>
+                                    )}
+                                    <View>
+                                        <TextComp bold fontSize={14}>{comment.author}</TextComp>
+                                        <TextComp fontSize={12} color="muted">
+                                            {formatTimeAgo(comment.createdAt)}
+                                        </TextComp>
+                                    </View>
+                                </View>
+                                {currentUser && comment.author === currentUser.name && (
+                                    <TouchableOpacity
+                                        onPress={() => handleDeleteComment(post.id, comment.id)}
+                                        style={styles.deleteButton}
+                                    >
+                                        <TextComp fontSize={16}>🗑️</TextComp>
+                                    </TouchableOpacity>
+                                )}
+                            </View>
+                            <SpaceComponent />
+                            <TextComp>{comment.content}</TextComp>
+                            <SpaceComponent />
+                            <View style={styles.commentActions}>
+                                <TouchableOpacity
+                                    onPress={() => handleCommentReaction(post.id, comment.id)}
+                                    style={styles.commentActionButton}
+                                >
+                                    <TextComp fontSize={14}>👍  React</TextComp>
+                                </TouchableOpacity>
+                                <TouchableOpacity style={styles.commentActionButton}>
+                                    <TextComp fontSize={14}>Reply</TextComp>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                    ))}
+                </View>
+            )}
+
+            {/* Comment Input Section */}
+            {expandedCommentPostId === post.id && (
+                <View style={styles.commentSection}>
+                    <SpaceComponent />
+                    <TextAreaComp
+                        placeholder="Write a comment..."
+                        value={commentTexts[post.id] || ''}
+                        onChangeText={(text) => setCommentTexts({ ...commentTexts, [post.id]: text })}
+                        inputStyle={styles.commentInput}
+                    />
+                    <SpaceComponent />
+                    <Button
+                        title="Post Comment"
+                        onPress={() => handlePostComment(post.id)}
+                        btnStyle={styles.postCommentButton}
+                    />
+                </View>
+            )}
         </Card>
     );
 
@@ -333,7 +525,63 @@ const createStyleSheet = (colors: ColorPalette) => {
         saveButton: {
             flex: 1,
         },
+        commentSection: {
+            gap: 12,
+            marginTop: 8,
+            paddingTop: 12,
+            borderTopWidth: 1,
+            borderTopColor: colors.bottomTabsBorder,
+        },
+        commentInput: {
+            minHeight: 80,
+        },
+        postCommentButton: {
+            alignSelf: 'flex-end',
+            paddingHorizontal: 20,
+        },
+        commentsContainer: {
+            marginTop: 12,
+            gap: 12,
+        },
+        commentCard: {
+            backgroundColor: colors.secondaryBackground,
+            borderRadius: 12,
+            padding: 16,
+            gap: 8,
+        },
+        commentHeader: {
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+        },
+        commentAuthorInfo: {
+            flexDirection: 'row',
+            alignItems: 'center',
+            gap: 12,
+        },
+        commentAuthorImage: {
+            width: 32,
+            height: 32,
+            borderRadius: 16,
+        },
+        commentAuthorInitials: {
+            width: 32,
+            height: 32,
+            borderRadius: 16,
+            justifyContent: 'center',
+            alignItems: 'center',
+        },
+        deleteButton: {
+            padding: 4,
+        },
+        commentActions: {
+            flexDirection: 'row',
+            gap: 16,
+        },
+        commentActionButton: {
+            paddingVertical: 4,
+        },
     });
 };
 
-export default HomeScreen
+export default HomeScreen;

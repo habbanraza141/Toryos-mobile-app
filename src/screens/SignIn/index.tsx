@@ -192,7 +192,7 @@ const createStyleSheet = (colors: ColorPalette) => {
         },
         logoContainer: {
             alignItems: 'center',
-            marginTop: 20,
+            // marginTop: 20,
         },
         logoTextContainer: {
             width: 200,
