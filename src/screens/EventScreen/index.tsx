@@ -149,7 +149,6 @@ const EventScreen = () => {
 
                         <SpaceComponent />
 
-                        {/* RSVP Buttons */}
                         <View style={styles.rsvpContainer}>
                             <TouchableOpacity style={styles.rsvpButton}>
                                 <TextComp style={styles.rsvpIcon}>✓</TextComp>
@@ -167,10 +166,8 @@ const EventScreen = () => {
 
                         <SpaceComponent />
 
-                        {/* View Guest List Button */}
                         <Button
                             title="View Guest List"
-                            variant="link"
                             btnStyle={styles.guestListButton}
                         />
 
@@ -179,15 +176,15 @@ const EventScreen = () => {
                         {/* Social Actions */}
                         <View style={styles.socialActions}>
                             <TouchableOpacity style={styles.socialAction}>
-                                <TextComp style={styles.socialIcon}>👍</TextComp>
+                                <TextComp >👍</TextComp>
                                 <TextComp fontSize={14}>React</TextComp>
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.socialAction}>
-                                <TextComp style={styles.socialIcon}>💬</TextComp>
+                                <TextComp >💬</TextComp>
                                 <TextComp fontSize={14}>Add Comment</TextComp>
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.socialAction}>
-                                <TextComp style={styles.socialIcon}>➢</TextComp>
+                                <TextComp >➢</TextComp>
                                 <TextComp fontSize={14}>Share</TextComp>
                             </TouchableOpacity>
                         </View>
@@ -317,7 +314,7 @@ const createStyleSheet = (colors: ColorPalette) => {
             borderColor: colors.bottomTabsBorder,
         },
         rsvpIcon: {
-            fontSize: 16,
+            fontSize: 14,
             color: colors.default,
         },
         rsvpButtonText: {

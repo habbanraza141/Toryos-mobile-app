@@ -165,7 +165,6 @@ const HomeScreen = () => {
     };
 
     const handleBookmark = () => {
-        // Bookmark functionality can be implemented later
         console.log('Bookmark post:', selectedPostId);
     };
     const renderPost = (post: Post) => (
@@ -227,11 +226,6 @@ const HomeScreen = () => {
         <BackgroundContainer>
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.container}>
-                    {/* <TouchableOpacity
-                        onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
-                        style={{ margin: 5 }}>
-                        <Image source={require('../../assets/icons/menu.png')} style={{ width: 40, height: 40 }} />
-                    </TouchableOpacity> */}
                     <View style={styles.topContainer}>
                         <HeaderComp title="All Posts" />
                         <TextComp>Posts from all your groups and spaces</TextComp>
