@@ -83,15 +83,20 @@ const Button = ({
   }
 
   let textColor = color;
+  let borderColor = backgroundColor;
+  let borderWidth = 0;
 
   if (outlined) {
     textColor = backgroundColor;
-    backgroundColor = colors.white;
+    borderColor = backgroundColor;
+    backgroundColor = 'transparent';
+    borderWidth = 1;
   }
 
   if (variant === 'link') {
     backgroundColor = 'transparent';
     textColor = colors.primary;
+    borderWidth = 0;
   }
 
   if (isDisabled) {
@@ -112,7 +117,12 @@ const Button = ({
       disabled={isDisabled}
       activeOpacity={0.7}
       style={[
-        { ...styles.button, backgroundColor, ...linkStyle },
+        { 
+          ...styles.button, 
+          backgroundColor, 
+          ...linkStyle,
+          ...(outlined && { borderWidth, borderColor }),
+        },
         btnStyle,
         (isDisabled && variant != 'link') && styles.disabledBackground,
       ]}

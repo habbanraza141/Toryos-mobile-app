@@ -12,12 +12,18 @@ import { AppDispatch } from "../../store/store";
 import { setCurrentUser } from "../../store/slices/userSlice";
 import HeaderComp from "../../components/HeaderComp";
 import SpaceComponent from "../../components/SpaceComponent";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { AuthStackParamList } from "../../navigation/AuthStack";
+
+type SignInNavigationProp = NativeStackNavigationProp<AuthStackParamList, 'SignIn'>;
 
 const SignIn = () => {
     const theme = useTheme();
     const colors = getColors(theme);
     const styles = createStyleSheet(colors);
     const dispatch = useDispatch<AppDispatch>();
+    const navigation = useNavigation<SignInNavigationProp>();
 
     const [email, setEmail] = useState('razamemondigital@gmail.com');
     const [password, setPassword] = useState('User123,');
@@ -58,13 +64,11 @@ const SignIn = () => {
     };
 
     const handleForgotPassword = () => {
-        // Forgot password functionality can be implemented later
-        console.log('Forgot password');
+        navigation.navigate('ForgotPassword');
     };
 
     const handleRequestAccess = () => {
-        // Request access functionality can be implemented later
-        console.log('Request access');
+        navigation.navigate('RequestAccess');
     };
 
     const handleTermsPress = () => {
@@ -139,8 +143,14 @@ const SignIn = () => {
 
                         <SpaceComponent />
                         <View style={styles.requestAccessSection}>
-                            <TextComp style={styles.requestAccessText}>Don't have an account? <TextComp onPress={handleRequestAccess}>Request Access</TextComp> </TextComp>
-
+                            <TextComp style={styles.requestAccessText}>Don't have an account?</TextComp>
+                            <Button
+                                title="Request Access"
+                                variant="primary"
+                                outlined={true}
+                                onPress={handleRequestAccess}
+                                btnStyle={styles.requestAccessButton}
+                            />
                         </View>
                     </View>
 
@@ -255,10 +265,7 @@ const createStyleSheet = (colors: ColorPalette) => {
             color: colors.default,
         },
         requestAccessButton: {
-            borderWidth: 1,
-            borderColor: colors.bottomTabsBorder || colors.muted15,
-            backgroundColor: colors.white || '#FFFFFF',
-            borderRadius: 8,
+            width: '100%',
         },
         footer: {
             alignItems: 'center',
