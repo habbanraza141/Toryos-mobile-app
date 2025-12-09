@@ -93,7 +93,7 @@ const createStyleSheet = (colors: ColorPalette, isDark: boolean) => {
   return StyleSheet.create({
     input: {
       borderWidth: 1,
-      borderColor: colors.muted15,
+      borderColor: colors.bottomTabsBorder,
       flexDirection: 'row',
       width: '100%',
       height: 44,
@@ -104,7 +104,7 @@ const createStyleSheet = (colors: ColorPalette, isDark: boolean) => {
       color: colors.default,
       justifyContent: 'space-between',
       alignItems: 'center',
-      ...(isDark ? {} : shadows.textInput),
+
     },
     inputText: {
       flex: 1,

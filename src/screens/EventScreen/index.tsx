@@ -8,11 +8,17 @@ import Button from "../../components/Button";
 import { ColorPalette, getColors } from "../../theme/colors";
 import { useTheme } from "../../hooks/useTheme";
 import SpaceComponent from "../../components/SpaceComponent";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { EventStackParamList } from "../../navigation/EventStack";
+
+type EventScreenNavigationProp = NativeStackNavigationProp<EventStackParamList, 'EventScreen'>;
 
 const EventScreen = () => {
     const theme = useTheme();
     const colors = getColors(theme);
     const styles = createStyleSheet(colors);
+    const navigation = useNavigation<EventScreenNavigationProp>();
     const [viewMode, setViewMode] = useState<'list' | 'calendar'>('list');
 
     // Calendar state
@@ -215,6 +221,7 @@ const EventScreen = () => {
                 <Button
                     title="New Event"
                     btnStyle={styles.newEventButton}
+                    onPress={() => navigation.navigate('CreateEvent')}
                 />
 
                 {/* Event Card */}
@@ -323,8 +330,9 @@ const EventScreen = () => {
                     {/* View Guest List Button */}
                     <Button
                         title="View Guest List"
-                        variant="link"
+                        // variant="link"
                         btnStyle={styles.guestListButton}
+                        btnTextStyle={styles.guestListButtonTextStyle}
                     />
 
                     <SpaceComponent />
@@ -647,7 +655,12 @@ const createStyleSheet = (colors: ColorPalette) => {
             color: colors.default,
         },
         guestListButton: {
-            alignSelf: 'center',
+            backgroundColor: colors.background,
+            borderColor: colors.btnTextPrimary,
+            borderWidth: 1
+        },
+        guestListButtonTextStyle: {
+            color: colors.btnTextPrimary,
         },
         socialActions: {
             flexDirection: 'row',
@@ -663,7 +676,7 @@ const createStyleSheet = (colors: ColorPalette) => {
             padding: 8,
         },
         socialIcon: {
-            fontSize: 18,
+            fontSize: 16,
         },
     });
 };
