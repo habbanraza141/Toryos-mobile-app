@@ -86,18 +86,12 @@ const ScheduleScreen = () => {
 
                         {/* Post Options Row */}
                         <View style={styles.postOptionsRow}>
-                            <TouchableOpacity style={styles.postOption}>
-                                <TextComp style={styles.postOptionIcon}>😊</TextComp>
-                            </TouchableOpacity>
+
                             <TouchableOpacity style={styles.postOption}>
                                 <TextComp style={styles.postOptionIcon}>⬆️</TextComp>
                                 <TextComp fontSize={12} style={styles.postOptionLabel}>Attach</TextComp>
                             </TouchableOpacity>
-                            <TouchableOpacity style={[styles.postOption, styles.postOptionActive]}>
-                                <View style={styles.fileIcon}>
-                                    <TextComp style={styles.fileIconText}>📄</TextComp>
-                                </View>
-                            </TouchableOpacity>
+
                             <TouchableOpacity style={styles.postOption}>
                                 <TextComp style={styles.postOptionIcon}>📹</TextComp>
                                 <TextComp fontSize={12} style={styles.postOptionLabel}>Video</TextComp>
@@ -110,13 +104,11 @@ const ScheduleScreen = () => {
                                 <TextComp style={styles.postOptionIcon}>🕐</TextComp>
                                 <TextComp fontSize={12} style={styles.postOptionLabel}>Schedule</TextComp>
                             </TouchableOpacity>
-                            <View style={styles.publishButtonContainer}>
-                                <Button
-                                    title="Publish"
-                                    btnStyle={styles.publishButton}
-                                />
-                            </View>
                         </View>
+                        <Button
+                            title="Publish"
+                            btnStyle={styles.publishButton}
+                        />
                     </Card>
 
                     {/* No Posts Card */}
@@ -200,9 +192,9 @@ const createStyleSheet = (colors: ColorPalette) => {
         },
         postOptionsRow: {
             flexDirection: 'row',
-            alignItems: 'center',
+            justifyContent: 'space-between',
             gap: 12,
-            flexWrap: 'wrap',
+            // flexWrap: 'wrap',
         },
         postOption: {
             alignItems: 'center',
