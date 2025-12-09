@@ -419,8 +419,26 @@ const HomeScreen = () => {
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
-                        <HeaderComp title="All Posts" />
-                        <TextComp>Posts from all your groups and spaces</TextComp>
+                        <View style={styles.headerRow}>
+                            <View style={styles.headerTextContainer}>
+                                <HeaderComp title="All Posts" />
+                                <TextComp>Posts from all your groups and spaces</TextComp>
+                            </View>
+                            <TouchableOpacity
+                                onPress={() => {
+                                    const parent = navigation.getParent();
+                                    if (parent) {
+                                        parent.navigate('Notifications' as never);
+                                    }
+                                }}
+                                style={styles.notificationButton}
+                            >
+                                <Image
+                                    source={require('../../assets/icons/notifications.png')}
+                                    style={[styles.notificationIcon, { tintColor: colors.iconBackground }]}
+                                />
+                            </TouchableOpacity>
+                        </View>
                     </View>
 
                     <Card>
@@ -491,6 +509,23 @@ const createStyleSheet = (colors: ColorPalette) => {
     return StyleSheet.create({
         topContainer: {
             gap: 5
+        },
+        headerRow: {
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'flex-start',
+        },
+        headerTextContainer: {
+            flex: 1,
+            gap: 5,
+        },
+        notificationButton: {
+            padding: 8,
+            marginTop: 4,
+        },
+        notificationIcon: {
+            width: 24,
+            height: 24,
         },
         container: {
             gap: 20

@@ -53,7 +53,7 @@ const TextComp: React.FC<TextCompProps> = ({
     text: colors.secondaryText,
     muted35: colors.muted35,
     danger: colors.danger,
-    primary: colors.primary,
+    primary: colors.textPrimary,
     default: colors.default,
     warningLight: colors.warningLight,
     success: colors.success,

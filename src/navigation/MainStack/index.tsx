@@ -6,10 +6,12 @@ import { AppDispatch, RootState } from '../../store/store';
 import Loader from '../../components/Loader';
 import { getRequiredModal } from '../../client/service/promises/promiseGet';
 import { useFocusEffect } from '@react-navigation/native';
+import NotificationsScreen from '../../screens/NotificationsScreen';
 
 
 export type MainStackParamList = {
   BottomTab: undefined;
+  Notifications: undefined;
   StripeRenewScreen: undefined;
 
   PlanExpired: {
@@ -42,7 +44,7 @@ export default function MainStack() {
       }}>
 
       <Stack.Screen name="BottomTab" component={TabRoutes} />
-
+      <Stack.Screen name="Notifications" component={NotificationsScreen} />
 
     </Stack.Navigator>
   );
