@@ -16,6 +16,11 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 import { useNavigation } from "@react-navigation/native";
 import { DrawerActions } from "@react-navigation/native";
+import { DrawerNavigationProp } from "@react-navigation/drawer";
+import { DrawerStackParamList } from "../../navigation/DrawerStack";
+
+type NavProp = DrawerNavigationProp<DrawerStackParamList>;
+
 
 interface Comment {
     id: string;
@@ -81,9 +86,8 @@ const HomeScreen = () => {
     const colors = getColors(theme);
     const styles = createStyleSheet(colors);
     const currentUser = useSelector((state: RootState) => state.user.currentUser);
-    const navigation = useNavigation();
+    const navigation = useNavigation<NavProp>();
 
-    // Static posts with timestamps (for alpha version)
     const fourDaysAgo = new Date();
     fourDaysAgo.setDate(fourDaysAgo.getDate() - 4);
 
@@ -183,7 +187,7 @@ const HomeScreen = () => {
 
     const handleReaction = (postId: string) => {
         const isReacted = reactedPosts.has(postId);
-        
+
         setPosts(posts.map(post => {
             if (post.id === postId) {
                 if (isReacted) {
@@ -224,6 +228,7 @@ const HomeScreen = () => {
         }
     };
 
+
     const handlePostComment = (postId: string) => {
         const commentText = commentTexts[postId] || '';
         if (commentText.trim() && currentUser) {
@@ -256,7 +261,7 @@ const HomeScreen = () => {
                 const comments = Array.isArray(post.comments) ? post.comments : [];
                 return {
                     ...post,
-                    comments: comments.map(comment => 
+                    comments: comments.map(comment =>
                         comment.id === commentId
                             ? { ...comment, reactions: comment.reactions + 1 }
                             : comment
@@ -328,7 +333,7 @@ const HomeScreen = () => {
                         {post.reactionEmoji || '👍'}  {post.reactions > 0 ? `${post.reactions} reaction${post.reactions > 1 ? 's' : ''}` : 'React'}
                     </TextComp>
                 </TouchableOpacity>
-                <TouchableOpacity 
+                <TouchableOpacity
                     style={{ padding: 10 }}
                     onPress={() => handleToggleComment(post.id)}
                 >
@@ -419,6 +424,15 @@ const HomeScreen = () => {
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
+                        <TouchableOpacity
+                            onPress={() => navigation.openDrawer()}
+                            style={styles.menuButton}
+                        >
+                            <Image
+                                source={require('../../assets/icons/menu.png')}
+                                style={[styles.menuIcon, { tintColor: colors.iconBackground }]}
+                            />
+                        </TouchableOpacity>
                         <View style={styles.headerRow}>
                             <View style={styles.headerTextContainer}>
                                 <HeaderComp title="All Posts" />
@@ -514,6 +528,16 @@ const createStyleSheet = (colors: ColorPalette) => {
             flexDirection: 'row',
             justifyContent: 'space-between',
             alignItems: 'flex-start',
+            gap: 12,
+            paddingHorizontal: 10,
+        },
+        menuButton: {
+            padding: 8,
+            marginTop: 4,
+        },
+        menuIcon: {
+            width: 30,
+            height: 30,
         },
         headerTextContainer: {
             flex: 1,

@@ -4,7 +4,10 @@ import TabRoutes from '../TabNavigation';
 import DrawerComponent from '../../components/DrawerComponent';
 
 export type DrawerStackParamList = {
-    TabRoutes: undefined;
+    TabRoutes: {
+        screen?: string;
+        params?: any;
+    };
 };
 
 const Drawer = createDrawerNavigator<DrawerStackParamList>();
