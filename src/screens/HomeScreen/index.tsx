@@ -424,25 +424,29 @@ const HomeScreen = () => {
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
-                        <TouchableOpacity
-                            onPress={() => navigation.openDrawer()}
-                            style={styles.menuButton}
-                        >
-                            <Image
-                                source={require('../../assets/icons/menu.png')}
-                                style={[styles.menuIcon, { tintColor: colors.iconBackground }]}
-                            />
-                        </TouchableOpacity>
                         <View style={styles.headerRow}>
-                            <View style={styles.headerTextContainer}>
-                                <HeaderComp title="All Posts" />
-                                <TextComp>Posts from all your groups and spaces</TextComp>
-                            </View>
+
+                            <TouchableOpacity
+                                onPress={() => navigation.openDrawer()}
+                                style={styles.menuButton}
+                            >
+                                <Image
+                                    source={require('../../assets/icons/menu.png')}
+                                    style={[styles.menuIcon, { tintColor: colors.iconBackground }]}
+                                />
+                            </TouchableOpacity>
                             <TouchableOpacity
                                 onPress={() => {
-                                    const parent = navigation.getParent();
-                                    if (parent) {
-                                        parent.navigate('Notifications' as never);
+                                    // Navigate up to MainStack level to access Notifications
+                                    let parent = navigation.getParent();
+                                    while (parent) {
+                                        const parentParent = parent.getParent();
+                                        if (!parentParent || !parentParent.getParent()) {
+                                            // We've reached MainStack level
+                                            parent.navigate('Notifications' as never);
+                                            break;
+                                        }
+                                        parent = parentParent;
                                     }
                                 }}
                                 style={styles.notificationButton}
@@ -453,6 +457,11 @@ const HomeScreen = () => {
                                 />
                             </TouchableOpacity>
                         </View>
+                        <View style={styles.headerTextContainer}>
+                            <HeaderComp title="All Posts" />
+                            <TextComp>Posts from all your groups and spaces</TextComp>
+                        </View>
+                        {/* </View> */}
                     </View>
 
                     <Card>
@@ -527,9 +536,7 @@ const createStyleSheet = (colors: ColorPalette) => {
         headerRow: {
             flexDirection: 'row',
             justifyContent: 'space-between',
-            alignItems: 'flex-start',
-            gap: 12,
-            paddingHorizontal: 10,
+            alignItems: 'center',
         },
         menuButton: {
             padding: 8,
@@ -542,6 +549,7 @@ const createStyleSheet = (colors: ColorPalette) => {
         headerTextContainer: {
             flex: 1,
             gap: 5,
+            marginLeft: 10
         },
         notificationButton: {
             padding: 8,

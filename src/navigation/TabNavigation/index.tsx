@@ -185,12 +185,12 @@ const TabRoutes = () => {
           <View style={styles.dragIndicator} />
           <View>
             <TabModalContent items={items} />
-            <Button
+            {/* <Button
               title="Logout"
               btnStyle={{ backgroundColor: colors.danger }}
               btnTextStyle={{ fontSize: 18 }}
               onPress={handleLogout}
-            />
+            />*/}
           </View>
         </View>
       </Modal>

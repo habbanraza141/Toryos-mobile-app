@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import TabRoutes from '../TabNavigation';
+import DrawerStack from '../DrawerStack';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../store/store';
 import Loader from '../../components/Loader';
@@ -43,7 +43,7 @@ export default function MainStack() {
         headerShown: false,
       }}>
 
-      <Stack.Screen name="BottomTab" component={TabRoutes} />
+      <Stack.Screen name="BottomTab" component={DrawerStack} />
       <Stack.Screen name="Notifications" component={NotificationsScreen} />
 
     </Stack.Navigator>

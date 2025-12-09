@@ -2,11 +2,15 @@ import React from 'react';
 import { DrawerContentScrollView } from '@react-navigation/drawer';
 import { StyleSheet, View, TouchableOpacity, Image } from 'react-native';
 import TextComp from '../TextComp';
+import Button from '../Button';
 import { useTheme } from '../../hooks/useTheme';
 import { ColorPalette, getColors } from '../../theme/colors';
 import { DrawerActions, CommonActions } from '@react-navigation/native';
 import { DrawerNavigationProp } from '@react-navigation/drawer';
 import { DrawerStackParamList } from '../../navigation/DrawerStack';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../../store/store';
+import { clearCurrentUser } from '../../store/slices/userSlice';
 
 interface DrawerComponentProps {
     navigation: DrawerNavigationProp<DrawerStackParamList>;
@@ -16,8 +20,14 @@ const DrawerComponent = ({ navigation }: DrawerComponentProps) => {
     const theme = useTheme();
     const colors = getColors(theme);
     const styles = createStyleSheet(colors);
+    const dispatch = useDispatch<AppDispatch>();
 
     const handleClose = () => {
+        navigation.dispatch(DrawerActions.closeDrawer());
+    };
+
+    const handleLogout = () => {
+        dispatch(clearCurrentUser());
         navigation.dispatch(DrawerActions.closeDrawer());
     };
 
@@ -121,6 +131,16 @@ const DrawerComponent = ({ navigation }: DrawerComponentProps) => {
                     <TextComp style={styles.menuItemText}>Scheduled</TextComp>
                 </TouchableOpacity>
             </View>
+
+            {/* Logout Button */}
+            <View style={styles.logoutSection}>
+                <Button
+                    title="Logout"
+                    onPress={handleLogout}
+                    btnStyle={styles.logoutButton}
+                    btnTextStyle={styles.logoutButtonText}
+                />
+            </View>
         </DrawerContentScrollView>
     );
 };
@@ -131,7 +151,7 @@ const createStyleSheet = (colors: ColorPalette) => {
             backgroundColor: colors.background,
         },
         contentContainer: {
-            paddingTop: 20,
+            paddingTop: 40,
         },
         header: {
             flexDirection: 'row',
@@ -204,6 +224,23 @@ const createStyleSheet = (colors: ColorPalette) => {
             fontSize: 16,
             color: colors.text,
             fontWeight: '500',
+        },
+        logoutSection: {
+            paddingHorizontal: 20,
+            paddingTop: 20,
+            paddingBottom: 40,
+            marginTop: 'auto',
+        },
+        logoutButton: {
+            backgroundColor: colors.background,
+            borderWidth: 1,
+            borderColor: colors.textPrimary,
+            width: '100%',
+        },
+        logoutButtonText: {
+            fontSize: 18,
+            color: colors.textPrimary
+
         },
     });
 };

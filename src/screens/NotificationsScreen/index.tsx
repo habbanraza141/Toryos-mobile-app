@@ -132,7 +132,7 @@ const NotificationsScreen = () => {
 const createStyleSheet = (colors: ColorPalette) => {
     return StyleSheet.create({
         container: {
-            padding: 20,
+            // padding: 20,
             gap: 20,
         },
         headerContainer: {
