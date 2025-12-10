@@ -9,14 +9,24 @@ import Button from "../../components/Button";
 import { ColorPalette, getColors } from "../../theme/colors";
 import { useTheme } from "../../hooks/useTheme";
 import SpaceComponent from "../../components/SpaceComponent";
+import DropdownComp from "../../components/DropdownComp";
 
 const ScheduleScreen = () => {
     const theme = useTheme();
     const colors = getColors(theme);
     const styles = createStyleSheet(colors);
     const [activeTab, setActiveTab] = useState(0);
+    const [selectedSpace, setSelectedSpace] = useState<string>('');
 
     const tabs = ['Write', 'Preview'];
+
+    const spaceOptions = [
+        { label: 'Company → Announcements', value: 'company-announcements' },
+        { label: 'Company → Social', value: 'company-social' },
+        { label: 'Company → Tech Tips + Troubleshooting', value: 'company-tech-tips' },
+        { label: 'Company → Preferred Partners/Vendors', value: 'company-partners' },
+        { label: 'Company → Max Influence', value: 'company-max-influence' },
+    ];
 
     return (
         <BackgroundContainer>
@@ -38,7 +48,10 @@ const ScheduleScreen = () => {
                                 ]}
                                 onPress={() => setActiveTab(0)}
                             >
-                                <TextComp style={styles.tabIcon}>✏️</TextComp>
+                                <Image
+                                    source={require('../../assets/icons/write.png')}
+                                    style={[styles.tabIcon, { tintColor: colors.iconBackground }]}
+                                />
                                 <TextComp style={[
                                     styles.tabText,
                                     activeTab === 0 && styles.tabTextActive
@@ -53,7 +66,10 @@ const ScheduleScreen = () => {
                                 ]}
                                 onPress={() => setActiveTab(1)}
                             >
-                                <TextComp style={styles.tabIcon}>👁️</TextComp>
+                                <Image
+                                    source={require('../../assets/icons/preview.png')}
+                                    style={[styles.tabIcon, { tintColor: colors.iconBackground }]}
+                                />
                                 <TextComp style={[
                                     styles.tabText,
                                     activeTab === 1 && styles.tabTextActive
@@ -74,34 +90,45 @@ const ScheduleScreen = () => {
                         <SpaceComponent />
 
                         {/* Space Selection */}
-                        <TouchableOpacity style={styles.spaceSelector}>
-                            <TextComp fontSize={14}>Choose a space to post in</TextComp>
-                            <Image
-                                source={require('../../assets/icons/rightArrow.png')}
-                                style={[styles.chevronIcon, { transform: [{ rotate: '90deg' }] }]}
-                            />
-                        </TouchableOpacity>
+                        <DropdownComp
+                            placeholder="Choose a space to post in"
+                            options={spaceOptions}
+                            value={selectedSpace}
+                            onSelect={(value, label) => setSelectedSpace(value)}
+                            containerStyle={styles.spaceSelector}
+                        />
 
                         <SpaceComponent />
 
                         {/* Post Options Row */}
                         <View style={styles.postOptionsRow}>
-
                             <TouchableOpacity style={styles.postOption}>
-                                <TextComp style={styles.postOptionIcon}>⬆️</TextComp>
+                                <Image
+                                    source={require('../../assets/icons/upload.png')}
+                                    style={[styles.postOptionIcon, { tintColor: colors.iconBackground }]}
+                                />
                                 <TextComp fontSize={12} style={styles.postOptionLabel}>Attach</TextComp>
                             </TouchableOpacity>
 
                             <TouchableOpacity style={styles.postOption}>
-                                <TextComp style={styles.postOptionIcon}>📹</TextComp>
+                                <Image
+                                    source={require('../../assets/icons/video.png')}
+                                    style={[styles.postOptionIcon, { tintColor: colors.iconBackground }]}
+                                />
                                 <TextComp fontSize={12} style={styles.postOptionLabel}>Video</TextComp>
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.postOption}>
-                                <TextComp style={styles.postOptionIcon}>📊</TextComp>
+                                <Image
+                                    source={require('../../assets/icons/poll.png')}
+                                    style={[styles.postOptionIcon, { tintColor: colors.iconBackground }]}
+                                />
                                 <TextComp fontSize={12} style={styles.postOptionLabel}>Poll</TextComp>
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.postOption}>
-                                <TextComp style={styles.postOptionIcon}>🕐</TextComp>
+                                <Image
+                                    source={require('../../assets/icons/scheduled.png')}
+                                    style={[styles.postOptionIcon, { tintColor: colors.iconBackground }]}
+                                />
                                 <TextComp fontSize={12} style={styles.postOptionLabel}>Schedule</TextComp>
                             </TouchableOpacity>
                         </View>
@@ -115,7 +142,10 @@ const ScheduleScreen = () => {
                     <Card otherStyle={styles.emptyCard}>
                         <View style={styles.emptyCardContent}>
                             <View style={styles.emptyIconContainer}>
-                                <TextComp style={styles.emptyIcon}>💬</TextComp>
+                                <Image
+                                    source={require('../../assets/icons/post.png')}
+                                    style={[styles.emptyIcon, { tintColor: colors.primaryDark }]}
+                                />
                             </View>
                             <TextComp bold style={styles.emptyTitle}>
                                 No posts yet.
@@ -158,10 +188,11 @@ const createStyleSheet = (colors: ColorPalette) => {
             backgroundColor: 'transparent',
         },
         tabActive: {
-            backgroundColor: colors.muted35,
+            backgroundColor: colors.background,
         },
         tabIcon: {
-            fontSize: 16,
+            width: 16,
+            height: 16,
         },
         tabText: {
             fontSize: 14,
@@ -175,20 +206,7 @@ const createStyleSheet = (colors: ColorPalette) => {
             minHeight: 120,
         },
         spaceSelector: {
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            paddingVertical: 12,
-            paddingHorizontal: 16,
-            borderRadius: 8,
-            borderWidth: 1,
-            borderColor: colors.bottomTabsBorder,
-            backgroundColor: colors.secondaryBackground,
-        },
-        chevronIcon: {
-            width: 16,
-            height: 16,
-            tintColor: colors.default,
+            // Styles handled by DropdownComp
         },
         postOptionsRow: {
             flexDirection: 'row',
@@ -207,7 +225,8 @@ const createStyleSheet = (colors: ColorPalette) => {
             borderRadius: 8,
         },
         postOptionIcon: {
-            fontSize: 18,
+            width: 20,
+            height: 20,
         },
         postOptionLabel: {
             color: colors.default,
@@ -243,16 +262,16 @@ const createStyleSheet = (colors: ColorPalette) => {
             gap: 16,
         },
         emptyIconContainer: {
-            width: 50,
-            height: 50,
-            borderRadius: 25,
+            width: 80,
+            height: 80,
+            borderRadius: 40,
             backgroundColor: colors.primaryLight,
             justifyContent: 'center',
             alignItems: 'center',
         },
         emptyIcon: {
-            fontSize: 18,
-            paddingBottom: 0
+            width: 40,
+            height: 40,
         },
         emptyTitle: {
             fontSize: 18,

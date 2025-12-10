@@ -22,6 +22,7 @@ export const COLORS_LIGHT = {
   bottomTabsIcon: 'rgb(77, 77, 78)',
 
   background: '#fbfbfc',
+  backgroundTwo: '#c6c6c9',
   iconBackground: '#0C162B',
 
   orange: '#ED7A3A',
@@ -65,6 +66,7 @@ export const COLORS_DARK = {
 
   secondaryText: '#bfbfbf',
   background: '#11142B',
+  backgroundTwo: '#1A1D3D',
   orange: '#FF9559',
   secondaryBackground: '#121630',
   secondaryBackgroundWithoutOpacity: '#121630',
@@ -100,6 +102,7 @@ export interface ColorPalette {
   muted35: string;
   secondaryText: string;
   background: string;
+  backgroundTwo: string;
   orange: string;
   secondaryBackground: string;
   bottomTabsBack: string;
@@ -126,5 +129,4 @@ export interface ColorPalette {
   [key: string]: string;
 }
 
-export const getColors = (theme: 'light' | 'dark'): ColorPalette =>
-  theme === 'dark' ? COLORS_DARK : COLORS_LIGHT;
+export const getColors = (theme: 'light' | 'dark'): ColorPalette => theme === 'dark' ? COLORS_DARK : COLORS_LIGHT;

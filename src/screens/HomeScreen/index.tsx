@@ -299,7 +299,7 @@ const HomeScreen = () => {
                         </View>
                     ) : (
                         <View style={{ backgroundColor: colors.primaryLight, width: 50, height: 50, borderRadius: 25, justifyContent: 'center', alignItems: 'center' }}>
-                            <TextComp zero bold style={{ color: colors.textPrimary, textAlign: 'center', fontSize: 16 }}>
+                            <TextComp bold style={{ color: colors.textPrimary, textAlign: 'center', fontSize: 16 }}>
                                 {post.authorInitials}
                             </TextComp>
                         </View>
@@ -339,7 +339,7 @@ const HomeScreen = () => {
                             { tintColor: post.reactions > 0 ? colors.textPrimary : colors.iconBackground }
                         ]}
                     />
-                    <TextComp zero fontSize={14}>
+                    <TextComp fontSize={14}>
                         {post.reactions > 0 ? `${post.reactions} ${post.reactions > 1 ? 's' : ''}` : 'React'}
                     </TextComp>
                 </TouchableOpacity>
@@ -351,7 +351,7 @@ const HomeScreen = () => {
                         source={require('../../assets/icons/commentIcon.png')}
                         style={[styles.socialActionIcon, { tintColor: colors.iconBackground }]}
                     />
-                    <TextComp zero fontSize={14}>
+                    <TextComp fontSize={14}>
                         {Array.isArray(post.comments) && post.comments.length > 0 ? `${post.comments.length} comment${post.comments.length !== 1 ? 's' : ''}` : 'Add Comment'}
                     </TextComp>
                 </TouchableOpacity>
@@ -362,7 +362,7 @@ const HomeScreen = () => {
                         source={require('../../assets/icons/shareIcon.png')}
                         style={[styles.socialActionIcon, { tintColor: colors.iconBackground }]}
                     />
-                    <TextComp zero fontSize={14}>Share</TextComp>
+                    <TextComp fontSize={14}>Share</TextComp>
                 </TouchableOpacity>
             </View>
 
@@ -419,10 +419,10 @@ const HomeScreen = () => {
                                             { tintColor: comment.reactions > 0 ? colors.textPrimary : colors.iconBackground }
                                         ]}
                                     />
-                                    <TextComp zero fontSize={14}>React</TextComp>
+                                    <TextComp fontSize={14}>React</TextComp>
                                 </TouchableOpacity>
                                 <TouchableOpacity style={styles.commentActionButton}>
-                                    <TextComp zero fontSize={14}>Reply</TextComp>
+                                    <TextComp fontSize={14}>Reply</TextComp>
                                 </TouchableOpacity>
                             </View>
                         </View>

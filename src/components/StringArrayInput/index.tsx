@@ -101,7 +101,7 @@ const StringArrayInput = ({
                   value.map((item, index) => {
                     return (
                       <View key={index} style={styles.listItem2}>
-                        <TextComp zero>{item}</TextComp>
+                        <TextComp >{item}</TextComp>
                         <TouchableOpacity
                           style={{ alignItems: 'center', justifyContent: 'center', backgroundColor: colors.primaryLight, padding: 5, borderRadius: 9 }}
                           onPress={() => handleRemoveItem(index)}

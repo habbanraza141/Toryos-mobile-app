@@ -230,7 +230,7 @@ const EventScreen = () => {
                     <View style={styles.eventHeader}>
                         <View style={styles.eventHeaderLeft}>
                             <View style={styles.avatar}>
-                                <TextComp zero bold style={styles.avatarText}>AG</TextComp>
+                                <TextComp bold style={styles.avatarText}>AG</TextComp>
                             </View>
                             <View style={styles.eventHeaderInfo}>
                                 <TextComp bold>Abby Graeter</TextComp>
@@ -384,7 +384,10 @@ const EventScreen = () => {
                             ]}
                             onPress={() => setViewMode('list')}
                         >
-                            <TextComp style={styles.viewModeIcon}>☰</TextComp>
+                            <Image
+                                source={require('../../assets/icons/menu.png')}
+                                style={[styles.viewModeIcon, { tintColor: viewMode === 'list' ? colors.textPrimary : colors.iconBackground }]}
+                            />
                             <TextComp style={[
                                 styles.viewModeText,
                                 viewMode === 'list' && styles.viewModeTextActive
@@ -399,7 +402,10 @@ const EventScreen = () => {
                             ]}
                             onPress={() => setViewMode('calendar')}
                         >
-                            <TextComp style={styles.viewModeIcon}>📅</TextComp>
+                            <Image
+                                source={require('../../assets/icons/calendar.png')}
+                                style={[styles.viewModeIcon, { tintColor: viewMode === 'calendar' ? colors.textPrimary : colors.iconBackground }]}
+                            />
                             <TextComp style={[
                                 styles.viewModeText,
                                 viewMode === 'calendar' && styles.viewModeTextActive
@@ -447,7 +453,8 @@ const createStyleSheet = (colors: ColorPalette) => {
             borderColor: colors.primaryLight,
         },
         viewModeIcon: {
-            fontSize: 18,
+            width: 18,
+            height: 18,
         },
         viewModeText: {
             fontSize: 14,

@@ -50,7 +50,7 @@ const RadioGroup = ({ text, value, options, onChange, align = 'left', error,
                   }
                 />
               </TouchableOpacity>
-              <TextComp zero>{opt.label}</TextComp>
+              <TextComp >{opt.label}</TextComp>
             </View>
           ))}
         </View>
