@@ -443,8 +443,8 @@ const createStyleSheet = (colors: ColorPalette) => {
             backgroundColor: colors.secondaryBackground,
         },
         viewModeButtonActive: {
-            backgroundColor: colors.primary,
-            borderColor: colors.primary,
+            backgroundColor: colors.primaryLight,
+            borderColor: colors.primaryLight,
         },
         viewModeIcon: {
             fontSize: 18,
@@ -520,7 +520,7 @@ const createStyleSheet = (colors: ColorPalette) => {
             marginBottom: 4,
         },
         eventDay: {
-            backgroundColor: colors.primary,
+            backgroundColor: colors.primaryLight,
         },
         selectedDay: {
             backgroundColor: colors.textPrimary,
@@ -597,7 +597,7 @@ const createStyleSheet = (colors: ColorPalette) => {
             width: 50,
             height: 50,
             borderRadius: 25,
-            backgroundColor: colors.primary,
+            backgroundColor: colors.primaryLight,
             justifyContent: 'center',
             alignItems: 'center',
         },

@@ -78,7 +78,7 @@ const createStyleSheet = (colors: ColorPalette, isDark: boolean) => {
       borderRightWidth: 0,
     },
     activeTab: {
-      backgroundColor: colors.primary,
+      backgroundColor: colors.primaryLight,
       borderRadius: 10,
     },
     tabText: {

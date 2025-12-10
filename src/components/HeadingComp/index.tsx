@@ -29,7 +29,7 @@ const HeadingComp = ({
     text: colors.secondaryText,
     muted35: colors.muted35,
     danger: colors.danger,
-    primary: colors.primary,
+    primary: colors.primaryLight,
     default: colors.default,
     warningLight: colors.warningLight,
     success: colors.success,

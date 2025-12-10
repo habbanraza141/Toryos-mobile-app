@@ -16,7 +16,7 @@ const LoaderInline: React.FC<LoaderInlineProps> = ({ size = 'small', text }) => 
 
   return (
     <View style={styles.loaderContainer}>
-      <ActivityIndicator size={size} color={colors.primary} />
+      <ActivityIndicator size={size} color={colors.primaryLight} />
       {text &&
         <TextComp bold >
           {text}

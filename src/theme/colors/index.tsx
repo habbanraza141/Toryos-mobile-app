@@ -1,6 +1,6 @@
 export const COLORS_LIGHT = {
-  primary: '#D8E7FE',
-  btnPrimary: '#4285F4',
+  primaryLight: '#D8E7FE',
+  primaryDark: '#4285F4',
   btnTextPrimary: '#3B84F6',
   textPrimary: '#3B84F6',
   text: '#121212',
@@ -45,8 +45,8 @@ export const COLORS_LIGHT = {
 };
 
 export const COLORS_DARK = {
-  primary: '#1B2B57',
-  btnPrimary: '#3B84F6',
+  primaryLight: '#1B2B57',
+  primaryDark: '#3B84F6',
   btnTextPrimary: '#3B84F6',
   textPrimary: '#3B84F6',
   text: '#d9d9d9',

@@ -25,7 +25,7 @@ const SpaceComponent: React.FC<DividerProps> = ({
     default: colors.muted35,
     white: colors.white,
     dark: colors.default,
-    primary: colors.primary,
+    primary: colors.primaryLight,
     danger: colors.danger,
   };
 

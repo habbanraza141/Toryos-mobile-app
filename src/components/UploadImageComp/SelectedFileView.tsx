@@ -184,7 +184,7 @@ const createStyleSheet = (colors: ColorPalette, isDark: boolean) => {
       alignItems: 'center',
     },
     downloadButton: {
-      backgroundColor: colors.primary,
+      backgroundColor: colors.primaryLight,
     },
     removeButton: {
       backgroundColor: colors.danger,

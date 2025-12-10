@@ -156,7 +156,7 @@ const createStyleSheet = (colors: ColorPalette, isDark: boolean) => {
       height: 15,
       width: 15,
       resizeMode: 'contain',
-      tintColor: colors.primary,
+      tintColor: colors.primaryLight,
     },
     icon2: {
       height: 15,

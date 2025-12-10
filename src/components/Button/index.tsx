@@ -56,7 +56,7 @@ const Button = ({
   const styles = createStyleSheet(colors);
 
   let btnVariant = 'primary';
-  let backgroundColor = colors.btnPrimary;
+  let backgroundColor = colors.primaryDark;
   let color = colors.white;
 
   switch (variant) {
@@ -78,7 +78,7 @@ const Button = ({
       break;
     default:
       btnVariant = 'primary';
-      backgroundColor = colors.btnPrimary;
+      backgroundColor = colors.primaryDark;
       break;
   }
 
@@ -95,7 +95,7 @@ const Button = ({
 
   if (variant === 'link') {
     backgroundColor = 'transparent';
-    textColor = colors.primary;
+    textColor = colors.primaryLight;
     borderWidth = 0;
   }
 
@@ -108,7 +108,7 @@ const Button = ({
     : { paddingVertical: 12 };
 
   const linkTextStyle = btnVariant === 'link'
-    ? { color: colors.primary }
+    ? { color: colors.primaryLight }
     : {};
 
 
@@ -117,9 +117,9 @@ const Button = ({
       disabled={isDisabled}
       activeOpacity={0.7}
       style={[
-        { 
-          ...styles.button, 
-          backgroundColor, 
+        {
+          ...styles.button,
+          backgroundColor,
           ...linkStyle,
           ...(outlined && { borderWidth, borderColor }),
         },

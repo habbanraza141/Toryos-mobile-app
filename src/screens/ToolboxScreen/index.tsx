@@ -144,7 +144,7 @@ const ToolboxScreen = () => {
             <View style={styles.toolIconContainer}>
                 <Image
                     source={tool.icon}
-                    style={[styles.toolIcon, { tintColor: colors.primary }]}
+                    style={[styles.toolIcon, { tintColor: colors.primaryLight }]}
                     resizeMode="contain"
                 />
             </View>
@@ -182,7 +182,7 @@ const ToolboxScreen = () => {
                         <View style={styles.headerContent}>
                             <Image
                                 source={require('../../assets/icons/tool.png')}
-                                style={[styles.headerIcon, { tintColor: colors.primary }]}
+                                style={[styles.headerIcon, { tintColor: colors.primaryLight }]}
                             />
                             <View style={styles.headerText}>
                                 <HeaderComp title="Toolbox" />
@@ -303,8 +303,8 @@ const createStyleSheet = (colors: ColorPalette) => {
             borderColor: colors.bottomTabsBorder,
         },
         filterButtonActive: {
-            backgroundColor: colors.primary,
-            borderColor: colors.primary,
+            backgroundColor: colors.primaryLight,
+            borderColor: colors.primaryLight,
         },
         toolsGrid: {
             flexDirection: 'row',

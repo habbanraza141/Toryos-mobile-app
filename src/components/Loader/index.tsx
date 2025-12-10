@@ -17,7 +17,7 @@ const Loader = ({
   variant = "primary",
   size = "large",
   fullScreen = true,
-  spinnerColor = colors.primary,
+  spinnerColor = colors.primaryLight,
 }: Props) => {
 
   const textSize = {

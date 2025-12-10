@@ -61,8 +61,8 @@ const CustomCheckbox: React.FC<CustomCheckboxProps> = ({
             width: size,
             height: size,
             borderRadius: size / 4,
-            borderColor: isChecked ? colors.primary : colors.default,
-            backgroundColor: isChecked ? colors.primary : 'transparent',
+            borderColor: isChecked ? colors.primaryLight : colors.default,
+            backgroundColor: isChecked ? colors.primaryLight : 'transparent',
           },
           checkboxStyle,
         ]}>

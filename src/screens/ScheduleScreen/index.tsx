@@ -246,7 +246,7 @@ const createStyleSheet = (colors: ColorPalette) => {
             width: 50,
             height: 50,
             borderRadius: 25,
-            backgroundColor: colors.primary,
+            backgroundColor: colors.primaryLight,
             justifyContent: 'center',
             alignItems: 'center',
         },

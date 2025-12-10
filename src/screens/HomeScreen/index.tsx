@@ -298,7 +298,7 @@ const HomeScreen = () => {
                             />
                         </View>
                     ) : (
-                        <View style={{ backgroundColor: colors.primary, width: 50, height: 50, borderRadius: 25, justifyContent: 'center', alignItems: 'center' }}>
+                        <View style={{ backgroundColor: colors.primaryLight, width: 50, height: 50, borderRadius: 25, justifyContent: 'center', alignItems: 'center' }}>
                             <TextComp zero bold style={{ color: colors.textPrimary, textAlign: 'center', fontSize: 16 }}>
                                 {post.authorInitials}
                             </TextComp>
@@ -327,7 +327,7 @@ const HomeScreen = () => {
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                 <TouchableOpacity
                     onPress={() => handleReaction(post.id)}
-                    style={[styles.socialActionButton, post.reactions > 0 && { backgroundColor: colors.reaction, borderRadius: 20 }]}
+                    style={[styles.socialActionButton, post.reactions > 0 && { backgroundColor: colors.primaryLight, borderRadius: 20 }]}
                 >
                     <Image
                         source={post.reactions > 0

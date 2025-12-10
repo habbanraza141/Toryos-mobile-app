@@ -356,7 +356,7 @@ const UploadImageComp = ({
           style={[
             styles.thumbnail,
             {
-              tintColor: isVideo ? colors.primary : undefined,
+              tintColor: isVideo ? colors.primaryLight : undefined,
             },
           ]}
         />
@@ -639,7 +639,7 @@ const createStyleSheet = (colors: ColorPalette, isDark: boolean) => {
       alignItems: 'center',
     },
     downloadButton: {
-      backgroundColor: colors.primary,
+      backgroundColor: colors.primaryLight,
     },
     removeButton: {
       backgroundColor: colors.danger,

@@ -103,7 +103,7 @@ const StringArrayInput = ({
                       <View key={index} style={styles.listItem2}>
                         <TextComp zero>{item}</TextComp>
                         <TouchableOpacity
-                          style={{ alignItems: 'center', justifyContent: 'center', backgroundColor: colors.primary, padding: 5, borderRadius: 9 }}
+                          style={{ alignItems: 'center', justifyContent: 'center', backgroundColor: colors.primaryLight, padding: 5, borderRadius: 9 }}
                           onPress={() => handleRemoveItem(index)}
                         >
                           <Image
@@ -181,10 +181,10 @@ const createStyleSheet = (colors: ColorPalette, isDark: boolean) => {
     buttonImage: {
       height: 20,
       width: 20,
-      tintColor: colors.primary,
+      tintColor: colors.primaryLight,
     },
     buttonText: {
-      color: colors.primary,
+      color: colors.primaryLight,
       fontWeight: 'bold',
     },
 
@@ -197,7 +197,7 @@ const createStyleSheet = (colors: ColorPalette, isDark: boolean) => {
       marginBottom: 8,
 
       borderRadius: 6,
-      borderColor: colors.primary,
+      borderColor: colors.primaryLight,
       gap: 12
     },
 
@@ -216,7 +216,7 @@ const createStyleSheet = (colors: ColorPalette, isDark: boolean) => {
       backgroundColor: colors.muted15,
       borderWidth: 1,
       borderRadius: 4,
-      borderColor: colors.primary,
+      borderColor: colors.primaryLight,
       gap: 12,
       padding: 5,
       alignItems: 'center',
