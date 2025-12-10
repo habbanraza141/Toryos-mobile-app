@@ -102,7 +102,7 @@ const HomeScreen = () => {
             content: 'test',
             reactions: 1,
             comments: [],
-            reactionEmoji: '🥹'
+            reactionEmoji: '👍🏻'
         },
         {
             id: '2',
@@ -324,24 +324,46 @@ const HomeScreen = () => {
                 </TextComp>
             )}
             <SpaceComponent />
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                 <TouchableOpacity
                     onPress={() => handleReaction(post.id)}
-                    style={[post.reactions > 0 && { padding: 10, backgroundColor: colors.reaction, borderRadius: 20 }, !post.reactions && { padding: 10 }]}
+                    style={[styles.socialActionButton, post.reactions > 0 && { backgroundColor: colors.reaction, borderRadius: 20 }]}
                 >
-                    <TextComp>
-                        {post.reactionEmoji || '👍'}  {post.reactions > 0 ? `${post.reactions} reaction${post.reactions > 1 ? 's' : ''}` : 'React'}
+                    <Image
+                        source={post.reactions > 0
+                            ? require('../../assets/icons/reactionFilled.png')
+                            : require('../../assets/icons/reactionUnfilled.png')
+                        }
+                        style={[
+                            styles.socialActionIcon,
+                            { tintColor: post.reactions > 0 ? colors.textPrimary : colors.iconBackground }
+                        ]}
+                    />
+                    <TextComp zero fontSize={14}>
+                        {post.reactions > 0 ? `${post.reactions} ${post.reactions > 1 ? 's' : ''}` : 'React'}
                     </TextComp>
                 </TouchableOpacity>
                 <TouchableOpacity
-                    style={{ padding: 10 }}
+                    style={styles.socialActionButton}
                     onPress={() => handleToggleComment(post.id)}
                 >
-                    <TextComp>💬  {Array.isArray(post.comments) && post.comments.length > 0 ? `${post.comments.length} comment${post.comments.length !== 1 ? 's' : ''}` : 'Add Comment'}</TextComp>
+                    <Image
+                        source={require('../../assets/icons/commentIcon.png')}
+                        style={[styles.socialActionIcon, { tintColor: colors.iconBackground }]}
+                    />
+                    <TextComp zero fontSize={14}>
+                        {Array.isArray(post.comments) && post.comments.length > 0 ? `${post.comments.length} comment${post.comments.length !== 1 ? 's' : ''}` : 'Add Comment'}
+                    </TextComp>
                 </TouchableOpacity>
-                <View style={{ padding: 10 }}>
-                    <TextComp>➢  Share</TextComp>
-                </View>
+                <TouchableOpacity
+                    style={styles.socialActionButton}
+                >
+                    <Image
+                        source={require('../../assets/icons/shareIcon.png')}
+                        style={[styles.socialActionIcon, { tintColor: colors.iconBackground }]}
+                    />
+                    <TextComp zero fontSize={14}>Share</TextComp>
+                </TouchableOpacity>
             </View>
 
             {/* Comments Display */}
@@ -387,10 +409,20 @@ const HomeScreen = () => {
                                     onPress={() => handleCommentReaction(post.id, comment.id)}
                                     style={styles.commentActionButton}
                                 >
-                                    <TextComp fontSize={14}>👍  React</TextComp>
+                                    <Image
+                                        source={comment.reactions > 0
+                                            ? require('../../assets/icons/reactionFilled.png')
+                                            : require('../../assets/icons/reactionUnfilled.png')
+                                        }
+                                        style={[
+                                            styles.commentActionIcon,
+                                            { tintColor: comment.reactions > 0 ? colors.textPrimary : colors.iconBackground }
+                                        ]}
+                                    />
+                                    <TextComp zero fontSize={14}>React</TextComp>
                                 </TouchableOpacity>
                                 <TouchableOpacity style={styles.commentActionButton}>
-                                    <TextComp fontSize={14}>Reply</TextComp>
+                                    <TextComp zero fontSize={14}>Reply</TextComp>
                                 </TouchableOpacity>
                             </View>
                         </View>
@@ -647,6 +679,24 @@ const createStyleSheet = (colors: ColorPalette) => {
         },
         commentActionButton: {
             paddingVertical: 4,
+            flexDirection: 'row',
+            alignItems: 'center',
+            gap: 6,
+        },
+        commentActionIcon: {
+            width: 16,
+            height: 16,
+        },
+        socialActionButton: {
+            flexDirection: 'row',
+            alignItems: 'center',
+            gap: 6,
+            paddingHorizontal: 10,
+            paddingVertical: 5,
+        },
+        socialActionIcon: {
+            width: 18,
+            height: 18,
         },
     });
 };

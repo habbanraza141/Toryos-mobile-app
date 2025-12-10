@@ -1,9 +1,9 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import HomeScreen from '../../screens/HomeScreen';
+import ToolboxScreen from '../../screens/ToolboxScreen';
 
 export type ToolStackParamList = {
-  HomeScreen: undefined;
+  ToolboxScreen: undefined;
 };
 
 const Stack = createNativeStackNavigator<ToolStackParamList>();
@@ -14,10 +14,10 @@ export default function ToolStack() {
       screenOptions={{
         headerShown: false,
       }}
-      initialRouteName="HomeScreen">
+      initialRouteName="ToolboxScreen">
       <Stack.Screen
-        name="HomeScreen"
-        component={HomeScreen}
+        name="ToolboxScreen"
+        component={ToolboxScreen}
         options={{
           headerShown: false,
           contentStyle: { width: '100%' },

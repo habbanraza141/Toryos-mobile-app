@@ -340,15 +340,24 @@ const EventScreen = () => {
                     {/* Social Actions */}
                     <View style={styles.socialActions}>
                         <TouchableOpacity style={styles.socialAction}>
-                            <TextComp style={styles.socialIcon}>👍</TextComp>
+                            <Image
+                                source={require('../../assets/icons/reactionUnfilled.png')}
+                                style={[styles.socialActionIcon, { tintColor: colors.iconBackground }]}
+                            />
                             <TextComp fontSize={14}>React</TextComp>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.socialAction}>
-                            <TextComp style={styles.socialIcon}>💬</TextComp>
+                            <Image
+                                source={require('../../assets/icons/commentIcon.png')}
+                                style={[styles.socialActionIcon, { tintColor: colors.iconBackground }]}
+                            />
                             <TextComp fontSize={14}>Add Comment</TextComp>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.socialAction}>
-                            <TextComp style={styles.socialIcon}>➢</TextComp>
+                            <Image
+                                source={require('../../assets/icons/shareIcon.png')}
+                                style={[styles.socialActionIcon, { tintColor: colors.iconBackground }]}
+                            />
                             <TextComp fontSize={14}>Share</TextComp>
                         </TouchableOpacity>
                     </View>
@@ -677,6 +686,10 @@ const createStyleSheet = (colors: ColorPalette) => {
         },
         socialIcon: {
             fontSize: 16,
+        },
+        socialActionIcon: {
+            width: 18,
+            height: 18,
         },
     });
 };

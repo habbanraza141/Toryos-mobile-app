@@ -25,7 +25,7 @@ const SignIn = () => {
     const dispatch = useDispatch<AppDispatch>();
     const navigation = useNavigation<SignInNavigationProp>();
 
-    const [email, setEmail] = useState('razamemondigital@gmail.com');
+    const [email, setEmail] = useState('toryos@gmail.com');
     const [password, setPassword] = useState('User123,');
     const [emailError, setEmailError] = useState('');
     const [passwordError, setPasswordError] = useState('');
@@ -46,14 +46,14 @@ const SignIn = () => {
         }
 
         // Static authentication - only allow the specific user
-        if (email.trim() === 'razamemondigital@gmail.com' && password === 'User123,') {
+        if (email.trim() === 'toryos@gmail.com' && password === 'User123,') {
             setLoading(true);
             // Simulate API call
             setTimeout(() => {
                 dispatch(setCurrentUser({
-                    name: 'Muhammad Habban',
-                    email: 'razamemondigital@gmail.com',
-                    initials: 'MH'
+                    name: 'Tory OS',
+                    email: 'toryos@gmail.com',
+                    initials: 'TO'
                 }));
                 setLoading(false);
             }, 500);
