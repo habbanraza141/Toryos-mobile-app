@@ -188,7 +188,7 @@ const createStyleSheet = (colors: ColorPalette) => {
             backgroundColor: 'transparent',
         },
         tabActive: {
-            backgroundColor: colors.background,
+            backgroundColor: colors.backgroundThree,
         },
         tabIcon: {
             width: 16,

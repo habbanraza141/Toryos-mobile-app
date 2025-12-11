@@ -1,9 +1,9 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import HomeScreen from '../../screens/HomeScreen';
+import RoomScreen from '../../screens/RoomScreen';
 
 export type RoomStackParamList = {
-  HomeScreen: undefined;
+  RoomScreen: undefined;
 };
 
 const Stack = createNativeStackNavigator<RoomStackParamList>();
@@ -14,10 +14,10 @@ export default function RoomStack() {
       screenOptions={{
         headerShown: false,
       }}
-      initialRouteName="HomeScreen">
+      initialRouteName="RoomScreen">
       <Stack.Screen
-        name="HomeScreen"
-        component={HomeScreen}
+        name="RoomScreen"
+        component={RoomScreen}
         options={{
           headerShown: false,
           contentStyle: { width: '100%' },

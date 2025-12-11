@@ -1,9 +1,9 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import HomeScreen from '../../screens/HomeScreen';
+import CourseScreen from '../../screens/CourseScreen';
 
 export type CourseStackParamList = {
-  HomeScreen: undefined;
+  CourseScreen: undefined;
 };
 
 const Stack = createNativeStackNavigator<CourseStackParamList>();
@@ -14,10 +14,10 @@ export default function CourseStack() {
       screenOptions={{
         headerShown: false,
       }}
-      initialRouteName="HomeScreen">
+      initialRouteName="CourseScreen">
       <Stack.Screen
-        name="HomeScreen"
-        component={HomeScreen}
+        name="CourseScreen"
+        component={CourseScreen}
         options={{
           headerShown: false,
           contentStyle: { width: '100%' },

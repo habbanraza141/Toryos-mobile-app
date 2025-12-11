@@ -15,7 +15,7 @@ const Stack = createStackNavigator<MoreStackParamList>();
 
 const MoreStack = () => {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Navigator initialRouteName="ToolStack" screenOptions={{ headerShown: false }}>
       <Stack.Screen name="ToolStack" component={ToolStack} />
       <Stack.Screen name="RoomStack" component={RoomStack} />
       <Stack.Screen name="CourseStack" component={CourseStack} />

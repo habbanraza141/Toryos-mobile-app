@@ -19,8 +19,8 @@ import { clearCurrentUser } from '../../store/slices/userSlice';
 
 export type TabNavigationParamList = {
   HomeStack: undefined;
-  RoomStack: undefined;
-  CourseStack: undefined;
+  EventStack: undefined;
+  ScheduleStack: undefined;
   More: NavigatorScreenParams<MoreStackParamList>;
 
 };
