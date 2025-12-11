@@ -59,7 +59,7 @@ const CustomTabBar: React.FC<CustomTabBarProps> = ({
   return (
     <View style={[styles.container]}>
       <View
-        style={[styles.tabBarContainer, { paddingBottom: insets.bottom + 12 }]}>
+        style={[styles.tabBarContainer, { paddingBottom: insets.bottom + 8 }]}>
         {state.routes.map((route: any, index: number) => {
           const { options } = descriptors[route.key];
           const isFocused = state.index === index;

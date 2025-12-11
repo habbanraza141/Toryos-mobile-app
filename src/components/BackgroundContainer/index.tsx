@@ -14,7 +14,7 @@ interface BackgroundContainerProps {
 const BackgroundContainer = ({
   children,
   containerStyle,
-  topInsetOnly = false,
+  topInsetOnly = true,
   light = false,
 }: BackgroundContainerProps) => {
   const theme = light ? 'light' : useTheme();
