@@ -202,7 +202,7 @@ const createStyleSheet = (colors: ColorPalette) => {
         container: {
             flex: 1,
             paddingHorizontal: 20,
-            paddingTop: 40,
+            // paddingTop: 40,
             paddingBottom: 30,
             gap: 20,
         },
