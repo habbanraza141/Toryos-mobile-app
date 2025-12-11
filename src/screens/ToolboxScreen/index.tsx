@@ -8,6 +8,7 @@ import { ColorPalette, getColors } from "../../theme/colors";
 import { useTheme } from "../../hooks/useTheme";
 import SpaceComponent from "../../components/SpaceComponent";
 import TextInputComp from "../../components/TextInputComp";
+import SearchBarComp from "../../components/SearchBarComp";
 
 interface Tool {
     id: string;
@@ -24,7 +25,6 @@ const ToolboxScreen = () => {
     const [searchText, setSearchText] = useState('');
     const [selectedFilter, setSelectedFilter] = useState('All');
 
-    // Static tools data
     const tools: Tool[] = [
         {
             id: '1',
@@ -52,76 +52,24 @@ const ToolboxScreen = () => {
             label: 'User Interface Design',
             icon: require('../../assets/icons/tool.png'),
         },
+
         {
             id: '5',
-            title: 'Agent After Hours',
-            icon: require('../../assets/icons/clock.png'),
+            title: 'Experience.com',
+            icon: require('../../assets/icons/experience.png'),
         },
         {
             id: '6',
-            title: 'BoldTrail',
-            icon: require('../../assets/icons/tool.png'),
+            title: 'GIS',
+            icon: require('../../assets/icons/gis.png'),
         },
+
         {
             id: '7',
-            title: 'CE Shop',
-            icon: require('../../assets/icons/tool.png'),
-        },
-        {
-            id: '8',
-            title: 'DotLoop',
-            icon: require('../../assets/icons/tool.png'),
-        },
-        {
-            id: '9',
-            title: 'Experience.com',
-            icon: require('../../assets/icons/tool.png'),
-        },
-        {
-            id: '10',
-            title: 'GIS',
-            icon: require('../../assets/icons/tool.png'),
-        },
-        {
-            id: '11',
-            title: 'LoLo',
-            icon: require('../../assets/icons/tool.png'),
-        },
-        {
-            id: '12',
-            title: 'REMAX Hustle',
-            icon: require('../../assets/icons/tool.png'),
-        },
-        {
-            id: '13',
-            title: 'Market Impact Media',
-            icon: require('../../assets/icons/tool.png'),
-        },
-        {
-            id: '14',
             title: 'NKY MLS',
-            icon: require('../../assets/icons/tool.png'),
+            icon: require('../../assets/icons/nky.png'),
         },
-        {
-            id: '15',
-            title: 'MAX Center',
-            icon: require('../../assets/icons/tool.png'),
-        },
-        {
-            id: '16',
-            title: 'ShowingTime',
-            icon: require('../../assets/icons/tool.png'),
-        },
-        {
-            id: '17',
-            title: 'SkySlope',
-            icon: require('../../assets/icons/tool.png'),
-        },
-        {
-            id: '18',
-            title: 'Swag Store',
-            icon: require('../../assets/icons/tool.png'),
-        },
+
     ];
 
     const filters = ['All', 'User Interface Design'];
@@ -144,25 +92,22 @@ const ToolboxScreen = () => {
             <View style={styles.toolIconContainer}>
                 <Image
                     source={tool.icon}
-                    style={[styles.toolIcon, { tintColor: colors.primaryLight }]}
+                    style={[styles.toolIcon, { tintColor: colors.primaryDark }]}
                     resizeMode="contain"
                 />
             </View>
-            <SpaceComponent />
             <TextComp fontSize={14} bold numberOfLines={2}>
                 {tool.title}
             </TextComp>
             {tool.description && (
                 <>
-                    <SpaceComponent />
-                    <TextComp fontSize={12} color="muted" numberOfLines={2}>
+                    <TextComp center fontSize={10} color="muted" >
                         {tool.description}
                     </TextComp>
                 </>
             )}
             {tool.label && (
                 <>
-                    <SpaceComponent />
                     <View style={styles.labelContainer}>
                         <TextComp fontSize={10} color="muted">
                             {tool.label}
@@ -177,13 +122,8 @@ const ToolboxScreen = () => {
         <BackgroundContainer>
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.container}>
-                    {/* Header */}
                     <View style={styles.headerContainer}>
                         <View style={styles.headerContent}>
-                            <Image
-                                source={require('../../assets/icons/tool.png')}
-                                style={[styles.headerIcon, { tintColor: colors.primaryLight }]}
-                            />
                             <View style={styles.headerText}>
                                 <HeaderComp title="Toolbox" />
                                 <TextComp fontSize={14} color="muted">
@@ -193,25 +133,8 @@ const ToolboxScreen = () => {
                         </View>
                     </View>
 
-                    <SpaceComponent />
+                    <SearchBarComp />
 
-                    {/* Search Bar */}
-                    <View style={styles.searchContainer}>
-                        <View style={styles.searchInputContainer}>
-                            <TextComp fontSize={18}>🔍</TextComp>
-                            <TextInputComp
-                                placeholderText="Search tools..."
-                                value={searchText}
-                                onChangeText={setSearchText}
-                                showToggleImage={false}
-                                textInputStyle={styles.searchInput}
-                            />
-                        </View>
-                    </View>
-
-                    <SpaceComponent />
-
-                    {/* Filter Buttons */}
                     <View style={styles.filterContainer}>
                         {filters.map((filter) => (
                             <TouchableOpacity
@@ -224,7 +147,6 @@ const ToolboxScreen = () => {
                             >
                                 <TextComp
                                     fontSize={14}
-                                    color={selectedFilter === filter ? "textPrimary" : "muted"}
                                 >
                                     {filter}
                                 </TextComp>
@@ -232,9 +154,6 @@ const ToolboxScreen = () => {
                         ))}
                     </View>
 
-                    <SpaceComponent />
-
-                    {/* Tools Grid */}
                     <View style={styles.toolsGrid}>
                         {searchFilteredTools.map(renderToolCard)}
                     </View>
@@ -247,7 +166,6 @@ const ToolboxScreen = () => {
 const createStyleSheet = (colors: ColorPalette) => {
     return StyleSheet.create({
         container: {
-            padding: 20,
             gap: 20,
         },
         headerContainer: {
@@ -320,21 +238,24 @@ const createStyleSheet = (colors: ColorPalette) => {
             borderWidth: 1,
             borderColor: colors.bottomTabsBorder,
             minHeight: 140,
+            alignItems: 'center',
+            gap: 5
         },
         toolIconContainer: {
             width: 48,
             height: 48,
             borderRadius: 12,
-            backgroundColor: colors.background,
+            backgroundColor: colors.primaryLight,
             justifyContent: 'center',
             alignItems: 'center',
+            marginBottom: 10
         },
         toolIcon: {
             width: 24,
             height: 24,
         },
         labelContainer: {
-            alignSelf: 'flex-start',
+            alignSelf: 'center',
             backgroundColor: colors.background,
             paddingHorizontal: 8,
             paddingVertical: 4,

@@ -18,6 +18,7 @@ interface TextCompProps {
   color?: ColorVariant;
   light?: boolean;
   zero?: boolean;
+  center?: boolean;
   capitalize?: boolean;
   numberOfLines?: number;
   onPress?: () => void;
@@ -30,6 +31,7 @@ const TextComp: React.FC<TextCompProps> = ({
   bold = false,
   zero = false,
   italic = false,
+  center = false,
   underline = false,
   capitalize = false,
   style,
@@ -41,6 +43,7 @@ const TextComp: React.FC<TextCompProps> = ({
   const fontWeight = bold ? '700' : '400';
   const paddingBottom = zero ? 0 : 4;
   const fontStyle = italic ? 'italic' : 'normal';
+  const textAlign = center ? 'center' : undefined;
   const textDecorationLine = underline ? 'underline' : 'none';
   const textTransform = capitalize ? 'capitalize' : 'none';
   const theme = light ? 'light' : useTheme();
@@ -70,6 +73,7 @@ const TextComp: React.FC<TextCompProps> = ({
           lineHeight,
           fontWeight,
           fontStyle,
+          textAlign,
           textTransform,
           textDecorationLine,
           color: colorMap[color],

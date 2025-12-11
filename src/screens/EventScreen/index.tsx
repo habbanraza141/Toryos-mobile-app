@@ -309,7 +309,6 @@ const EventScreen = () => {
 
                     <SpaceComponent />
 
-                    {/* RSVP Buttons */}
                     <View style={styles.rsvpContainer}>
                         <TouchableOpacity style={styles.rsvpButton}>
                             <TextComp style={styles.rsvpIcon}>✓</TextComp>
@@ -327,17 +326,14 @@ const EventScreen = () => {
 
                     <SpaceComponent />
 
-                    {/* View Guest List Button */}
                     <Button
                         title="View Guest List"
-                        // variant="link"
                         btnStyle={styles.guestListButton}
                         btnTextStyle={styles.guestListButtonTextStyle}
                     />
 
                     <SpaceComponent />
 
-                    {/* Social Actions */}
                     <View style={styles.socialActions}>
                         <TouchableOpacity style={styles.socialAction}>
                             <Image
@@ -575,7 +571,7 @@ const createStyleSheet = (colors: ColorPalette) => {
             gap: 12,
         },
         emptyStateIcon: {
-            fontSize: 48,
+            fontSize: 18,
             color: colors.muted,
         },
         emptyStateTitle: {
