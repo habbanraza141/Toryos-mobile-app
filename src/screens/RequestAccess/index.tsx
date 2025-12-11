@@ -95,9 +95,7 @@ const RequestAccess = () => {
 
                     <View style={styles.formSection}>
                         <View style={styles.inputContainer}>
-                            <TextComp bold style={styles.formTitle}>
-                                Tell Us About Your Brokerage
-                            </TextComp>
+                            <HeaderComp style={{ fontSize: 20 }} title="Tell Us About Your Brokerage" />
                             <TextComp style={styles.formDescription}>
                                 We'll schedule a demo to show you how toryOS can help your team.
                             </TextComp>
@@ -237,7 +235,7 @@ const createStyleSheet = (colors: ColorPalette) => {
             marginTop: 10,
         },
         formTitle: {
-            fontSize: 20,
+            fontSize: 18,
             color: colors.default,
         },
         formDescription: {
