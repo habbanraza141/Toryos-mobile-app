@@ -109,7 +109,7 @@ const ToolboxScreen = () => {
             {tool.label && (
                 <>
                     <View style={styles.labelContainer}>
-                        <TextComp fontSize={10} color="muted">
+                        <TextComp fontSize={10} >
                             {tool.label}
                         </TextComp>
                     </View>
@@ -255,8 +255,7 @@ const createStyleSheet = (colors: ColorPalette) => {
             height: 24,
         },
         labelContainer: {
-            alignSelf: 'center',
-            backgroundColor: colors.background,
+            backgroundColor: colors.backgroundThree,
             paddingHorizontal: 8,
             paddingVertical: 4,
             borderRadius: 4,

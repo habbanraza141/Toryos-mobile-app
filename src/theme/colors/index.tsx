@@ -23,6 +23,7 @@ export const COLORS_LIGHT = {
 
   background: '#fbfbfc',
   backgroundTwo: '#c6c6c9',
+  backgroundThree: '#dcdcdfff',
   iconBackground: '#0C162B',
 
   orange: '#ED7A3A',
@@ -67,6 +68,7 @@ export const COLORS_DARK = {
   secondaryText: '#bfbfbf',
   background: '#11142B',
   backgroundTwo: '#1A1D3D',
+  backgroundThree: '#1A1D3D',
   orange: '#FF9559',
   secondaryBackground: '#121630',
   secondaryBackgroundWithoutOpacity: '#121630',
@@ -103,6 +105,7 @@ export interface ColorPalette {
   secondaryText: string;
   background: string;
   backgroundTwo: string;
+  backgroundThree: string;
   orange: string;
   secondaryBackground: string;
   bottomTabsBack: string;
