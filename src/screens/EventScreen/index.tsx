@@ -320,7 +320,7 @@ const EventScreen = () => {
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.rsvpButton}>
                             <TextComp style={styles.rsvpIcon}>✕</TextComp>
-                            <TextComp style={styles.rsvpButtonText}>Can't go (1)</TextComp>
+                            <TextComp style={styles.rsvpButtonText}>Can't go</TextComp>
                         </TouchableOpacity>
                     </View>
 
@@ -650,9 +650,9 @@ const createStyleSheet = (colors: ColorPalette) => {
             flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'center',
-            gap: 6,
-            paddingVertical: 10,
-            paddingHorizontal: 12,
+            gap: 12,
+            paddingVertical: 8,
+            paddingHorizontal: 8,
             borderRadius: 20,
             backgroundColor: colors.secondaryBackground,
             borderWidth: 1,

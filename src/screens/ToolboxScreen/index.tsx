@@ -48,8 +48,6 @@ const ToolboxScreen = () => {
         {
             id: '4',
             title: 'CincyMLS',
-            description: 'test',
-            label: 'User Interface Design',
             icon: require('../../assets/icons/tool.png'),
         },
 
@@ -239,7 +237,9 @@ const createStyleSheet = (colors: ColorPalette) => {
             borderColor: colors.bottomTabsBorder,
             minHeight: 140,
             alignItems: 'center',
-            gap: 5
+            gap: 5,
+            justifyContent: 'center',
+
         },
         toolIconContainer: {
             width: 48,
