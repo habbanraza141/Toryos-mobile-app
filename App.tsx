@@ -6,16 +6,7 @@ import store from './src/store/store';
 
 export default function App() {
   useEffect(() => {
-    // Hide splash screen after app is ready
-    const timer = setTimeout(() => {
-      try {
-        SplashScreen.hide();
-      } catch (error) {
-        console.warn('Error hiding splash screen:', error);
-      }
-    }, 2000); // Show for 2 seconds
-
-    return () => clearTimeout(timer);
+    SplashScreen.hide();
   }, []);
 
   return (
