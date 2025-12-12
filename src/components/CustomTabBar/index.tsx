@@ -44,12 +44,8 @@ const CustomTabBar: React.FC<CustomTabBarProps> = ({
       });
 
       if (!isFocused && !event.defaultPrevented) {
-        requestAnimationFrame(() => {
-          navigation.reset({
-            index: 0,
-            routes: [{ name: route.name }],
-          });
-        });
+        // Use navigate instead of reset for smooth transitions
+        navigation.navigate(route.name);
       }
     },
     [navigation],

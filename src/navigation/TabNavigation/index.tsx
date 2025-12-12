@@ -141,7 +141,10 @@ const TabRoutes = () => {
   return (
     <>
       <Tab.Navigator
-        screenOptions={{ headerShown: false }}
+        screenOptions={{ 
+          headerShown: false,
+          animation: 'fade', // Smooth fade animation between tabs
+        }}
         tabBar={(props: any) => <CustomTabBar {...props} />}>
         <Tab.Screen
           name="Home"
