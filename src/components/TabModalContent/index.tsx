@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { ColorPalette, getColors } from '../../theme/colors';
-// import ToggleSwitch from '../ToggleSwitch';
 import { useTheme } from '../../hooks/useTheme';
 import SpaceComponent from '../SpaceComponent';
 import TextComp from '../TextComp';
