@@ -1,9 +1,11 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import MessagesScreen from '../../screens/MessagesScreen';
+import NewConversationScreen from '../../screens/NewConversationScreen';
 
 export type MessagesStackParamList = {
   MessagesScreen: undefined;
+  NewConversation: undefined;
 };
 
 const Stack = createNativeStackNavigator<MessagesStackParamList>();
@@ -18,6 +20,14 @@ export default function MessagesStack() {
       <Stack.Screen
         name="MessagesScreen"
         component={MessagesScreen}
+        options={{
+          headerShown: false,
+          contentStyle: { width: '100%' },
+        }}
+      />
+      <Stack.Screen
+        name="NewConversation"
+        component={NewConversationScreen}
         options={{
           headerShown: false,
           contentStyle: { width: '100%' },

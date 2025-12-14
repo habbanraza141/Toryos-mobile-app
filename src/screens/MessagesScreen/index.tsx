@@ -9,6 +9,8 @@ import { ColorPalette, getColors } from "../../theme/colors";
 import { useTheme } from "../../hooks/useTheme";
 import { shadows } from "../../theme/shadows";
 import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { MessagesStackParamList } from "../../navigation/MessagesStack";
 import HeaderComp from "../../components/HeaderComp";
 
 interface Conversation {
@@ -54,11 +56,13 @@ const formatTimeAgo = (date: Date): string => {
     return `${diffInMonths} month${diffInMonths > 1 ? 's' : ''} ago`;
 };
 
+type MessagesScreenNavigationProp = NativeStackNavigationProp<MessagesStackParamList, 'MessagesScreen'>;
+
 const MessagesScreen = () => {
     const theme = useTheme();
     const colors = getColors(theme);
     const styles = createStyleSheet(colors);
-    const navigation = useNavigation();
+    const navigation = useNavigation<MessagesScreenNavigationProp>();
     const [searchQuery, setSearchQuery] = useState("");
 
     const twoDaysAgo = new Date();
@@ -94,7 +98,7 @@ const MessagesScreen = () => {
     });
 
     const handleNewConversation = () => {
-        console.log('New conversation');
+        navigation.navigate('NewConversation');
     };
 
     const handleConversationPress = (conversation: Conversation) => {
@@ -146,10 +150,14 @@ const MessagesScreen = () => {
 
     return (
         <BackgroundContainer>
-            <View style={styles.card}>
+            <ScrollView 
+                style={styles.scrollContainer}
+                contentContainerStyle={styles.scrollContent}
+                showsVerticalScrollIndicator={false}
+            >
                 <View style={styles.topContainer}>
                     <HeaderComp title="Messages" />
-                    <TextComp>Start a conversation today and build connections</TextComp>
+                    <TextComp fontSize={14} color="muted">Start a conversation today and build connections</TextComp>
                 </View>
 
                 <View style={styles.content}>
@@ -166,10 +174,7 @@ const MessagesScreen = () => {
                         />
                     </View>
 
-                    <ScrollView
-                        style={styles.conversationsContainer}
-                        showsVerticalScrollIndicator={false}
-                    >
+                    <View style={styles.conversationsContainer}>
                         {filteredConversations.length > 0 ? (
                             filteredConversations.map(renderConversation)
                         ) : (
@@ -179,23 +184,24 @@ const MessagesScreen = () => {
                                 </TextComp>
                             </View>
                         )}
-                    </ScrollView>
+                    </View>
                 </View>
-            </View>
+            </ScrollView>
         </BackgroundContainer>
     );
 };
 
 const createStyleSheet = (colors: ColorPalette) =>
     StyleSheet.create({
-        topContainer: {
-            gap: 5,
+        scrollContainer: {
+            flex: 1,
         },
-        card: {
-            gap: 20,
-            borderRadius: 12,
-            backgroundColor: colors.background,
-            // ...shadows.small,
+        scrollContent: {
+            paddingBottom: 20,
+        },
+        topContainer: {
+            marginBottom: 20,
+            gap: 5,
         },
         header: {
             // paddingHorizontal: 20,
@@ -220,7 +226,7 @@ const createStyleSheet = (colors: ColorPalette) =>
             height: 20,
         },
         content: {
-            gap: 20,
+            gap: 16,
         },
         newConversationButton: {
             backgroundColor: colors.primary,
@@ -234,10 +240,10 @@ const createStyleSheet = (colors: ColorPalette) =>
             fontWeight: '600',
         },
         searchContainer: {
-            marginBottom: 20,
+            marginBottom: 8,
         },
         conversationsContainer: {
-            flex: 1,
+            marginTop: 8,
         },
         conversationItem: {
             flexDirection: 'row',
