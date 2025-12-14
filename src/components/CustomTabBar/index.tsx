@@ -68,6 +68,7 @@ const CustomTabBar: React.FC<CustomTabBarProps> = ({
             Home: require('../../assets/icons/home.png'),
             Event: require('../../assets/icons/event.png'),
             Schedule: require('../../assets/icons/clock.png'),
+            Messages: require('../../assets/icons/message.png'),
             More: require('../../assets/icons/more.png'),
 
           };

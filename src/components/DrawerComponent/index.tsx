@@ -56,9 +56,11 @@ const DrawerComponent = ({ navigation }: DrawerComponentProps) => {
                     />
                 </View>
                 <TouchableOpacity onPress={handleClose} style={styles.closeButton}>
-                    <View style={styles.closeButtonCircle}>
-                        <TextComp style={styles.closeButtonText}>✕</TextComp>
-                    </View>
+                    <Image
+                        source={require('../../assets/icons/cross.png')}
+                        style={styles.cross}
+                        resizeMode="contain"
+                    />
                 </TouchableOpacity>
             </View>
 
@@ -101,7 +103,7 @@ const DrawerComponent = ({ navigation }: DrawerComponentProps) => {
             <View style={styles.section}>
                 <TextComp style={styles.sectionTitle}>FEED</TextComp>
                 <TouchableOpacity
-                    style={[styles.menuItem, styles.activeMenuItem]}
+                    style={styles.menuItem}
                     onPress={() => handleNavigate('Home', { screen: 'HomeScreen' })}
                 >
                     <Image
@@ -158,7 +160,7 @@ const createStyleSheet = (colors: ColorPalette) => {
             justifyContent: 'space-between',
             alignItems: 'center',
             paddingHorizontal: 20,
-            paddingBottom: 20,
+            paddingVertical: 20,
         },
         logoContainer: {
             // flexDirection: 'row',
@@ -166,9 +168,16 @@ const createStyleSheet = (colors: ColorPalette) => {
             justifyContent: 'center'
             // gap: 12,
         },
+        cross: {
+            width: 12,
+            height: 12,
+            resizeMode: 'contain',
+            tintColor: colors.primaryDark
+        },
         logo: {
             width: 100,
             height: 60,
+            resizeMode: 'contain'
         },
         logoText: {
             fontSize: 16,
@@ -177,19 +186,18 @@ const createStyleSheet = (colors: ColorPalette) => {
             letterSpacing: 0.5,
         },
         closeButton: {
-            padding: 4,
-        },
-        closeButtonCircle: {
-            width: 32,
-            height: 32,
-            borderRadius: 16,
+            // padding: 4,
+            width: 24,
+            height: 24,
+            borderRadius: 12,
             backgroundColor: colors.primaryLight,
             justifyContent: 'center',
             alignItems: 'center',
         },
+
         closeButtonText: {
             color: colors.textPrimary,
-            fontSize: 18,
+            fontSize: 12,
             fontWeight: 'bold',
         },
         section: {

@@ -3,14 +3,11 @@ import { View, StyleSheet, ScrollView, TouchableOpacity, Image } from "react-nat
 import TextComp from "../../components/TextComp";
 import BackgroundContainer from "../../components/BackgroundContainer";
 import HeaderComp from "../../components/HeaderComp";
-import Card from "../../components/Card";
 import { ColorPalette, getColors } from "../../theme/colors";
 import { useTheme } from "../../hooks/useTheme";
-import SpaceComponent from "../../components/SpaceComponent";
-import TextInputComp from "../../components/TextInputComp";
 import SearchBarComp from "../../components/SearchBarComp";
 
-interface Course {
+interface Profile {
     id: string;
     title: string;
     description?: string;
@@ -18,14 +15,14 @@ interface Course {
     icon: any;
 }
 
-const CourseScreen = () => {
+const ProfileScreen = () => {
     const theme = useTheme();
     const colors = getColors(theme);
     const styles = createStyleSheet(colors);
     const [searchText, setSearchText] = useState('');
     const [selectedFilter, setSelectedFilter] = useState('All');
 
-    const courses: Course[] = [
+    const profiles: Profile[] = [
         {
             id: '1',
             title: 'Real Estate Fundamentals',
@@ -70,46 +67,40 @@ const CourseScreen = () => {
 
     const filters = ['All', 'In Progress', 'Completed'];
 
-    const filteredCourses = courses.filter(course => {
+    const filteredProfiles = profiles.filter(profile => {
         if (selectedFilter === 'All') return true;
-        return course.label === selectedFilter;
+        return profile.label === selectedFilter;
     });
 
-    const searchFilteredCourses = filteredCourses.filter(course =>
-        course.title.toLowerCase().includes(searchText.toLowerCase())
+    const searchFilteredProfiles = filteredProfiles.filter(profile =>
+        profile.title.toLowerCase().includes(searchText.toLowerCase())
     );
 
-    const renderCourseCard = (course: Course) => (
+    const renderProfileCard = (profile: Profile) => (
         <TouchableOpacity
-            key={course.id}
-            style={styles.courseCard}
+            key={profile.id}
+            style={styles.profileCard}
             activeOpacity={0.7}
         >
-            <View style={styles.courseIconContainer}>
+            <View style={styles.profileIconContainer}>
                 <Image
-                    source={course.icon}
-                    style={[styles.courseIcon, { tintColor: colors.primaryDark }]}
+                    source={profile.icon}
+                    style={[styles.profileIcon, { tintColor: colors.primaryDark }]}
                     resizeMode="contain"
                 />
             </View>
             <TextComp fontSize={14} bold numberOfLines={2} center>
-                {course.title}
+                {profile.title}
             </TextComp>
-            {course.description && (
-                <>
-                    <TextComp center fontSize={10} color="muted" >
-                        {course.description}
-                    </TextComp>
-                </>
+            {profile.description && (
+                <TextComp center fontSize={10} color="muted">
+                    {profile.description}
+                </TextComp>
             )}
-            {course.label && (
-                <>
-                    <View style={styles.labelContainer}>
-                        <TextComp fontSize={10} >
-                            {course.label}
-                        </TextComp>
-                    </View>
-                </>
+            {profile.label && (
+                <View style={styles.labelContainer}>
+                    <TextComp fontSize={10}>{profile.label}</TextComp>
+                </View>
             )}
         </TouchableOpacity>
     );
@@ -121,9 +112,9 @@ const CourseScreen = () => {
                     <View style={styles.headerContainer}>
                         <View style={styles.headerContent}>
                             <View style={styles.headerText}>
-                                <HeaderComp title="Courses" />
+                                <HeaderComp title="Profiles" />
                                 <TextComp fontSize={14} color="muted">
-                                    Access training courses and educational resources.
+                                    Access training profiles and educational resources.
                                 </TextComp>
                             </View>
                         </View>
@@ -141,17 +132,13 @@ const CourseScreen = () => {
                                 ]}
                                 onPress={() => setSelectedFilter(filter)}
                             >
-                                <TextComp
-                                    fontSize={14}
-                                >
-                                    {filter}
-                                </TextComp>
+                                <TextComp fontSize={14}>{filter}</TextComp>
                             </TouchableOpacity>
                         ))}
                     </View>
 
-                    <View style={styles.coursesGrid}>
-                        {searchFilteredCourses.map(renderCourseCard)}
+                    <View style={styles.profilesGrid}>
+                        {searchFilteredProfiles.map(renderProfileCard)}
                     </View>
                 </View>
             </ScrollView>
@@ -172,38 +159,11 @@ const createStyleSheet = (colors: ColorPalette) => {
             alignItems: 'flex-start',
             gap: 12,
         },
-        headerIcon: {
-            width: 32,
-            height: 32,
-            marginTop: 4,
-        },
         headerText: {
             flex: 1,
             gap: 4,
         },
-        searchContainer: {
-            width: '100%',
-        },
-        searchInputContainer: {
-            flexDirection: 'row',
-            alignItems: 'center',
-            backgroundColor: colors.secondaryBackground,
-            borderRadius: 12,
-            paddingHorizontal: 16,
-            borderWidth: 1,
-            borderColor: colors.bottomTabsBorder,
-            gap: 12,
-        },
-        searchIcon: {
-            width: 20,
-            height: 20,
-        },
-        searchInput: {
-            flex: 1,
-            borderWidth: 0,
-            backgroundColor: 'transparent',
-            padding: 0,
-        },
+
         filterContainer: {
             flexDirection: 'row',
             gap: 12,
@@ -220,13 +180,15 @@ const createStyleSheet = (colors: ColorPalette) => {
             backgroundColor: colors.primaryLight,
             borderColor: colors.primaryLight,
         },
-        coursesGrid: {
+
+        profilesGrid: {
             flexDirection: 'row',
             flexWrap: 'wrap',
             gap: 12,
             justifyContent: 'space-between',
         },
-        courseCard: {
+
+        profileCard: {
             width: '48%',
             backgroundColor: colors.secondaryBackground,
             borderRadius: 12,
@@ -238,19 +200,21 @@ const createStyleSheet = (colors: ColorPalette) => {
             gap: 5,
             justifyContent: 'center',
         },
-        courseIconContainer: {
+
+        profileIconContainer: {
             width: 48,
             height: 48,
             borderRadius: 12,
             backgroundColor: colors.primaryLight,
             justifyContent: 'center',
             alignItems: 'center',
-            marginBottom: 10
+            marginBottom: 10,
         },
-        courseIcon: {
+        profileIcon: {
             width: 24,
             height: 24,
         },
+
         labelContainer: {
             backgroundColor: colors.backgroundThree,
             paddingHorizontal: 8,
@@ -260,5 +224,4 @@ const createStyleSheet = (colors: ColorPalette) => {
     });
 };
 
-export default CourseScreen;
-
+export default ProfileScreen;

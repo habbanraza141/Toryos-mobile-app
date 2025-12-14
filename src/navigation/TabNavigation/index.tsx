@@ -10,6 +10,7 @@ import { CommonActions, CompositeNavigationProp, NavigatorScreenParams, useNavig
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import EventStack from '../EventStack';
 import ScheduledStack from '../ScheduledStack';
+import MessagesStack from '../MessagesStack';
 import MoreStack, { MoreStackParamList } from '../MoreStack';
 import TabModalContent from '../../components/TabModalContent';
 import Button from '../../components/Button';
@@ -21,6 +22,7 @@ export type TabNavigationParamList = {
   HomeStack: undefined;
   EventStack: undefined;
   ScheduleStack: undefined;
+  MessagesStack: undefined;
   More: NavigatorScreenParams<MoreStackParamList>;
 
 };
@@ -74,7 +76,7 @@ const TabRoutes = () => {
 
         if (item.label === 'Tools') {
           setPendingNavigation(() => () => {
-            navigation.navigate('BottomTab', {
+            navigation.navigate('TabRoutes', {
               screen: 'More',
               params: {
                 screen: 'ToolStack',
@@ -83,7 +85,7 @@ const TabRoutes = () => {
           });
         } else if (item.label === 'Rooms') {
           setPendingNavigation(() => () => {
-            navigation.navigate('BottomTab', {
+            navigation.navigate('TabRoutes', {
               screen: 'More',
               params: {
                 screen: 'RoomStack',
@@ -97,7 +99,7 @@ const TabRoutes = () => {
                 index: 0,
                 routes: [
                   {
-                    name: 'BottomTab',
+                    name: 'TabRoutes',
                     state: {
                       routes: [
                         {
@@ -141,7 +143,7 @@ const TabRoutes = () => {
   return (
     <>
       <Tab.Navigator
-        screenOptions={{ 
+        screenOptions={{
           headerShown: false,
           animation: 'fade', // Smooth fade animation between tabs
         }}
@@ -157,6 +159,10 @@ const TabRoutes = () => {
         <Tab.Screen
           name="Schedule"
           component={ScheduledStack}
+        />
+        <Tab.Screen
+          name="Messages"
+          component={MessagesStack}
         />
         <Tab.Screen
           name="More"
