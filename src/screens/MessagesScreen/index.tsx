@@ -150,7 +150,7 @@ const MessagesScreen = () => {
 
     return (
         <BackgroundContainer>
-            <ScrollView 
+            <ScrollView
                 style={styles.scrollContainer}
                 contentContainerStyle={styles.scrollContent}
                 showsVerticalScrollIndicator={false}
@@ -168,7 +168,7 @@ const MessagesScreen = () => {
 
                     <View style={styles.searchContainer}>
                         <SearchBarComp
-                            placeholderText="Search messages and attachments..."
+                            placeholderText="Search messages ..."
                             value={searchQuery}
                             onChange={setSearchQuery}
                         />
