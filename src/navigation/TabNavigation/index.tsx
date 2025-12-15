@@ -47,6 +47,11 @@ const ITEMS = [
     label: 'Courses',
     icon: require('../../assets/icons/topi.png'),
   },
+  {
+    id: '4',
+    label: 'Members',
+    icon: require('../../assets/icons/members.png'),
+  },
 ];
 
 const TabRoutes = () => {
@@ -108,6 +113,33 @@ const TabRoutes = () => {
                             routes: [
                               {
                                 name: 'CourseStack',
+                              },
+                            ],
+                          },
+                        },
+                      ],
+                    },
+                  },
+                ],
+              }),
+            );
+          });
+        } else if (item.label === 'Members') {
+          setPendingNavigation(() => () => {
+            navigation.dispatch(
+              CommonActions.reset({
+                index: 0,
+                routes: [
+                  {
+                    name: 'TabRoutes',
+                    state: {
+                      routes: [
+                        {
+                          name: 'More',
+                          state: {
+                            routes: [
+                              {
+                                name: 'MemberStack',
                               },
                             ],
                           },

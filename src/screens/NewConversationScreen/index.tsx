@@ -126,8 +126,7 @@ const NewConversationScreen = () => {
                     <TouchableOpacity
                         style={[
                             styles.segment,
-                            conversationType === 'direct' && styles.segmentActive,
-                            conversationType === 'direct' && { backgroundColor: colors.backgroundThree }
+                            conversationType === 'direct' && styles.segmentActive
                         ]}
                         onPress={() => {
                             setConversationType('direct');
@@ -139,14 +138,15 @@ const NewConversationScreen = () => {
                             source={require('../../assets/icons/message.png')}
                             style={[
                                 styles.segmentIcon,
+                                { tintColor: conversationType === 'direct' ? colors.textPrimary : colors.iconBackground }
                             ]}
                         />
                         <TextComp
                             fontSize={14}
-                            style={{
-
-                                fontWeight: conversationType === 'direct' ? '600' : 'normal'
-                            }}
+                            style={[
+                                styles.segmentText,
+                                conversationType === 'direct' && styles.segmentTextActive
+                            ]}
                         >
                             Direct Message
                         </TextComp>
@@ -154,8 +154,7 @@ const NewConversationScreen = () => {
                     <TouchableOpacity
                         style={[
                             styles.segment,
-                            conversationType === 'group' && styles.segmentActive,
-                            conversationType === 'group' && { backgroundColor: colors.backgroundThree }
+                            conversationType === 'group' && styles.segmentActive
                         ]}
                         onPress={() => {
                             setConversationType('group');
@@ -167,13 +166,15 @@ const NewConversationScreen = () => {
                             source={require('../../assets/icons/members.png')}
                             style={[
                                 styles.segmentIcon,
+                                { tintColor: conversationType === 'group' ? colors.textPrimary : colors.iconBackground }
                             ]}
                         />
                         <TextComp
                             fontSize={14}
-                            style={{
-                                fontWeight: conversationType === 'group' ? '600' : 'normal'
-                            }}
+                            style={[
+                                styles.segmentText,
+                                conversationType === 'group' && styles.segmentTextActive
+                            ]}
                         >
                             Group Chat
                         </TextComp>
@@ -257,9 +258,7 @@ const createStyleSheet = (colors: ColorPalette) =>
         },
         segmentedControl: {
             flexDirection: 'row',
-            backgroundColor: colors.secondaryBackground,
-            borderRadius: 8,
-            padding: 4,
+            gap: 12,
             marginBottom: 20,
         },
         segment: {
@@ -268,16 +267,28 @@ const createStyleSheet = (colors: ColorPalette) =>
             alignItems: 'center',
             justifyContent: 'center',
             paddingVertical: 10,
-            paddingHorizontal: 12,
-            borderRadius: 6,
+            paddingHorizontal: 16,
+            borderRadius: 8,
+            borderWidth: 1,
+            borderColor: colors.bottomTabsBorder,
+            backgroundColor: colors.secondaryBackground,
             gap: 8,
         },
         segmentActive: {
-            // Active state handled by backgroundColor in inline style
+            backgroundColor: colors.primaryLight,
+            borderColor: colors.primaryLight,
         },
         segmentIcon: {
             width: 18,
             height: 18,
+        },
+        segmentText: {
+            fontSize: 14,
+            color: colors.default,
+        },
+        segmentTextActive: {
+            color: colors.textPrimary,
+            fontWeight: '600',
         },
         searchContainer: {
             marginBottom: 16,

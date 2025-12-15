@@ -50,7 +50,10 @@ const ScheduleScreen = () => {
                             >
                                 <Image
                                     source={require('../../assets/icons/write.png')}
-                                    style={[styles.tabIcon, { tintColor: colors.iconBackground }]}
+                                    style={[
+                                        styles.tabIcon,
+                                        { tintColor: activeTab === 0 ? colors.textPrimary : colors.iconBackground }
+                                    ]}
                                 />
                                 <TextComp style={[
                                     styles.tabText,
@@ -68,7 +71,10 @@ const ScheduleScreen = () => {
                             >
                                 <Image
                                     source={require('../../assets/icons/preview.png')}
-                                    style={[styles.tabIcon, { tintColor: colors.iconBackground }]}
+                                    style={[
+                                        styles.tabIcon,
+                                        { tintColor: activeTab === 1 ? colors.textPrimary : colors.iconBackground }
+                                    ]}
                                 />
                                 <TextComp style={[
                                     styles.tabText,
@@ -175,31 +181,34 @@ const createStyleSheet = (colors: ColorPalette) => {
         },
         tabsContainer: {
             flexDirection: 'row',
-            gap: 8,
+            gap: 12,
             marginBottom: 8,
         },
         tab: {
             flexDirection: 'row',
             alignItems: 'center',
-            gap: 6,
+            gap: 8,
             paddingHorizontal: 16,
-            paddingVertical: 8,
+            paddingVertical: 10,
             borderRadius: 8,
-            backgroundColor: 'transparent',
+            borderWidth: 1,
+            borderColor: colors.bottomTabsBorder,
+            backgroundColor: colors.secondaryBackground,
         },
         tabActive: {
-            backgroundColor: colors.backgroundThree,
+            backgroundColor: colors.primaryLight,
+            borderColor: colors.primaryLight,
         },
         tabIcon: {
-            width: 16,
-            height: 16,
+            width: 18,
+            height: 18,
         },
         tabText: {
             fontSize: 14,
             color: colors.default,
         },
         tabTextActive: {
-            color: colors.default,
+            color: colors.textPrimary,
             fontWeight: '600',
         },
         textArea: {
