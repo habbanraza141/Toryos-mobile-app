@@ -52,6 +52,11 @@ const ITEMS = [
     label: 'Members',
     icon: require('../../assets/icons/members.png'),
   },
+  {
+    id: '5',
+    label: 'Settings',
+    icon: require('../../assets/icons/settings.png'),
+  },
 ];
 
 const TabRoutes = () => {
@@ -88,6 +93,15 @@ const TabRoutes = () => {
               },
             });
           });
+        } else if (item.label === 'Courses') {
+          setPendingNavigation(() => () => {
+            navigation.navigate('TabRoutes', {
+              screen: 'More',
+              params: {
+                screen: 'CourseStack',
+              },
+            });
+          });
         } else if (item.label === 'Rooms') {
           setPendingNavigation(() => () => {
             navigation.navigate('TabRoutes', {
@@ -97,35 +111,19 @@ const TabRoutes = () => {
               },
             });
           });
-        } else if (item.label === 'Courses') {
-          setPendingNavigation(() => () => {
-            navigation.dispatch(
-              CommonActions.reset({
-                index: 0,
-                routes: [
-                  {
-                    name: 'TabRoutes',
-                    state: {
-                      routes: [
-                        {
-                          name: 'More',
-                          state: {
-                            routes: [
-                              {
-                                name: 'CourseStack',
-                              },
-                            ],
-                          },
-                        },
-                      ],
-                    },
-                  },
-                ],
-              }),
-            );
-          });
         } else if (item.label === 'Members') {
           setPendingNavigation(() => () => {
+            navigation.navigate('TabRoutes', {
+              screen: 'More',
+              params: {
+                screen: 'MemberStack',
+              },
+            });
+          });
+        }
+
+        else if (item.label === 'Settings') {
+          setPendingNavigation(() => () => {
             navigation.dispatch(
               CommonActions.reset({
                 index: 0,
@@ -139,7 +137,7 @@ const TabRoutes = () => {
                           state: {
                             routes: [
                               {
-                                name: 'MemberStack',
+                                name: 'SettingsStack',
                               },
                             ],
                           },

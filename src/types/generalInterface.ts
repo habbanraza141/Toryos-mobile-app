@@ -24,6 +24,7 @@ export type ButtonVariant =
 export type ColorVariant =
   | 'muted'
   | 'muted35'
+  | 'white'
   | 'danger'
   | 'primary'
   | 'default'

@@ -60,6 +60,7 @@ const TextComp: React.FC<TextCompProps> = ({
     default: colors.default,
     warningLight: colors.warningLight,
     success: colors.success,
+    white: colors.white
   };
 
   return (

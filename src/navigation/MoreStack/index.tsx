@@ -5,6 +5,7 @@ import ToolStack, { ToolStackParamList } from '../ToolStack';
 import RoomStack, { RoomStackParamList } from '../RoomStack';
 import CourseStack, { CourseStackParamList } from '../CourseStack';
 import MemberStack, { MemberStackParamList } from '../MemberStack';
+import SettingsStack, { SettingsStackParamList } from '../SettingsStack';
 
 
 export type MoreStackParamList = {
@@ -12,6 +13,7 @@ export type MoreStackParamList = {
   RoomStack: NavigatorScreenParams<RoomStackParamList>;
   CourseStack: NavigatorScreenParams<CourseStackParamList>;
   MemberStack: NavigatorScreenParams<MemberStackParamList>;
+  SettingsStack: NavigatorScreenParams<SettingsStackParamList>;
 };
 const Stack = createStackNavigator<MoreStackParamList>();
 
@@ -22,6 +24,7 @@ const MoreStack = () => {
       <Stack.Screen name="RoomStack" component={RoomStack} />
       <Stack.Screen name="CourseStack" component={CourseStack} />
       <Stack.Screen name="MemberStack" component={MemberStack} />
+      <Stack.Screen name="SettingsStack" component={SettingsStack} />
     </Stack.Navigator>
   );
 };
