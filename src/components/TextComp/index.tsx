@@ -94,5 +94,6 @@ const createStyleSheet = () =>
     baseText: {
       letterSpacing: -0.12,
       flexShrink: 1,
+      paddingTop: 4
     },
   });
