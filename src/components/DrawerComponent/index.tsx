@@ -97,6 +97,26 @@ const DrawerComponent = ({ navigation }: DrawerComponentProps) => {
                     />
                     <TextComp style={styles.menuItemText}>Courses</TextComp>
                 </TouchableOpacity>
+                <TouchableOpacity
+                    style={styles.menuItem}
+                    onPress={() => handleNavigate('More', { screen: 'MemberStack' })}
+                >
+                    <Image
+                        source={require('../../assets/icons/members.png')}
+                        style={styles.menuIcon}
+                    />
+                    <TextComp style={styles.menuItemText}>Members</TextComp>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={styles.menuItem}
+                    onPress={() => handleNavigate('More', { screen: 'SettingsStack' })}
+                >
+                    <Image
+                        source={require('../../assets/icons/more.png')}
+                        style={styles.menuIcon}
+                    />
+                    <TextComp style={styles.menuItemText}>Settings</TextComp>
+                </TouchableOpacity>
             </View>
 
             {/* FEED Section */}

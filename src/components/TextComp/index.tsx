@@ -60,6 +60,7 @@ const TextComp: React.FC<TextCompProps> = ({
     default: colors.default,
     warningLight: colors.warningLight,
     success: colors.success,
+    white: colors.white
   };
 
   return (
@@ -94,5 +95,6 @@ const createStyleSheet = () =>
     baseText: {
       letterSpacing: -0.12,
       flexShrink: 1,
+      paddingTop: 4
     },
   });

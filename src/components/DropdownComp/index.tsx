@@ -62,7 +62,7 @@ const DropdownComp: React.FC<DropdownCompProps> = ({
                 onPress={() => setIsOpen(!isOpen)}
                 activeOpacity={0.7}
             >
-                <TextComp fontSize={14} color={selectedOption ? "textPrimary" : "muted"}>
+                <TextComp fontSize={14} color={selectedOption ? "primary" : "muted"}>
                     {selectedOption ? selectedOption.label : placeholder}
                 </TextComp>
                 <Image
@@ -77,8 +77,8 @@ const DropdownComp: React.FC<DropdownCompProps> = ({
                         <View style={styles.backdrop} />
                     </TouchableWithoutFeedback>
                     <View style={styles.dropdownList}>
-                        <ScrollView 
-                            style={styles.optionsList} 
+                        <ScrollView
+                            style={styles.optionsList}
                             showsVerticalScrollIndicator={false}
                             nestedScrollEnabled={true}
                         >
@@ -94,7 +94,7 @@ const DropdownComp: React.FC<DropdownCompProps> = ({
                                 >
                                     <TextComp
                                         fontSize={14}
-                                        color={value === option.value ? "primary" : "textPrimary"}
+                                        color={"primary"}
                                     >
                                         {option.label}
                                     </TextComp>
