@@ -22,9 +22,9 @@ const SettingsScreen = () => {
 
     const tabs = [
         { id: 'profile', icon: require('../../assets/icons/members.png'), label: 'Profile' },
-        // { id: 'activity', icon: require('../../assets/icons/event.png'), label: 'Activity' },
+        { id: 'activity', icon: require('../../assets/icons/event.png'), label: 'Activity' },
         { id: 'notifications', icon: require('../../assets/icons/notifications.png'), label: 'Notifications' },
-        // { id: 'tutorial', icon: require('../../assets/icons/light.png'), label: 'Tutorial' },
+        { id: 'tutorial', icon: require('../../assets/icons/light.png'), label: 'Tutorial' },
         { id: 'security', icon: require('../../assets/icons/more.png'), label: 'Security' },
     ];
 
@@ -32,10 +32,12 @@ const SettingsScreen = () => {
         switch (activeTab) {
             case 'profile':
                 return <ProfileSettingsScreen />;
-
+            case 'activity':
+                return <ActivitySettingsScreen />;
             case 'notifications':
                 return <NotificationsSettingsScreen />;
-
+            case 'tutorial':
+                return <TutorialSettingsScreen />;
             case 'security':
                 return <SecuritySettingsScreen />;
             default:
@@ -57,7 +59,7 @@ const SettingsScreen = () => {
                         </View>
                     </View>
 
-                    {/* <View style={styles.tabsContainer}>
+                    <View style={styles.tabsContainer}>
                         {tabs.map((tab) => (
                             <TouchableOpacity
                                 key={tab.id}
@@ -76,13 +78,9 @@ const SettingsScreen = () => {
                                 />
                             </TouchableOpacity>
                         ))}
-                    </View> */}
+                    </View>
 
-                    {/* {renderTabContent()} */}
-
-                    <ProfileSettingsScreen />;
-                    <NotificationsSettingsScreen />;
-                    <SecuritySettingsScreen />;
+                    {renderTabContent()}
                 </View>
             </ScrollView>
         </BackgroundContainer>
