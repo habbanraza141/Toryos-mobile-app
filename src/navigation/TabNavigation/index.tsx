@@ -32,31 +32,42 @@ export type TabNavProp = CompositeNavigationProp<BottomTabNavigationProp<TabNavi
 const Tab = createBottomTabNavigator();
 
 const ITEMS = [
+
   {
     id: '1',
-    label: 'Tools',
-    icon: require('../../assets/icons/tool.png'),
-  },
-  {
-    id: '2',
-    label: 'Rooms',
-    icon: require('../../assets/icons/room.png'),
-  },
-  {
-    id: '3',
-    label: 'Courses',
-    icon: require('../../assets/icons/topi.png'),
-  },
-  {
-    id: '4',
     label: 'Members',
     icon: require('../../assets/icons/members.png'),
   },
   {
-    id: '5',
+    id: '2',
     label: 'Settings',
     icon: require('../../assets/icons/settings.png'),
   },
+  // {
+  //   id: '1',
+  //   label: 'Tools',
+  //   icon: require('../../assets/icons/tool.png'),
+  // },
+  // {
+  //   id: '2',
+  //   label: 'Rooms',
+  //   icon: require('../../assets/icons/room.png'),
+  // },
+  // {
+  //   id: '3',
+  //   label: 'Courses',
+  //   icon: require('../../assets/icons/topi.png'),
+  // },
+  // {
+  //   id: '4',
+  //   label: 'Members',
+  //   icon: require('../../assets/icons/members.png'),
+  // },
+  // {
+  //   id: '5',
+  //   label: 'Settings',
+  //   icon: require('../../assets/icons/settings.png'),
+  // },
 ];
 
 const TabRoutes = () => {
@@ -84,34 +95,35 @@ const TabRoutes = () => {
       onPress: () => {
         setModalVisible(false);
 
-        if (item.label === 'Tools') {
-          setPendingNavigation(() => () => {
-            navigation.navigate('TabRoutes', {
-              screen: 'More',
-              params: {
-                screen: 'ToolStack',
-              },
-            });
-          });
-        } else if (item.label === 'Courses') {
-          setPendingNavigation(() => () => {
-            navigation.navigate('TabRoutes', {
-              screen: 'More',
-              params: {
-                screen: 'CourseStack',
-              },
-            });
-          });
-        } else if (item.label === 'Rooms') {
-          setPendingNavigation(() => () => {
-            navigation.navigate('TabRoutes', {
-              screen: 'More',
-              params: {
-                screen: 'RoomStack',
-              },
-            });
-          });
-        } else if (item.label === 'Members') {
+        // if (item.label === 'Tools') {
+        //   setPendingNavigation(() => () => {
+        //     navigation.navigate('TabRoutes', {
+        //       screen: 'More',
+        //       params: {
+        //         screen: 'ToolStack',
+        //       },
+        //     });
+        //   });
+        // } else if (item.label === 'Courses') {
+        //   setPendingNavigation(() => () => {
+        //     navigation.navigate('TabRoutes', {
+        //       screen: 'More',
+        //       params: {
+        //         screen: 'CourseStack',
+        //       },
+        //     });
+        //   });
+        // } else if (item.label === 'Rooms') {
+        //   setPendingNavigation(() => () => {
+        //     navigation.navigate('TabRoutes', {
+        //       screen: 'More',
+        //       params: {
+        //         screen: 'RoomStack',
+        //       },
+        //     });
+        //   });
+        // } else if (item.label === 'Members') {
+        if (item.label === 'Members') {
           setPendingNavigation(() => () => {
             navigation.navigate('TabRoutes', {
               screen: 'More',
@@ -122,6 +134,7 @@ const TabRoutes = () => {
           });
         }
 
+        // else if (item.label === 'Settings') {
         else if (item.label === 'Settings') {
           setPendingNavigation(() => () => {
             navigation.dispatch(
