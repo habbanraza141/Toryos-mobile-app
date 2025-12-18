@@ -44,6 +44,16 @@ const DrawerComponent = ({ navigation }: DrawerComponentProps) => {
         }, 100);
     };
 
+    const handleDirectNavigate = (screenName: keyof DrawerStackParamList) => {
+        // Close drawer first
+        navigation.dispatch(DrawerActions.closeDrawer());
+
+        // Navigate directly to the stack
+        setTimeout(() => {
+            navigation.navigate(screenName);
+        }, 100);
+    };
+
     return (
         <DrawerContentScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
             {/* Header with Logo and Close Button */}
@@ -69,7 +79,7 @@ const DrawerComponent = ({ navigation }: DrawerComponentProps) => {
                 <TextComp style={styles.sectionTitle}>QUICK ACCESS</TextComp>
                 <TouchableOpacity
                     style={styles.menuItem}
-                    onPress={() => handleNavigate('More', { screen: 'ToolStack' })}
+                    onPress={() => handleDirectNavigate('ToolStack')}
                 >
                     <Image
                         source={require('../../assets/icons/tool.png')}
@@ -79,7 +89,7 @@ const DrawerComponent = ({ navigation }: DrawerComponentProps) => {
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.menuItem}
-                    onPress={() => handleNavigate('More', { screen: 'RoomStack' })}
+                    onPress={() => handleDirectNavigate('RoomStack')}
                 >
                     <Image
                         source={require('../../assets/icons/room.png')}
@@ -89,7 +99,7 @@ const DrawerComponent = ({ navigation }: DrawerComponentProps) => {
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.menuItem}
-                    onPress={() => handleNavigate('More', { screen: 'CourseStack' })}
+                    onPress={() => handleDirectNavigate('CourseStack')}
                 >
                     <Image
                         source={require('../../assets/icons/topi.png')}

@@ -9,6 +9,7 @@ import { useTheme } from "../../hooks/useTheme";
 import SpaceComponent from "../../components/SpaceComponent";
 import TextInputComp from "../../components/TextInputComp";
 import SearchBarComp from "../../components/SearchBarComp";
+import BackButton from "../../components/BackButton";
 
 interface Course {
     id: string;
@@ -121,6 +122,8 @@ const CourseScreen = () => {
                     <View style={styles.headerContainer}>
                         <View style={styles.headerContent}>
                             <View style={styles.headerText}>
+                                <BackButton />
+
                                 <HeaderComp title="Courses" />
                                 <TextComp fontSize={14} color="muted">
                                     Access training courses and educational resources.

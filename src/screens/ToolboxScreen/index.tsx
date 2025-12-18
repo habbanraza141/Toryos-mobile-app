@@ -9,6 +9,7 @@ import { useTheme } from "../../hooks/useTheme";
 import SpaceComponent from "../../components/SpaceComponent";
 import TextInputComp from "../../components/TextInputComp";
 import SearchBarComp from "../../components/SearchBarComp";
+import BackButton from "../../components/BackButton";
 
 interface Tool {
     id: string;
@@ -123,6 +124,7 @@ const ToolboxScreen = () => {
                     <View style={styles.headerContainer}>
                         <View style={styles.headerContent}>
                             <View style={styles.headerText}>
+                                <BackButton />
                                 <HeaderComp title="Toolbox" />
                                 <TextComp fontSize={14} color="muted">
                                     Quick access to all your essential tools and resources.
