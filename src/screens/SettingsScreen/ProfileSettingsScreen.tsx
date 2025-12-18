@@ -6,6 +6,7 @@ import Button from "../../components/Button";
 import { ColorPalette, getColors } from "../../theme/colors";
 import { useTheme } from "../../hooks/useTheme";
 import TextAreaComp from "../../components/TextAreaComp";
+import TextInputComp from "../../components/TextInputComp";
 
 const ProfileSettingsScreen = () => {
     const theme = useTheme();
@@ -49,8 +50,9 @@ const ProfileSettingsScreen = () => {
 
             <View style={styles.inputGroup}>
                 <TextComp fontSize={14} bold>Full Name</TextComp>
-                <TextInput
-                    style={[styles.input, { borderColor: colors.bottomTabsBorder }]}
+                <TextInputComp
+                    showToggleImage={false}
+                    // style={[{ borderColor: colors.bottomTabsBorder }]}
                     value={fullName}
                     onChangeText={setFullName}
                     placeholderTextColor={colors.muted}
@@ -59,8 +61,8 @@ const ProfileSettingsScreen = () => {
 
             <View style={styles.inputGroup}>
                 <TextComp fontSize={14} bold>Phone Number</TextComp>
-                <TextInput
-                    style={[styles.input, { borderColor: colors.bottomTabsBorder }]}
+                <TextInputComp
+                    showToggleImage={false}
                     value={phoneNumber}
                     onChangeText={setPhoneNumber}
                     placeholderTextColor={colors.muted}
@@ -76,6 +78,8 @@ const ProfileSettingsScreen = () => {
                     containerStyle={styles.textArea}
                 />
             </View>
+            <Button
+                title="Save Changes" />
         </Card>
     );
 };
