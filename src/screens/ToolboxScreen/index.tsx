@@ -133,7 +133,11 @@ const ToolboxScreen = () => {
                         </View>
                     </View>
 
-                    <SearchBarComp />
+                    <SearchBarComp 
+                        value={searchText}
+                        onChange={setSearchText}
+                        placeholderText="Search tools..."
+                    />
 
                     <View style={styles.filterContainer}>
                         {filters.map((filter) => (
