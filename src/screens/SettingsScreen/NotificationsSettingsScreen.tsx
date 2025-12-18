@@ -64,7 +64,7 @@ const NotificationsSettingsScreen = () => {
                                                 [item.key]: { ...prev[item.key as keyof typeof prev], [channel]: value }
                                             }));
                                         }}
-                                        trackColor={{ false: colors.muted35, true: colors.primary }}
+                                        trackColor={{ false: colors.muted35, true: colors.primaryDark }}
                                         thumbColor={colors.white}
                                     />
                                 </View>
@@ -90,7 +90,7 @@ const NotificationsSettingsScreen = () => {
                                             newCourseContent: { ...prev.newCourseContent, [channel]: value }
                                         }));
                                     }}
-                                    trackColor={{ false: colors.muted35, true: colors.primary }}
+                                    trackColor={{ false: colors.muted35, true: colors.primaryDark }}
                                     thumbColor={colors.white}
                                 />
                             </View>
@@ -114,7 +114,7 @@ const NotificationsSettingsScreen = () => {
                                             polls: { ...prev.polls, [channel]: value }
                                         }));
                                     }}
-                                    trackColor={{ false: colors.muted35, true: colors.primary }}
+                                    trackColor={{ false: colors.muted35, true: colors.primaryDark }}
                                     thumbColor={colors.white}
                                 />
                             </View>
@@ -140,7 +140,7 @@ const NotificationsSettingsScreen = () => {
                                             brokerWaitlist: { ...prev.brokerWaitlist, [channel]: value }
                                         }));
                                     }}
-                                    trackColor={{ false: colors.muted35, true: colors.primary }}
+                                    trackColor={{ false: colors.muted35, true: colors.primaryDark }}
                                     thumbColor={colors.white}
                                 />
                             </View>
@@ -164,7 +164,7 @@ const NotificationsSettingsScreen = () => {
                                             newMembers: { ...prev.newMembers, [channel]: value }
                                         }));
                                     }}
-                                    trackColor={{ false: colors.muted35, true: colors.primary }}
+                                    trackColor={{ false: colors.muted35, true: colors.primaryDark }}
                                     thumbColor={colors.white}
                                 />
                             </View>
@@ -189,7 +189,7 @@ const NotificationsSettingsScreen = () => {
                         <TextComp fontSize={12} color="muted">Select all</TextComp>
                         <Switch
                             value={false}
-                            trackColor={{ false: colors.muted35, true: colors.primary }}
+                            trackColor={{ false: colors.muted35, true: colors.primaryDark }}
                             thumbColor={colors.white}
                         />
                     </View>
@@ -219,7 +219,7 @@ const NotificationsSettingsScreen = () => {
                                                 [space.key]: { ...prev[space.key as keyof typeof prev], [channel]: value }
                                             }));
                                         }}
-                                        trackColor={{ false: colors.muted35, true: colors.primary }}
+                                        trackColor={{ false: colors.muted35, true: colors.primaryDark }}
                                         thumbColor={colors.white}
                                     />
                                 </View>
