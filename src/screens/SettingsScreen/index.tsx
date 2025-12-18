@@ -21,11 +21,11 @@ const SettingsScreen = () => {
     const [activeTab, setActiveTab] = useState<SettingsTab>('profile');
 
     const tabs = [
-        { id: 'profile', icon: require('../../assets/icons/members.png'), label: 'Profile' },
+        { id: 'profile', icon: require('../../assets/icons/profile.png'), label: 'Profile' },
         { id: 'activity', icon: require('../../assets/icons/event.png'), label: 'Activity' },
         { id: 'notifications', icon: require('../../assets/icons/notifications.png'), label: 'Notifications' },
         { id: 'tutorial', icon: require('../../assets/icons/light.png'), label: 'Tutorial' },
-        { id: 'security', icon: require('../../assets/icons/more.png'), label: 'Security' },
+        { id: 'security', icon: require('../../assets/icons/settings.png'), label: 'Security' },
     ];
 
     const renderTabContent = () => {
@@ -114,7 +114,7 @@ const createStyleSheet = (colors: ColorPalette) =>
             backgroundColor: 'transparent',
         },
         tabActive: {
-            backgroundColor: colors.muted35,
+            backgroundColor: colors.primaryLight,
             borderWidth: 1,
             borderColor: colors.bottomTabsBorder,
         },
