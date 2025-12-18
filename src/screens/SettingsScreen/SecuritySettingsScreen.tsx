@@ -13,10 +13,13 @@ const SecuritySettingsScreen = () => {
 
     return (
         <Card otherStyle={styles.sectionCard}>
-            <TextComp bold fontSize={18}>Authentication Settings</TextComp>
-            <TextComp fontSize={14} color="muted">
-                Manage your password and security preferences
-            </TextComp>
+            <View>
+
+                <TextComp bold fontSize={18}>Authentication Settings</TextComp>
+                <TextComp fontSize={14} color="muted">
+                    Manage your password and security preferences
+                </TextComp>
+            </View>
 
             <View style={styles.securitySection}>
                 <TextComp bold fontSize={16}>Change Password</TextComp>
@@ -53,7 +56,7 @@ const SecuritySettingsScreen = () => {
                 <Button
                     title="Delete Account"
                     variant="danger"
-                    leftImage={require('../../assets/icons/cross.png')}
+                    leftImage={require('../../assets/icons/bin.png')}
                     btnStyle={styles.deleteButton}
                 />
             </View>

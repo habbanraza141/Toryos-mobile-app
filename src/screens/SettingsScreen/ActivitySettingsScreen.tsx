@@ -175,7 +175,7 @@ const ActivitySettingsScreen = () => {
                 <View style={styles.emptyState}>
                     <Image
                         source={getEmptyStateIcon()}
-                        style={[styles.emptyStateIcon, { tintColor: colors.muted35 }]}
+                        style={[styles.emptyStateIcon, { tintColor: colors.muted }]}
                     />
                     <TextComp fontSize={14} color="muted">{getEmptyStateMessage()}</TextComp>
                 </View>
@@ -299,8 +299,8 @@ const createStyleSheet = (colors: ColorPalette) =>
             gap: 12,
         },
         emptyStateIcon: {
-            width: 64,
-            height: 64,
+            width: 40,
+            height: 40,
         },
     });
 

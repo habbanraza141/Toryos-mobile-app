@@ -19,10 +19,13 @@ const ProfileSettingsScreen = () => {
 
     return (
         <Card otherStyle={styles.sectionCard}>
-            <TextComp bold fontSize={18}>Profile Settings</TextComp>
-            <TextComp fontSize={14} color="muted">
-                Manage your profile information and avatar
-            </TextComp>
+            <View>
+
+                <TextComp bold fontSize={18}>Profile Settings</TextComp>
+                <TextComp fontSize={14} color="muted">
+                    Manage your profile information and avatar
+                </TextComp>
+            </View>
 
             <View style={styles.profilePictureContainer}>
                 <View style={[styles.avatar, { backgroundColor: colors.primaryLight }]}>

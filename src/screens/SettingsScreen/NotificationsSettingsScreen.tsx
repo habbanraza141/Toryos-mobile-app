@@ -32,10 +32,13 @@ const NotificationsSettingsScreen = () => {
     return (
         <ScrollView showsVerticalScrollIndicator={false}>
             <Card otherStyle={styles.sectionCard}>
-                <TextComp bold fontSize={18}>Notification Preferences</TextComp>
-                <TextComp fontSize={14} color="muted">
-                    Choose when and how you want to be notified
-                </TextComp>
+                <View>
+
+                    <TextComp bold fontSize={18}>Notification Preferences</TextComp>
+                    <TextComp fontSize={14} color="muted">
+                        Choose when and how you want to be notified
+                    </TextComp>
+                </View>
 
                 <TextComp bold fontSize={16} style={styles.subsectionTitle}>New activity</TextComp>
 
