@@ -97,7 +97,7 @@ const DrawerComponent = ({ navigation }: DrawerComponentProps) => {
                     />
                     <TextComp style={styles.menuItemText}>Courses</TextComp>
                 </TouchableOpacity>
-                <TouchableOpacity
+                {/* <TouchableOpacity
                     style={styles.menuItem}
                     onPress={() => handleNavigate('More', { screen: 'MemberStack' })}
                 >
@@ -116,7 +116,7 @@ const DrawerComponent = ({ navigation }: DrawerComponentProps) => {
                         style={styles.menuIcon}
                     />
                     <TextComp style={styles.menuItemText}>Settings</TextComp>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
             </View>
 
             {/* FEED Section */}
