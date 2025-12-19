@@ -80,20 +80,20 @@ const MembersScreen = () => {
                     {member.name}
                 </TextComp>
                 {member.role && (
-                    <TextComp fontSize={14} style={[styles.memberRole, { color: colors.primary }]}>
+                    <TextComp fontSize={14} style={[styles.memberRole, { color: colors.text }]}>
                         {member.role}
                     </TextComp>
                 )}
                 <TouchableOpacity
-                    style={[styles.messageButton, { borderColor: colors.primary }]}
+                    style={[styles.messageButton, { borderColor: colors.text }]}
                     onPress={() => handleMessage(member.id)}
                     activeOpacity={0.7}
                 >
                     <Image
                         source={require('../../assets/icons/message.png')}
-                        style={[styles.messageIcon, { tintColor: colors.primary }]}
+                        style={[styles.messageIcon, { tintColor: colors.text }]}
                     />
-                    <TextComp fontSize={14} style={[styles.messageButtonText, { color: colors.primary }]}>
+                    <TextComp fontSize={14} style={[styles.messageButtonText, { color: colors.text }]}>
                         Message
                     </TextComp>
                 </TouchableOpacity>
@@ -215,7 +215,7 @@ const createStyleSheet = (colors: ColorPalette) =>
             fontSize: 18,
         },
         memberName: {
-            color: colors.textPrimary,
+            color: colors.text,
             textAlign: 'center',
         },
         memberRole: {

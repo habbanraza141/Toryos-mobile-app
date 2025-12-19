@@ -8,6 +8,7 @@ import { ColorPalette, getColors } from "../../theme/colors";
 import { useTheme } from "../../hooks/useTheme";
 import { useNavigation } from "@react-navigation/native";
 import HeaderComp from "../../components/HeaderComp";
+import Button from "../../components/Button";
 
 interface Contact {
     id: string;
@@ -114,85 +115,86 @@ const NewConversationScreen = () => {
 
     return (
         <BackgroundContainer>
-            <View style={styles.container}>
-                <View style={styles.header}>
-                    <BackButton />
-                    <HeaderComp title="New Conversation" />
+
+            <ScrollView
+                style={styles.contactsList}
+                showsVerticalScrollIndicator={false}
+            >
+                <View style={styles.container}>
+                    <View style={styles.header}>
+                        <BackButton />
+                        <HeaderComp title="New Conversation" />
 
 
-                </View>
+                    </View>
 
-                <View style={styles.segmentedControl}>
-                    <TouchableOpacity
-                        style={[
-                            styles.segment,
-                            conversationType === 'direct' && styles.segmentActive
-                        ]}
-                        onPress={() => {
-                            setConversationType('direct');
-                            setSelectedContacts(new Set());
-                        }}
-                        activeOpacity={0.7}
-                    >
-                        <Image
-                            source={require('../../assets/icons/message.png')}
+                    <View style={styles.segmentedControl}>
+                        <TouchableOpacity
                             style={[
-                                styles.segmentIcon,
-                                { tintColor: conversationType === 'direct' ? colors.textPrimary : colors.iconBackground }
+                                styles.segment,
+                                conversationType === 'direct' && styles.segmentActive
                             ]}
-                        />
-                        <TextComp
-                            fontSize={14}
-                            style={[
-                                styles.segmentText,
-                                conversationType === 'direct' && styles.segmentTextActive
-                            ]}
+                            onPress={() => {
+                                setConversationType('direct');
+                                setSelectedContacts(new Set());
+                            }}
+                            activeOpacity={0.7}
                         >
-                            Direct Message
-                        </TextComp>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={[
-                            styles.segment,
-                            conversationType === 'group' && styles.segmentActive
-                        ]}
-                        onPress={() => {
-                            setConversationType('group');
-                            setSelectedContacts(new Set());
-                        }}
-                        activeOpacity={0.7}
-                    >
-                        <Image
-                            source={require('../../assets/icons/members.png')}
+                            <Image
+                                source={require('../../assets/icons/message.png')}
+                                style={[
+                                    styles.segmentIcon,
+                                    { tintColor: conversationType === 'direct' ? colors.textPrimary : colors.iconBackground }
+                                ]}
+                            />
+                            <TextComp
+                                fontSize={14}
+                                style={[
+                                    styles.segmentText,
+                                    conversationType === 'direct' && styles.segmentTextActive
+                                ]}
+                            >
+                                Direct Message
+                            </TextComp>
+                        </TouchableOpacity>
+                        <TouchableOpacity
                             style={[
-                                styles.segmentIcon,
-                                { tintColor: conversationType === 'group' ? colors.textPrimary : colors.iconBackground }
+                                styles.segment,
+                                conversationType === 'group' && styles.segmentActive
                             ]}
-                        />
-                        <TextComp
-                            fontSize={14}
-                            style={[
-                                styles.segmentText,
-                                conversationType === 'group' && styles.segmentTextActive
-                            ]}
+                            onPress={() => {
+                                setConversationType('group');
+                                setSelectedContacts(new Set());
+                            }}
+                            activeOpacity={0.7}
                         >
-                            Group Chat
-                        </TextComp>
-                    </TouchableOpacity>
-                </View>
+                            <Image
+                                source={require('../../assets/icons/members.png')}
+                                style={[
+                                    styles.segmentIcon,
+                                    { tintColor: conversationType === 'group' ? colors.textPrimary : colors.iconBackground }
+                                ]}
+                            />
+                            <TextComp
+                                fontSize={14}
+                                style={[
+                                    styles.segmentText,
+                                    conversationType === 'group' && styles.segmentTextActive
+                                ]}
+                            >
+                                Group Chat
+                            </TextComp>
+                        </TouchableOpacity>
+                    </View>
 
-                <View style={styles.searchContainer}>
-                    <SearchBarComp
-                        placeholderText="Search contacts..."
-                        value={searchQuery}
-                        onChange={setSearchQuery}
-                    />
-                </View>
+                    <View style={styles.searchContainer}>
+                        <SearchBarComp
+                            placeholderText="Search contacts..."
+                            value={searchQuery}
+                            onChange={setSearchQuery}
+                        />
+                    </View>
 
-                <ScrollView
-                    style={styles.contactsList}
-                    showsVerticalScrollIndicator={false}
-                >
                     {filteredContacts.length > 0 ? (
                         filteredContacts.map(renderContact)
                     ) : (
@@ -202,25 +204,19 @@ const NewConversationScreen = () => {
                             </TextComp>
                         </View>
                     )}
-                </ScrollView>
 
-                {/* Start Conversation Button */}
-                {selectedContacts.size > 0 && (
-                    <View style={styles.footer}>
-                        <TouchableOpacity
-                            style={[styles.startButton, { backgroundColor: colors.primary }]}
-                            onPress={handleStartConversation}
-                            activeOpacity={0.8}
-                        >
-                            <TextComp bold fontSize={16} style={styles.startButtonText}>
-                                {conversationType === 'direct'
-                                    ? 'Start Conversation'
-                                    : `Start Group Chat (${selectedContacts.size})`}
-                            </TextComp>
-                        </TouchableOpacity>
-                    </View>
-                )}
-            </View>
+                    {/* Start Conversation Button */}
+                    {selectedContacts.size > 0 && (
+                        <View style={styles.footer}>
+                            <Button onPress={handleStartConversation} title={conversationType === 'direct'
+                                ? 'Start Conversation'
+                                : `Start Group Chat (${selectedContacts.size})`} />
+
+                        </View>
+                    )}
+                </View>
+            </ScrollView>
+
         </BackgroundContainer>
     );
 };
@@ -341,7 +337,7 @@ const createStyleSheet = (colors: ColorPalette) =>
             alignItems: 'center',
         },
         checkmarkText: {
-            color: '#FFFFFF',
+            color: colors.text,
             fontSize: 14,
         },
         emptyState: {
@@ -361,7 +357,7 @@ const createStyleSheet = (colors: ColorPalette) =>
             justifyContent: 'center',
         },
         startButtonText: {
-            color: '#FFFFFF',
+            // color: '#FFFFFF',
         },
     });
 
